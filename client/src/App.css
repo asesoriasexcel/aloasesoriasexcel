@@ -1,0 +1,449 @@
+/* app.css */
+* {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  font-weight: 300;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+  background: #ffffff;
+}
+
+#root,
+.app-container,
+main,
+.cuerpo-page-container {
+  height: 100% !important;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* ****** Estilos estandarizados ****** */
+.seccion {
+  margin: 0 auto !important;
+}
+
+.centered-content {
+  width: 80%;
+  max-width: 1200px;
+  overflow: hidden; /* Evita el desbordamiento */
+  padding: 20px 30px 100px 30px;
+  margin-inline: auto;
+   
+}
+
+.contenido {
+  width: 100%;
+  margin-inline: auto;
+   
+}
+
+/* ****** Header centrado ****** */
+.seccion-encabezado {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  margin: 2.5rem auto 4rem auto;
+   
+}
+
+.header-centrado {
+  font-size: 2.1rem;
+  line-height: 1.2;
+  font-weight: 600;
+  text-align: center;
+   
+}
+
+.header-centrado svg {
+  font-size: 50px;
+  user-select: none;
+  width: 1.5em;
+  height: 1.5em;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.header-centrado h2 {
+  font-size: 2.1rem;
+  line-height: 1.2;
+  font-weight: 600;
+  color: var(--seccion_info_titulo_1);
+  text-align: center;
+}
+
+.header-centrado p {
+  font-size: 1.3rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+}
+
+/* ****** Header izquierda ****** */
+.seccion-encabezado-izq {
+  width: 100%;
+  margin: 0 auto;
+  text-align: left;
+  margin: 2.5rem auto 2rem auto;
+   
+}
+
+.header-izq {
+  display: flex;
+  flex-direction: row;
+  align-items:flex-end;
+  font-size: 2.1rem;
+  line-height: 1.2;
+  font-weight: 600;
+  text-align: left;
+  gap: 10px;
+   
+}
+
+.header-izq svg {
+  font-size: 2rem;
+}
+
+.header-izq h2 {
+  font-size: 2rem;
+  color: var(--texto2);
+  font-weight: 600;
+  display: flex;
+  width: 100%;
+  text-align: left;
+  margin-inline: auto;
+  align-items: center;
+  margin-bottom: 0px;
+}
+
+.header-izq p {}
+
+/* botones */
+.btn-azul {
+  text-align: center;
+  color: #fff;
+  background-color: #0093b0;
+  border-radius: 8px;
+  padding: .6rem 1.5rem;
+  white-space: break-spaces;
+  text-decoration: none;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-azul:hover {
+  background-color: #097186 !important;
+  box-shadow: 0 2px 8px rgba(0, 147, 176, 0.35);
+}
+
+.btn-azul:focus-visible {
+  outline: 2px solid #0093b0;
+  outline-offset: 2px;
+}
+
+.btn-azulsecundario {
+  text-align: center;
+  color: #fff;
+  background-color: #7fa4ac;
+  border-radius: 8px;
+  padding: .6rem 1.5rem;
+  white-space: break-spaces;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.btn-azulsecundario:hover {
+  background-color: #526b70 !important;
+}
+
+.btn-naranjo {
+  text-align: center;
+  color: #fff;
+  background-color: #e86e2f;
+  border-radius: 8px;
+  padding: .6rem 1.5rem;
+  white-space: break-spaces;
+  text-decoration: none;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-naranjo:hover {
+  background-color: #cf2e2e !important;
+  box-shadow: 0 2px 8px rgba(232, 110, 47, 0.35);
+}
+
+.btn-naranjo:focus-visible {
+  outline: 2px solid #e86e2f;
+  outline-offset: 2px;
+}
+
+.btn-naranjo-claro {
+  text-align: center;
+  color: rgb(255, 143, 39);
+  background-color: rgb(255, 228, 203);
+  border-radius: 8px;
+  padding: .6rem 1.5rem;
+  white-space: break-spaces;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.btn-naranjo-claro:hover {
+  background-color: rgb(255, 211, 169) !important;
+}
+
+.btn-verde {
+  text-align: center;
+  color: #fff;
+  background-color: #228d3b;
+  border-radius: 8px;
+  padding: .6rem 1.5rem;
+  white-space: break-spaces;
+  text-decoration: none;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-verde:hover {
+  background-color: #1b702f !important;
+  box-shadow: 0 2px 8px rgba(34, 141, 59, 0.35);
+}
+
+.btn-verde:focus-visible {
+  outline: 2px solid #228d3b;
+  outline-offset: 2px;
+}
+
+
+/* Estilo para el botón de YouTube */
+.btn-youtube {
+  background-color: red; /* Fondo rojo */
+  color: white; /* Texto blanco */
+  border: 1px solid red; /* Borde rojo */
+  padding: 10px 20px;
+  font-size: 14px;
+  display: inline-flex; /* Cambio a flex para mejorar la alineación */
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 4px; /* Opcional: redondear bordes */
+}
+
+.btn-youtube:hover {
+  background-color: darkred; /* Efecto hover con un rojo más oscuro */
+}
+
+/* Espaciado y alineación del icono y el texto */
+.btn-youtube .youtube-icon {
+  margin-right: 8px; /* Espacio entre el icono y el texto */
+  font-size: 18px; /* Tamaño del icono */
+  color: white; /* Color blanco para el icono */
+}
+
+/* Estilo para el botón de YouTube */
+.btn-naranjoicon {
+  background-color: #e86e2f; /* Fondo rojo */
+  color: #fff; /* Texto blanco */
+  border: 1px solid transparent;
+  padding: 0px 10px;
+  font-size: 14px;
+  display: inline-flex; /* Cambio a flex para mejorar la alineación */
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 4px; /* Opcional: redondear bordes */
+}
+
+.btn-naranjoicon:hover {
+  color: #fff !important;
+  border: 1px solid transparent !important;
+  background-color: #cf2e2e !important; /* Efecto hover con un rojo más oscuro */
+}
+
+/* Espaciado y alineación del icono y el texto */
+.btn-naranjoicon .btnnaranjoicon-icon {
+  margin-right: 8px; /* Espacio entre el icono y el texto */
+  font-size: 14px; /* Tamaño del icono */
+  color: white; /* Color blanco para el icono */
+}
+
+/* Estilos Responsivos */
+@media (max-width: 768px) {
+  .centered-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-inline: 0px !important;
+    padding: 0px 15px 40px 15px!important;
+  }
+
+  .contenido {
+    width: 100%;
+  }
+  
+  .seccion-encabezado .header-centrado svg {
+    font-size: 40px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .seccion-encabezado .header-centrado h2 {
+    font-size: 32px !important;
+    margin-bottom: 0px !important;
+  }
+
+  .seccion-encabezado .header-centrado p {
+    font-size: 16px !important;
+    margin-top: 16px !important;
+  }
+
+  .header-izq {
+    gap: 0px !important;
+  }
+  
+  .header-izq svg {
+    margin-bottom: 0px !important;
+    margin-right: 8px !important;
+  }
+
+  .header-izq h2 {
+    font-size: 1.5rem !important;
+  }
+
+  
+}
+
+
+/* ===== TRANSICIONES ENTRE SECCIONES ===== */
+
+/* Header → InfoSection: transición manejada directamente en Header.css */
+
+/* InfoSection (white) → ProductoDestacado (#567ba6):
+   productos-section arranca con un fade desde blanco */
+.productos-section {
+  position: relative;
+}
+.productos-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(to bottom, #ffffff, transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ProductoDestacado (#567ba6) → Categorias (#c7d4e2):
+   fade blanco en la parte superior, detrás del contenido */
+.categoria-grid-section {
+  position: relative;
+  isolation: isolate;
+}
+.categoria-grid-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to bottom, #ffffff, transparent);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Categorias (#c7d4e2) → Diseño (white):
+   el gradiente va en el ::after de categoria-grid-section (parte inferior),
+   no invade el contenido de diseno-section */
+.categoria-grid-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 180px;
+  background: linear-gradient(to bottom, transparent, #ffffff);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Diseño (white) → Referencias: transición manejada por onda SVG en Referencias */
+.diseno-section {
+  position: relative;
+}
+
+/* Diseño (white) → Referencias: transición manejada por onda SVG en Referencias */
+
+/* Referencias (#284872) → FAQ (white): sin difuminado inferior */
+.referencias-section {
+  position: relative;
+}
+
+/* Asegurar que las secciones con overflow:hidden no corten los gradientes */
+.seccion {
+  overflow: visible !important;
+}
+
+/* === PAGINAS SECUNDARIAS ===*/
+.cuerpo-page-container {
+  min-height: calc(100vh - 346px); /* Resta 250px de la altura de la pantalla */
+  background: var(--blanco);
+  display: flex;
+  justify-content: left; /* Centrar el contenido horizontalmente */
+  align-items: left; /* Centrar el contenido verticalmente */
+}
+
+.cuerpo-page {
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Asegura que el contenido ocupe el ancho completo */
+  text-align: center;
+}
+
+/* Media query para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .cuerpo-page-container {
+    min-height: calc(100vh - 250px);
+    margin-top: 45px;
+  }
+}

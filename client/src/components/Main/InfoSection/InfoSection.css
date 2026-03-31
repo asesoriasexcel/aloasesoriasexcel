@@ -1,0 +1,43 @@
+/* InfoSection.css */
+
+.info-section {
+  background: var(--seccion_info_fondo);
+  /* background-image: linear-gradient(to bottom, #dcdde033 0%, hsla(0, 0%, 100%, 0) 200px); */
+}
+
+.info-section .seccion-encabezado {
+  margin-top: 30px;
+}
+
+.info-section .centered-content {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.info-section .header-centrado svg {
+  color: var(--seccion_info_svg);
+  font-size: 80px;
+}
+
+.info-section .header-centrado h2 {
+  color: var(--seccion_info_titulo_1);
+}
+
+.info-section .header-centrado span {
+  display: block;
+}
+
+.info-section .header-centrado .destacado {
+  color: var(--seccion_info_titulo_2);
+}
+
+.info-section .centered-content p {
+  color: var(--seccion_info_subtitulo);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .info-section .header-centrado .icon-title svg {
+    font-size: 70px !important;
+  }
+}

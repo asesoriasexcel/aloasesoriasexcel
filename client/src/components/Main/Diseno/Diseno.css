@@ -1,0 +1,142 @@
+/* Fondo oscuro y espaciado */
+.diseno-section {
+  background: var(--seccion_diseno_fondo);
+}
+
+/* Centrado de las columnas dentro de .centered-content */
+.diseno-section .centered-content:nth-child(1){
+  margin-inline: auto !important;
+}
+
+/* Estilos para la columna de la izquierda (Imagen) */
+.image-container {
+  flex: 1;
+  display: flex;
+  justify-content: center; /* Centra la imagen */
+  align-items: center; /* Centra la imagen verticalmente */
+}
+
+.diseno-image {
+  width: 100%; /* Hacemos la imagen más flexible */
+  max-width: 462px; /* Limita el ancho máximo */
+  height: auto; /* Mantiene las proporciones de la imagen */
+  object-fit: cover; /* Asegura que la imagen cubra el área del contenedor */
+  border-radius: 2rem; /* Bordes redondeados */
+  box-shadow: 0px 59px 16px -8px rgba(120,149,206,0),0px 38px 15px -8px rgba(120,149,206,.01),0px 21px 13px -8px rgba(120,149,206,.04),0px 9px 9px -4px rgba(120,149,206,.07),0px 2px 5px 0px rgba(120,149,206,.08);
+}
+
+/* Estilos para la columna de la derecha (Contenido) */
+.content-container {
+  flex: 1;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra el contenido verticalmente */
+  overflow: hidden; /* Evita el desbordamiento */
+}
+
+/* Estilos para el Tag */
+.diseno-section .tag-label {
+  background: transparent !important;
+  border: 1px solid #1890ff !important;
+  color: #1890ff !important;
+  border-radius: 9999px;
+  padding: .25rem .875rem;
+  font-weight: 500;
+  width: fit-content;
+  border-width: 1px;
+}
+
+/* Estilos para el título */
+.diseno-section .diseno-title h2 {
+  color: var(--seccion_diseno_titulo);
+}
+.diseno-section .diseno-title {
+  color: var(--seccion_diseno_titulo);
+  text-align: left;
+  font-size: 2.5rem !important;
+  line-height: 1;
+  font-weight: 600;
+  margin-top: 0.3rem;
+}
+
+/* Estilos para el subtítulo */
+.diseno-section .diseno-subtitle {
+  text-align: left;
+  color: var(--seccion_diseno_subtitulo);
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  margin-top: .4rem;
+}
+
+/* Estilos para la lista */
+.diseno-list {
+  margin-top: 15px;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.diseno-list .ant-list-item {
+  font-size: 1rem;
+  line-height: 1.2rem;
+  color: var(--seccion_diseno_textolista);
+  padding-bottom: 0;
+  border-bottom: 1px solid transparent;
+}
+
+/* Estilos para el botón */
+.diseno-button {
+  align-self: flex-start; /* Alinea el botón a la izquierda */
+  background-color: #1890ff;
+  color: white;
+  border-radius: 9999px;
+  padding: .25rem .875rem;
+  font-weight: 500;
+  width: fit-content;
+  height: 40px;
+  border-width: 1px;
+  cursor: pointer;
+}
+
+.diseno-button:hover {
+  background-color: #40a9ff;
+}
+
+@media (min-width: 769px) {
+  .diseno-section .centered-content {
+    padding-top: 50px;
+  }
+}
+
+/* Responsividad para pantallas pequeñas */
+@media (max-width: 768px) {
+
+  .diseno-section .centered-content {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+  }
+
+  .image-container {
+    padding-inline: 0px !important;
+  }
+
+  .diseno-image {
+    width: 100%;
+    max-height: fit-content;
+    object-fit: contain;
+    border-radius: 1rem;
+  }
+
+  .centered-content {
+    flex-direction: column;
+  }
+
+  .diseno-section .diseno-title {
+    font-size: 1.8rem !important;
+    margin-top: 0.5rem;
+  }
+
+  .diseno-section .diseno-subtitle {
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,33 @@
+
+  
+.TreeMenu-container-mostrar,
+.TreeMenu-container-volver {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  margin: 0;
+  height: fit-content;
+}
+
+.TreeMenu-container-mostrar svg,
+.TreeMenu-container-volver svg {
+  height: auto; 
+  width: auto; 
+  margin-right: 8px;
+}
+
+.TreeMenu-container-mostrar span,
+.TreeMenu-container-volver span {
+  height: auto;
+  line-height: normal; 
+}
+
+.TreeMenu-container-volver {
+  padding-bottom: 10px;
+}
+
+.TreeMenu-container-mostrar {
+  margin-top: 20px;
+  margin-bottom: 8px;
+}

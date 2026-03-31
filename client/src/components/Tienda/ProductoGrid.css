@@ -1,0 +1,25 @@
+.btn-descargar {
+    width: 100%;
+}
+
+.producto-botones .descarga-con-texto {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    width: 100%;
+}
+
+.producto-botones .descarga-con-texto span,
+.producto-botones .descarga-con-texto button {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .producto-botones .descarga-con-texto {
+        flex-direction: row;
+    }
+
+    .producto-botones .descarga-con-texto .btn-descargar {
+        width: 100%;
+    }
+}

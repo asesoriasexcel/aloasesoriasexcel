@@ -1,0 +1,174 @@
+.footer {
+  background-color: #24313d;
+  color: #fff;
+  padding: 20px;
+  background-image: linear-gradient(to top, rgba(7, 16, 22, 0.8), hsla(0, 0%, 100%, 0));
+
+}
+
+.footer-content {
+  display: flex;
+  justify-content:space-evenly;
+  text-align: left;
+  margin-top: 24px;
+  margin-inline: 128px;
+  padding: 32px 12px 8px 12px;
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-title {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+  font-size: 1.1rem;  
+  font-weight: 300;  
+  text-align: left;
+  
+}
+
+.footer-subtitle {
+  font-size: 1rem;
+  color:rgb(216, 216, 216);
+  margin-bottom: 20px;
+}
+
+.social-icons {
+  display: flex;
+  flex-direction: row;
+  gap: 15px !important;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.copyright {
+  font-size: 0.8rem;
+  color:rgb(179, 179, 179);
+}
+
+/* Estilo para la palabra 'asesoria' con un degradado blanquecino */
+.footer-title .footer-title_a {
+  background: linear-gradient(to right, #f0f0f0, #dcdcdc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 400;
+  font-size: 1.1rem;
+}
+
+.footer-title .footer-title_b {
+  color: #107c10;  /* Color verde de Excel */
+  font-weight: 400;
+  font-size: 1.1rem;
+}
+
+.social-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.footer-title.important,
+.footer-title.contact {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.contactostyle {
+  display: flex;
+  flex-direction: row;
+  color: rgb(189, 189, 189);
+  gap: 8px;
+  text-align: left;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 0px;
+  transition: color 0.3s ease, transform 0.3s ease;
+  text-decoration: none; /* Para enlaces como <a> o <Link> */
+  cursor: pointer;
+}
+
+.contactostyle:hover {
+  color: rgb(255, 255, 255);
+}
+
+
+
+/* Ajustes para el ícono de Facebook */
+.footer-facebook {
+  font-size: 2.1em; /* Tamaño del ícono */
+  color: #3b5998; /* Azul de Facebook */
+  background: #fff;
+  border-radius: 50%; /* Circular */
+  width: 26px; /* Círculo más pequeño */
+  height: 26px; /* Igual a `width` para mantener la proporción */
+  padding: 5px; /* Menos padding para hacer el círculo más pequeño */
+  box-shadow: 0 0 5px #3b5998, 0 0 10px #3b5998, 0 0 150px #3b5998; /* Brillo de Facebook */
+  animation: animate-facebook 3s linear infinite; /* Sin animación de escala */
+}
+
+/* Ajustes para el ícono de YouTube */
+.footer-youtube {
+  font-size: 2.1em; /* Tamaño del ícono */
+  color: #ff0000; /* Rojo de YouTube */
+  background: #fff;
+  border-radius: 50%; /* Circular */
+  width: 26px; /* Círculo más pequeño */
+  height: 26px; /* Igual a `width` para mantener la proporción */
+  padding: 5px; /* Menos padding para hacer el círculo más pequeño */
+  box-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 150px #ff0000; /* Brillo de YouTube */
+  animation: animate-youtube 3s linear infinite; /* Sin animación de escala */
+}
+
+/* Estilo para el ícono de Instagram */
+.footer-instagram {
+  font-size: 2.1em; /* Tamaño del ícono */
+  color: #e1306c; /* Rosa de Instagram */
+  background: #fff;
+  border-radius: 50%; /* Circular */
+  width: 26px; /* Círculo más pequeño */
+  height: 26px; /* Igual a `width` para mantener la proporción */
+  padding: 5px; /* Menos padding para hacer el círculo más pequeño */
+  box-shadow: 0 0 5px #e1306c, 0 0 10px #e1306c, 0 0 150px #e1306c; /* Brillo de Instagram */
+}
+
+/* Estilo para el ícono de TikTok */
+.footer-tiktok {
+  font-size: 2.1em; /* Tamaño del ícono */
+  color: #69c9d0; /* Azul claro de TikTok */
+  background: #fff;
+  border-radius: 50%; /* Circular */
+  width: 26px; /* Círculo más pequeño */
+  height: 26px; /* Igual a `width` para mantener la proporción */
+  padding: 5px; /* Menos padding para hacer el círculo más pequeño */
+  box-shadow: 0 0 5px #69c9d0, 0 0 10px #ee1d52, 0 0 150px #fff; /* Brillo combinado de TikTok */
+}
+
+@media (max-width: 768px) {
+
+  .footer-content {
+    flex-direction: column;
+    width: 100%;
+    padding-inline: 0px;
+    margin-inline: 0px;
+    gap: 25px;
+    margin-bottom: 20px !important;
+  }
+
+  .footer-column span {
+    line-height: 1;
+    justify-content: flex-start !important;
+  }
+
+  .footer-subtitle {
+    margin-bottom: 20px;
+  }
+
+  .social-icons {
+    margin-bottom: 8px !important;
+  }
+
+  .copyright {
+    margin-bottom: 10px;
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "asesoriasexcel-root",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Asesorias Excel - Proyecto monorepo. Frontend en /client, Vercel Functions en /api.",
+  "scripts": {
+    "dev": "cd client && npm run dev"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.0.0",
+    "googleapis": "^140.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

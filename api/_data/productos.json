@@ -1,0 +1,18 @@
+[
+  {
+    "id": "producto-001",
+    "nombre": "Ejemplo Producto",
+    "descripcion": "Descripción corta del producto",
+    "descripcion_larga": "",
+    "grado": "estandar",
+    "categoria": 1,
+    "subcategoria": null,
+    "precio": 9990,
+    "video_link": "",
+    "imagen": "",
+    "disponible": true,
+    "liberado": false,
+    "destacado": false,
+    "driveFileName": "producto-001.xlsm"
+  }
+]

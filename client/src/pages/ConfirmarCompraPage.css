@@ -1,0 +1,261 @@
+/* Estilos generales */
+  .confirmarcompra-container {
+    padding: 20px;
+  }
+
+  .confirmarcompra-title {
+    text-align: left;
+    font-size: 24px;
+    padding-left: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .confirmacompra-contenido {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    width: 40%;
+    margin-top: 30px;
+    margin-left: 10%;
+    margin-bottom: 30px;
+  }
+  
+  .confirmacompra-contenido .instrucciones {
+    width: 50%;
+  }
+
+  h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  
+  p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .confirmacompra-contenido button {
+    margin-top: 20px;
+  }
+  
+  .confirmacompra-contenido a {
+    width: 200px !important;
+    height: 40px;
+  }
+  
+  .confirmacompra-contenido .ant-card-head {
+    background-color: var(--blanco);
+  }
+
+  /* Estilo de la tabla de transferencia */
+  .ant-table-thead > tr > th {
+    background-color: #f4f4f4;
+    text-align: left;
+    font-weight: bold;
+  }
+  
+  .ant-table-tbody > tr > td {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+  
+  /* Estilo de los productos */
+  .producto-resumen {
+    margin: 15px 0;
+    width: 100%;
+  }
+  
+  .producto-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .producto-info img {
+    margin-right: 10px;
+  }
+  
+  .producto-detalle h4 {
+    margin: 0;
+    font-size: 18px;
+  }
+  
+  .producto-detalle p {
+    margin: 5px 0;
+    font-size: 16px;
+  }
+  
+
+  
+  /* Estilo del total de la compra */
+  .total-compra {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 30px;
+  }
+
+  .confirmacompra-contenido .ant-card-body {
+    padding-top: 5px !important;
+  }
+
+  .confirmacompra-contenido .ant-card-head .ant-card-head-title {
+    font-weight: 600;
+  }
+  
+  .confirmacompra-contenido td {
+    padding: 10px !important;
+  }
+
+  .confirmacompra-contenido .ant-card {
+    margin-bottom: 15px;
+  }
+
+  .confirmacompra-contenido .ant-card .ant-card-head-title {
+    white-space: normal;
+    padding: 10px 0;
+  }
+
+  .confirmacompra-contenido .ant-card .ant-table-cell button {
+    margin-top: 0px;
+  }
+
+  .confirmacompra-contenido .ant-card .ant-table-cell button svg {
+    color: var(--lh_mo);
+  }
+
+  .confirmacompra-contenido span,
+  .confirmacompra-contenido .ant-typography {
+    font-size: 1rem;
+    text-align: left;
+  }
+
+  .confirmacompra-contenido .ant-table-tbody tr td {
+    padding-left: 0px !important;
+  }
+
+  /* Estilos para móvil (max-width: 768px) */
+  @media (max-width: 768px) {
+    .confirmarcompra-container {
+      padding: 0px;
+    }
+  
+    .confirmarcompra-title {
+      font-size: 20px;
+    }
+  
+    .confirmacompra-contenido {
+      width: 100%;
+      padding: 0 10px;
+      margin-inline: 0px;
+      box-sizing: border-box;
+      margin-bottom: 30px;
+    }
+  
+    .instrucciones, .total-compra {
+      margin-bottom: 20px;
+    }
+  
+    .producto-resumen {
+      width: 100%;
+    }
+  
+    .producto-info {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .producto-info img {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+  
+    .producto-detalle h4 {
+      font-size: 16px;
+    }
+  
+    .producto-detalle p {
+      font-size: 14px;
+    }
+  
+    .ant-table-tbody > tr > td {
+      font-size: 14px;
+    }
+  
+    .ant-table-thead > tr > th {
+      font-size: 14px;
+    }
+  
+    .ant-tag {
+      font-size: 12px;
+    }
+  }
+  
+
+  /* Sobreescritura de estilos de Steps */
+  .confirmar-compra-container .stepmodificado {
+    width: 40%;
+    margin: 15px 0 20px 10% !important;
+  }
+
+  .confirmar-compra-container .p-steps-number {
+    border: 1px solid #d0d1d3;
+  }
+
+  .confirmar-compra-container .stepmodificado li a {
+    padding: 10px;
+  }
+
+  .confirmar-compra-container .stepmodificado .p-menuitem-icon {
+    margin-top: 10px;
+  }
+
+  .confirmar-compra-container .p-steps .p-steps-item:before {
+    transform: translateY(-1000%);
+    border-top: 1px solid transparent;
+  }
+
+  .confirmar-compra-container .p-steps .p-steps-item.p-highlight .p-steps-number {
+    color: #fff;
+    background-color: var(--lh_o);
+  }
+
+  @media (max-width: 768px) {
+  .confirmar-compra-container .stepmodificado {
+    width: 100%;
+    padding-inline: 10px;
+    margin-inline: 0px !important;
+  }
+
+  .confirmar-compra-container .p-steps .p-steps-item.p-highlight .p-steps-number {
+    color: #fff !important;
+    background-color: var(--lh_o) !important; 
+  }
+
+  .confirmar-compra-container .p-steps .p-steps-item:before {
+    transform: translateY(-2000%);
+    border-top: 1px solid transparent;
+  }
+
+  .confirmar-compra-container .stepmodificado ol {
+    gap: 10px !important;
+    max-width: 100%;
+    overflow: auto;
+    box-sizing: border-box;
+    display: flex;
+  }
+  
+  .confirmar-compra-container .stepmodificado li {
+    flex: 1 1 33.33%;
+  }
+  
+  .confirmar-compra-container .stepmodificado li .p-steps-title {
+    text-align: center;
+    white-space: normal;
+    overflow-wrap: break-word !important;
+  }
+  
+  .confirmar-compra-container .stepmodificado .p-steps-title {
+    font-size: 1rem;
+  }
+  }

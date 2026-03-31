@@ -1,0 +1,106 @@
+.cuerpo-page-container {
+    display: flex;
+    justify-content: left;
+    margin-inline: auto;
+    padding: 20px;
+    flex-direction: column;
+  }
+  
+  .cuerpo-page-container .ant-breadcrumb {
+    text-align: left;
+    justify-content: flex-start;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 4px;
+  }
+
+  .titulo-productos {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  
+  .productos-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Cuatro columnas por defecto */
+    gap: 20px;
+  }
+  
+  .producto-card {
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background: #fff;
+    border: 2px transparent solid;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(92, 133, 150, 0.24);
+  }
+  
+  .producto-imagen {
+    width: 100%;
+    height: 120px;  /* Altura fija de 80px */
+    object-fit: cover;  /* Mantiene la imagen proporcional sin distorsionarse */
+    border-radius: 8px;
+    margin-bottom: 12px;
+  }
+  
+  .producto-nombre {
+    margin: 12px 0;
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 24px;
+  }
+  
+  .producto-descripcion-corta {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 12px;
+  }
+  
+  .producto-precio {
+    font-size: 16px;
+    font-weight: bold;
+    color: #007BFF;
+    margin-bottom: 16px;
+  }
+  
+  .producto-botones {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-inline: 0px;
+    justify-content: space-between;
+  }
+  
+  .producto-botones button {
+    margin: 5px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .btn-addcart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px !important;
+  }
+  
+  .btn-addcart svg {
+    font-size: 1.4rem;
+  }
+  
+  /* Estilo para pantallas móviles (menos de 768px) */
+  @media (max-width: 768px) {
+    .productos-grid {
+      grid-template-columns: 1fr; /* Una sola columna en pantallas móviles */
+    }
+  }
+  

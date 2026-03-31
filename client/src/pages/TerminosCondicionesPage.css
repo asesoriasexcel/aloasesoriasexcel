@@ -1,0 +1,76 @@
+/* Estilos principales */
+.terminos-section {
+    background: var(--seccion_diseno_fondo); /* Mantiene la variable definida */
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .terminos-section .terminos-title {
+    margin-top: 30px;
+    font-size: 2rem;
+    color: #222;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 2px solid #ccc; /* Línea decorativa */
+    display: inline-block;
+    padding-bottom: 5px;
+  }
+  
+  .terminos-section .centered-content {
+    padding: 40px 20px; /* Márgenes más uniformes */
+    max-width: 800px;
+    margin: 0 auto; /* Centra el contenido */
+    line-height: 1.8; /* Espaciado para mejor legibilidad */
+  }
+  
+  .terminos-section h2 {
+    font-size: 1.6rem;
+    margin-top: 20px;
+    color: #444;
+    font-weight: 500;
+    border-left: 4px solid #0078D7; /* Barra decorativa */
+    padding-left: 10px;
+  }
+  
+  .terminos-section p {
+    margin: 15px 0;
+    text-align: justify;
+    font-size: 1rem;
+    color: #555;
+    text-align: justify;
+  }
+  
+  .terminos-section a {
+    color: #0078D7; /* Color del enlace */
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .terminos-section a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Adaptación para móviles */
+  @media (max-width: 768px) {
+
+    .terminos-section {
+      margin-top: 80px;
+    }
+
+    .terminos-section .terminos-title {
+      font-size: 1.8rem;
+    }
+  
+    .terminos-section h2 {
+      font-size: 1.4rem;
+    }
+  
+    .terminos-section p {
+      font-size: 0.95rem;
+    }
+  
+    .terminos-section .centered-content {
+      padding: 30px 15px; /* Reduce padding en pantallas pequeñas */
+    }
+  }
+  

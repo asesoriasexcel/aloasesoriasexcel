@@ -1,0 +1,73 @@
+:root {
+    /* MP072 */
+    --mp072_Palladian: #EEE9DF; /* claro */
+    --mp072_BurningFlame: #FFB162; /* especial */
+    --mp072_Oatmeal: #C9C1B1; /* menos claro */
+    --mp072_TruffleTrouble: #A35139; /* warning */
+    --mp072_BlueFantastic: #2C3B4D; /* menos oscuro */
+    --mp072_AnchorfishBlue: #1B2632; /* color oscuro */
+
+    /* Aplicacion de paleta MP111 */
+    --warning-p1: rgb(149, 30, 30);
+
+
+    /* Aplicación en HEADER */
+--seccion_header_fondo: var(--mp072_Palladian); /* claro */
+--seccion_header_titulo_1: rgb(32, 32, 32); /* oscuro */
+--seccion_header_titulo_2: var(--mp072_BlueFantastic); /* menos oscuro */
+--seccion_header_titulo_subtitulo: rgb(32, 32, 32); /* oscuro */
+--seccion_header_topmenu_text: var(--mp072_BlueFantastic); /* menos oscuro */
+--seccion_header_topmenu_hover: var(--mp072_BurningFlame); /* especial */
+
+/* Aplicación en INFO */
+--seccion_info_fondo: rgba(255, 255, 255, 1); /* claro */
+--seccion_info_svg: var(--mp072_BlueFantastic); /* menos oscuro */
+--seccion_info_titulo_1: var(--mp072_BlueFantastic); /* menos oscuro */
+--seccion_info_titulo_2: var(--mp072_TruffleTrouble); /* warning */
+--seccion_info_subtitulo: var(--mp072_Oatmeal); /* menos claro */
+
+/* Aplicación en INFO GRID */
+--seccion_info_grid_icon: var(--mp072_BlueFantastic); /* menos oscuro */
+--seccion_info_grid_titulo: var(--mp072_BlueFantastic); /* menos oscuro */
+--seccion_info_grid_descripcion: var(--mp072_TruffleTrouble); /* warning */
+
+/* Aplicación en DESTACADOS */
+--seccion_destacados_fondo: var(--mp072_Oatmeal); /* menos claro */
+--seccion_destacados_titulo: var(--mp072_BlueFantastic); /* menos oscuro */
+--seccion_destacados_subtitulo: var(--mp072_BlueFantastic); /* menos oscuro */
+--seccion_destacados_precio: var(--mp072_BlueFantastic); /* menos oscuro */
+
+/* Aplicación a CATEGORÍAS */
+--seccion_categorias_fondo: var(--mp072_BlueFantastic); /* menos oscuro */
+--seccion_categorias_titulo: var(--mp072_Palladian); /* claro */
+--seccion_categorias_subtitulo: var(--mp072_Oatmeal); /* menos claro */
+--seccion_categorias_icono: var(--mp072_BlueFantastic); /* menos oscuro */
+--seccion_categorias_fondoicono: var(--mp072_TruffleTrouble); /* warning */
+
+/* Aplicación a DISEÑO */
+--seccion_diseno_fondo: var(--mp072_Palladian); /* claro */
+--seccion_diseno_titulo: var(--mp072_AnchorfishBlue); /* oscuro */
+--seccion_diseno_subtitulo: var(--mp072_BlueFantastic); /* menos oscuro */
+--seccion_diseno_textolista: var(--mp072_BlueFantastic); /* menos oscuro */
+
+/* Aplicación a REFERENCIAS */
+--seccion_referencias_fondo: var(--mp072_BlueFantastic); /* menos oscuro */
+--seccion_referencias_icon: var(--mp072_TruffleTrouble); /* warning */
+--seccion_referencias_titulo: var(--mp072_Palladian); /* claro */
+--seccion_referencias_subtitulo: var(--mp072_Palladian); /* claro */
+--seccion_referencias_bordecards: var(--mp072_Oatmeal); /* menos claro */
+--seccion_referencias_textocards: var(--mp072_Oatmeal); /* menos claro */
+--seccion_referencias_cardnombre: var(--mp072_TruffleTrouble); /* warning */
+--seccion_referencias_cardjob: var(--mp072_Oatmeal); /* menos claro */
+
+/* Aplicación a FAQ */
+--seccion_faq_fondo: var(--mp072_Palladian); /* claro */
+--seccion_faq_icon: var(--mp072_BlueFantastic); /* menos oscuro */
+--seccion_faq_titulo: var(--mp072_BlueFantastic); /* menos oscuro */
+--seccion_faq_subtitulo: var(--mp072_BlueFantastic); /* menos oscuro */
+--seccion_faq_bordeacordeon: var(--mp072_Oatmeal); /* menos claro */
+--seccion_faq_pregunta: var(--mp072_AnchorfishBlue); /* oscuro */
+--seccion_faq_preguntaicon: var(--mp072_AnchorfishBlue); /* oscuro */
+--seccion_faq_respuesta: var(--mp072_BlueFantastic); /* menos oscuro */
+
+}

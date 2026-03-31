@@ -1,0 +1,160 @@
+/* Categorias.css */
+#lp-tienda {
+  color: red;
+  transform: translateY(-70px);
+}
+.categoria-grid-section {
+  background: var(--seccion_categorias_fondo);
+  padding: 0;
+}
+
+.seccion-encabezado-izq {
+  /* Puedes añadir más estilos si es necesario */
+}
+
+.categoria-grid-section .header-izq svg {
+  fill: var(--seccion_categorias_titulo);  
+}
+
+.categoria-grid-section .header-izq h2 {
+  color: var(--seccion_categorias_titulo);
+}
+
+.categoria-icon {
+  margin-right: 10px;
+  font-size: 2rem;
+}
+
+.categoria-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 80%;
+  margin-inline: auto;
+  margin-top: 70px !important;
+}
+
+.categoria-grid .btn-naranjo {
+  width: 100%;
+  max-width: 130px;
+}
+
+.categoria-card {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  text-align: center;
+  justify-content: space-between; /* Asegura que los elementos se distribuyan de manera adecuada */
+  height: 100%; /* Asegura que las tarjetas ocupen toda la altura disponible */
+  height: auto;
+  min-height: 100px;
+}
+
+.categoria-grid {
+  padding: 0px;
+}
+.categoria-grid .categoria-card {
+  height: 100%;
+  margin: 0px;
+}
+
+.categoria-card .icon {
+  font-size: 40px;
+  margin-bottom: 20px;
+  width: 170px;
+  height: 170px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 50%;
+  background-color: var(--seccion_categorias_fondoicono);
+  margin-inline: auto;
+}
+
+.categoria-card .icon svg {
+  font-size: 90px;
+  color: var(--seccion_categorias_icono);
+}
+
+.categoria-card h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--seccion_categorias_titulo);
+}
+
+.categoria-card p {
+  color: var(--seccion_categorias_subtitulo);
+  font-size: .9rem;
+}
+
+@media (min-width: 769px) {
+  .categoria-card h3 {
+    font-size: 1.6rem;
+  }
+  .categoria-card p {
+    font-size: 1rem;
+  } 
+}
+@media (max-width: 768px) {
+  .categoria-grid-section .centered-content {
+    overflow: visible;
+  }
+
+  .categoria-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin-inline: 0;
+    margin-top: 20px;
+  }
+
+  .categoria-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    background-color: rgba(255,255,255,0.6);
+    border-radius: 12px;
+  }
+
+  .categoria-card .icon {
+    width: 6.8rem;
+    height: 6.8rem;
+    margin-inline: auto;
+    margin-bottom: 0;
+  }
+
+  .categoria-card .icon svg {
+    font-size: 4.5rem;
+  }
+
+  .categoria-card h3 {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .categoria-card p {
+    font-size: .8rem;
+    height: auto;
+    text-align: center;
+    margin: 0;
+  }
+
+  .categoria-card .ver-mas-btn {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .categoria-grid .btn-naranjo {
+    padding: 4px 12px;
+  }
+}

@@ -1,0 +1,114 @@
+.preguntas-section {
+    background: var(--seccion_faq_fondo);
+}
+
+.preguntas-section .header-centrado svg {
+    fill: var(--seccion_faq_icon);
+}
+
+.preguntas-section .header-centrado h2 {
+    color: var(--seccion_faq_titulo);
+}
+
+.preguntas-section .header-centrado p {
+    color: var(--seccion_faq_subtitulo);
+}
+
+.preguntas-section .seccion-encabezado {
+    margin-bottom: 3rem;
+}
+
+.p-accordion {
+    margin-top: 15px;
+}
+
+.p-accordion-header-link {
+    background: transparent;
+    border: 1px solid var(--seccion_faq_bordeacordeon);
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    border-radius: 1.5rem;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+    min-height: 48px;
+}
+
+.p-accordion-header-link:hover {
+    border-color: var(--seccion_faq_preguntaicon) !important;
+    background: rgba(0, 0, 0, 0.03) !important;
+}
+
+.p-accordion-header svg {
+    color: var(--seccion_faq_pregunta);
+    fill: var(--seccion_faq_pregunta);
+}
+
+.p-accordion-header-text {
+    text-align: left;
+    font-size: 1.1rem;
+    line-height: 1.75rem;
+    color: var(--seccion_faq_preguntaicon);
+    font-weight: 600;
+}
+
+.preguntas-section .p-accordion-content {
+    text-align: justify;
+    background: transparent;
+    color: var(--seccion_faq_respuesta);
+    border-top: 1px solid transparent;
+    border-left: 1px solid var(--seccion_faq_bordeacordeon);
+    border-right: 1px solid var(--seccion_faq_bordeacordeon);
+    border-bottom: 1px solid var(--seccion_faq_bordeacordeon);
+    padding-bottom: 1.5rem;
+    margin: 0 !important;
+    padding-top: 0 !important;
+    border-end-start-radius: 1.5rem;
+    border-end-end-radius: 1.5rem;
+}
+
+.p-accordion-content p {
+    font-size: 1rem;
+    line-height: 1.75rem;
+    font-weight: 500;
+    margin: 0 !important;
+}
+
+/* NUEVOS ESTILOS */
+
+/* Elimina el borde inferior del encabezado cuando está activo */
+.p-accordion-header.p-highlight .p-accordion-header-link {
+    border-bottom: none;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+/* Quita el borde superior del contenido del acordeón */
+.p-accordion-header.p-highlight + .p-accordion-content {
+    border-top: none;
+    margin-top: -1px; /* Evita cualquier separación visible */
+}
+
+.p-accordion-header-link {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.p-accordion-header-link svg {
+    margin-top: 7.2px;
+}
+
+@media (max-width: 768px) {
+    .referencias-section .seccion-encabezado {
+        margin-bottom: 2.6rem;
+    }
+
+    .p-accordion-header-text {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    .p-accordion-header-link {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}

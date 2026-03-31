@@ -1,0 +1,74 @@
+:root {
+    /* MP25 */
+    --mp25_ArticPowder: #F1F6F4; /* claro */
+    --mp25_MysticMint: #D9E8E3; /* menos claro */
+    --mp25_OceanicNoir: #172B36; /* oscuro */
+    --mp25_NocturnalExpedition: #114C5A; /* menos oscuro */
+    --mp25_Forsythia: #FFC801; /* warning */
+    --mp25_DeepSaffron: #FF9932; /* especial */
+
+
+    /* Aplicacion de paleta MP111 */
+    --warning-p1: rgb(149, 30, 30);
+
+
+/* Aplicación en HEADER */
+--seccion_header_fondo: var(--mp25_ArticPowder); /* claro */
+--seccion_header_titulo_1: rgb(32, 32, 32); /* oscuro */
+--seccion_header_titulo_2: var(--mp25_NocturnalExpedition); /* oscuro */
+--seccion_header_titulo_subtitulo: rgb(32, 32, 32); /* oscuro */
+--seccion_header_topmenu_text: var(--mp25_NocturnalExpedition); /* oscuro */
+--seccion_header_topmenu_hover: var(--mp25_DeepSaffron); /* especial */
+
+/* Aplicación en INFO */
+--seccion_info_fondo: rgba(255, 255, 255, 1); /* claro */
+--seccion_info_svg: var(--mp25_NocturnalExpedition); /* oscuro */
+--seccion_info_titulo_1: var(--mp25_NocturnalExpedition); /* oscuro */
+--seccion_info_titulo_2: var(--mp25_Forsythia); /* warning */
+--seccion_info_subtitulo: gray; /* menos claro */
+
+/* Aplicación en INFO GRID */
+--seccion_info_grid_icon: var(--mp25_NocturnalExpedition); /* oscuro */
+--seccion_info_grid_titulo: var(--mp25_NocturnalExpedition); /* oscuro */
+--seccion_info_grid_descripcion: var(--mp25_Forsythia); /* warning */
+
+/* Aplicación en DESTACADOS */
+--seccion_destacados_fondo: var(--mp25_MysticMint); /* menos claro */
+--seccion_destacados_titulo: var(--mp25_NocturnalExpedition); /* oscuro */
+--seccion_destacados_subtitulo: var(--mp25_NocturnalExpedition); /* oscuro */
+--seccion_destacados_precio: var(--mp25_NocturnalExpedition); /* oscuro */
+
+/* Aplicación a CATEGORÍAS */
+--seccion_categorias_fondo: var(--mp25_NocturnalExpedition); /* oscuro */
+--seccion_categorias_titulo: var(--mp25_ArticPowder); /* claro */
+--seccion_categorias_subtitulo: var(--mp25_MysticMint); /* menos claro */
+--seccion_categorias_icono: var(--mp25_NocturnalExpedition); /* oscuro */
+--seccion_categorias_fondoicono: var(--mp25_Forsythia); /* warning */
+
+/* Aplicación a DISEÑO */
+--seccion_diseno_fondo: var(--mp25_ArticPowder); /* claro */
+--seccion_diseno_titulo: var(--mp25_OceanicNoir); /* oscuro */
+--seccion_diseno_subtitulo: var(--mp25_NocturnalExpedition); /* oscuro */
+--seccion_diseno_textolista: var(--mp25_NocturnalExpedition); /* oscuro */
+
+/* Aplicación a REFERENCIAS */
+--seccion_referencias_fondo: var(--mp25_NocturnalExpedition); /* oscuro */
+--seccion_referencias_icon: var(--mp25_Forsythia); /* warning */
+--seccion_referencias_titulo: var(--mp25_ArticPowder); /* claro */
+--seccion_referencias_subtitulo: var(--mp25_ArticPowder); /* claro */
+--seccion_referencias_bordecards: var(--mp25_MysticMint); /* menos claro */
+--seccion_referencias_textocards: var(--mp25_MysticMint); /* menos claro */
+--seccion_referencias_cardnombre: var(--mp25_Forsythia); /* warning */
+--seccion_referencias_cardjob: var(--mp25_MysticMint); /* menos claro */
+
+/* Aplicación a FAQ */
+--seccion_faq_fondo: var(--mp25_ArticPowder); /* claro */
+--seccion_faq_icon: var(--mp25_NocturnalExpedition); /* oscuro */
+--seccion_faq_titulo: var(--mp25_NocturnalExpedition); /* oscuro */
+--seccion_faq_subtitulo: var(--mp25_NocturnalExpedition); /* oscuro */
+--seccion_faq_bordeacordeon: var(--mp25_MysticMint); /* menos claro */
+--seccion_faq_pregunta: var(--mp25_OceanicNoir); /* oscuro */
+--seccion_faq_preguntaicon: var(--mp25_OceanicNoir); /* oscuro */
+--seccion_faq_respuesta: var(--mp25_NocturnalExpedition); /* oscuro */
+
+}

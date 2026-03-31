@@ -1,0 +1,96 @@
+:root { /*2023-2*/
+
+    /* Lighthouse */
+    --lh_warning: #a82417; /* warning */
+    --lh_especial: #f2a679; /* especial */
+    --lh_mc: #f7e5db; /* menos claro */
+    --lh_c: #c7d4e2; /* claro */
+    --lh_o: #567ba6; /* menos oscuro */
+    --lh_mo: #284872; /* color oscuro */
+    --lh_po: #1d3452; /* mas oscuro */
+
+    /* Otros */
+    --warning-p1: rgb(149, 30, 30);
+    --happy: #9ffc39;
+    --comentarios: #9ba4ac;
+    --comentarios_oscuro: #62686d;
+    --blanco: #FEFDFA;
+    --primary: #0093b0;
+    --excel_1: #28a745;
+    --excel_2: #267c10;
+    --especial: #e86e2f;
+    --especial-danger: #b1341e;
+
+    /* Clasicos */
+    --primary-clasico: #1890ff;
+    --secundary-clasico: #6c757d;
+    --danger-clasico: #dc3545;
+    --primary-clasico-hover: #0069d9;
+    --secundary-clasico-hover: #5a6268;
+    --danger-clasico-hover: #c82333;
+
+
+    /* Aplicación en HEADER */
+--seccion_header_fondo: var(--lh_c); /* claro */
+--seccion_header_titulo_1: rgb(32, 32, 32); /* oscuro */
+--seccion_header_titulo_2: var(--lh_o); /* menos oscuro */
+--seccion_header_titulo_subtitulo: rgb(32, 32, 32); /* oscuro */
+--seccion_header_topmenu_fondo: var(--blanco);
+--seccion_header_topmenu_text: var(--lh_po); /* menos oscuro */
+--seccion_header_topmenu_hover: var(--primary); /* especial */
+
+/* Aplicación en INFO */
+--seccion_info_fondo: rgba(255, 255, 255, 1); /* claro */
+--seccion_info_svg: var(--primary); /* menos oscuro */
+--seccion_info_titulo_1: var(--primary); /* menos oscuro */
+--seccion_info_titulo_2: var(--excel_2); /* warning */
+--seccion_info_subtitulo: var(--lh_mc); /* menos claro */
+
+/* Aplicación en INFO GRID */
+--seccion_info_grid_icon: var(--primary); /* menos oscuro */
+--seccion_info_grid_titulo: var(--primary); /* menos oscuro */
+--seccion_info_grid_descripcion: var(--comentarios_oscuro); /* warning */
+
+/* Aplicación en DESTACADOS */
+--seccion_destacados_fondo: var(--lh_o); /* menos claro */
+--seccion_destacados_titulo: var(--blanco); /* menos oscuro */
+--seccion_destacados_subtitulo: var(--blanco); /* menos oscuro */
+--seccion_destacados_precio: var(--comentarios); /* menos oscuro */
+
+/* Aplicación a CATEGORÍAS */
+--seccion_categorias_fondo: var(--lh_c); /* menos oscuro */
+--seccion_categorias_titulo: var(--lh_mo); /* claro */
+--seccion_categorias_subtitulo: var(--comentarios_oscuro); /* menos claro */
+--seccion_categorias_icono: var(--lh_o); /* menos oscuro */
+--seccion_categorias_fondoicono: var(--blanco); /* warning */
+
+/* Aplicación a DISEÑO */
+--seccion_diseno_fondo: var(--blanco); /* claro */
+--seccion_diseno_titulo: var(--lh_o); /* oscuro */
+--seccion_diseno_subtitulo: var(--lh_o); /* menos oscuro */
+--seccion_diseno_textolista: var(--lh_o); /* menos oscuro */
+
+/* Aplicación a REFERENCIAS */
+--seccion_referencias_fondo: var(--lh_mo); /* menos oscuro */
+--seccion_referencias_icon: var(--blanco); /* warning */
+--seccion_referencias_titulo: var(--blanco); /* claro */
+--seccion_referencias_subtitulo: var(--lh_c); /* claro */
+--seccion_referencias_bordecards: var(--lh_mc); /* menos claro */
+--seccion_referencias_textocards: var(--blanco); /* menos claro */
+--seccion_referencias_cardnombre: var(--blanco); /* warning */
+--seccion_referencias_cardjob: var(--comentarios); /* menos claro */
+
+/* Aplicación a FAQ */
+--seccion_faq_fondo: var(--blanco); /* claro */
+--seccion_faq_icon: var(--lh_o); /* menos oscuro */
+--seccion_faq_titulo: var(--lh_o); /* menos oscuro */
+--seccion_faq_subtitulo: var(--lh_o); /* menos oscuro */
+--seccion_faq_bordeacordeon: var(--comentarios); /* menos claro */
+--seccion_faq_pregunta: var(--lh_o); /* oscuro */
+--seccion_faq_preguntaicon: var(--lh_o); /* oscuro */
+--seccion_faq_respuesta: var(--comentarios_oscuro); /* menos oscuro */
+
+--tienda-titulo: var(--lh_mo);
+--tienda_texto: var(--lh_mo);
+}
+  

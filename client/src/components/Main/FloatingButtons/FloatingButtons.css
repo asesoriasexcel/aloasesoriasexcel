@@ -1,0 +1,64 @@
+.floating-buttons-container {
+  position: fixed;
+  bottom: 40px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 50;
+}
+
+.floating-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #007bff;
+  border-radius: 50%;
+  width: 53px;
+  height: 53px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.floating-button:hover {
+  background-color: #0056b3;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.floating-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.floating-button.storefront {
+  background-color: #28a745;
+}
+
+.floating-button.storefront:hover {
+  background-color: #19692b;
+  box-shadow: 0 6px 16px rgba(40, 167, 69, 0.35);
+}
+
+.floating-button.arrow {
+  background-color: #8d959c;
+}
+
+.floating-button.arrow:hover {
+  background-color: #5a6064;
+}
+
+@media (max-width: 768px) {
+  .floating-buttons-container {
+    bottom: 20px;
+    right: 16px;
+    gap: 14px;
+  }
+
+  .floating-button {
+    width: 48px;
+    height: 48px;
+  }
+}

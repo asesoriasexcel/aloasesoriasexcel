@@ -1,0 +1,50 @@
+import imgDocente from '../images/productos/docente_1_2.png';
+import imgPublicacion from '../images/productos/publicacion_1_1.png';
+import imgAnalisis from '../images/productos/analisis_1_1.png';
+
+const productosDestacados = [
+  {
+    id_articulo: 1,
+    nombre: 'Monitor de Tareas',
+    descripcion: 'La planilla Gestión de Tareas permite registrar entregas, monitorear el progreso de los estudiantes o empleados, y generar informes detallados de manera fácil, con opciones para exportar a PDF e imprimir.',
+    descripcion_larga: 'Esta planilla ha sido diseñada para simplificar la gestión y seguimiento de tareas, permitiendo registrar entregas, monitorear el progreso y generar informes detallados de forma eficiente. Su estructura organizada facilita la supervisión y análisis del desempeño de estudiantes o empleados, con la opción de exportar informes a PDF o imprimirlos de manera rápida gracias a las macros integradas. Es ideal para profesores y jefes de área que gestionan y supervisan los procesos de tareas, brindando una herramienta fácil de usar para el control y análisis del cumplimiento de responsabilidades.',
+    grado: 'Básico',
+    id_categoria: '3',
+    id_subcategoria: '2',
+    precio: 8000,
+    video_si: 'no',
+    video_link: "https://www.youtube.com/watch?v=a9VTSJEzqh4",
+    imagen: imgDocente,
+    disponible: 'si',
+    },
+    {
+    id_articulo: 3,
+    nombre: 'Informe de Calificaciones',
+    descripcion: 'La planilla Informe de Calificaciones facilita el registro, análisis y visualización del rendimiento académico de hasta 50 estudiantes, con cálculos automáticos, segmentación por niveles de logro y gráficos estadísticos para informes claros y efectivos.',
+    descripcion_larga: 'Esta planilla ha sido diseñada para optimizar la gestión del rendimiento académico en el aula, permitiendo no solo calcular notas de manera automática sino también categorizar a los estudiantes según su nivel de logro y generar análisis estadísticos claros y precisos. Su interfaz intuitiva facilita el ingreso de datos y la creación de informes personalizados, adaptándose a diversas necesidades, como reuniones con directivos o presentaciones a apoderados. Además, incluye herramientas para ordenar estudiantes por nombre o RUT, lo que resulta útil al compartir calificaciones. Los gráficos integrados ofrecen una visualización completa de la distribución del desempeño, ayudando a identificar tendencias y áreas de mejora.',
+    grado: 'Avanzada',
+    id_categoria: '3',
+    id_subcategoria: '3',
+    precio: 15000,
+    video_si: 'no',
+    video_link: "https://www.youtube.com/watch?v=a9VTSJEzqh4",
+    imagen: imgPublicacion,
+    disponible: 'no',
+    },
+    {
+    id_articulo: 5,
+    nombre: 'Ajuste de Calificaciones',
+    descripcion: 'La planilla Ajuste de Calificaciones permite modificar los puntajes de manera precisa, aplicando ajustes con escalas no convencionales. Ofrece distintos escenarios para calcular calificaciones y proporciones de aprobación, y permite comparar visualmente las notas originales con las ajustadas.',
+    descripcion_larga: 'Esta planilla está diseñada para ofrecer una forma flexible y precisa de ajustar las calificaciones de los estudiantes, permitiendo la aplicación de ajustes como escalas, puntajes mínimos, media y desviación estándar. Su interfaz visual facilita la comparación entre las notas originales y las ajustadas, lo que ayuda a tener un control más detallado sobre el rendimiento académico. Es una herramienta perfecta para jefes de UTP, coordinadores y docentes que necesitan adaptar las calificaciones según el contexto o necesidades específicas de cada estudiante, incluyendo aquellos con NEE o casos particulares. Además, permite generar informes detallados que se pueden compartir con dirección, docentes y estudiantes para un análisis claro y transparente de los resultados.',
+    grado: 'Avanzada',
+    id_categoria: '1',
+    id_subcategoria: '4',
+    precio: 20000,
+    video_si: 'no',
+    video_link: "https://www.youtube.com/watch?v=a9VTSJEzqh4",
+    imagen: imgAnalisis,
+    disponible: 'no',
+    },
+];
+
+export default productosDestacados;

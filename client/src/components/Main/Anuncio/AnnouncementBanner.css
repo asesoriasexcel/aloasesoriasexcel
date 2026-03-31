@@ -1,0 +1,68 @@
+.banner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    background-color: var(--primary);
+    color: #333;
+    padding: 6px 1rem;
+    font-size: 12px;
+    min-height: 27px;
+    width: 100%;
+    position: relative;
+  }
+  
+  .banner span {
+    line-height: 1.5;
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    min-width: 0;
+    font-weight: 400;
+    color: #fff;
+  }
+
+  .banner span .liberadas {
+    color: inherit;
+    text-decoration: none;
+    font-weight: inherit;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .banner span .liberadas:hover {
+    text-decoration: underline;
+  }
+
+  .banner .text {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .banner .text svg {
+    margin-inline: 8px;
+  }
+
+  .closeButton {
+    color: #fff;
+    display: flex;
+    min-height: 27px;
+    background-color: transparent;
+    border: 1px solid transparent;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.15s ease;
+    flex-shrink: 0;
+  }
+
+  .closeButton:hover {
+    opacity: 1;
+  }
+
+  .closeButton svg {
+    font-size: 1rem;
+  }

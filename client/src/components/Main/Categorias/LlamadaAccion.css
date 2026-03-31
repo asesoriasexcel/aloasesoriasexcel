@@ -1,0 +1,68 @@
+.llamada-accion {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:flex-start;
+    background: linear-gradient(to right, rgba(255, 255, 255, .5) 18%, rgba(255, 255, 255, 0) 50%), 
+                url('../../../images/bg-1.jpg');
+    background-size: cover;
+    background-position: center 75%;
+    background-repeat: no-repeat;
+    border-radius: 4px; /* Bordes redondeados */
+    padding: 20px; /* Espaciado interno */
+    text-align: left; /* Centrar el texto y el botón */
+    width: 100%;
+    height: 150px;
+    margin: 2rem auto; /* Centrar horizontalmente */
+    color: #333; /* Color del texto */
+    margin-bottom: 50px;
+  }
+  
+  .llamada-accion-titulo {
+    text-align: left;
+    font-size: 14px;
+    font-weight: 400;
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, .5);
+    width: fit-content;
+    min-height: 43px;
+    max-width: 562px;
+    overflow: hidden;
+    margin: 0px;
+    margin-bottom: .4rem;
+    line-height: 22px !important;
+  }
+  
+  .btn-conicon {
+    justify-content: space-evenly;
+    gap: 0px;
+    height: 40px;
+    padding: 0 20px !important;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .btn-conicon:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn-conicon:active {
+    transform: translateY(0);
+  }
+
+  .btn-conicon svg,
+  .btn-conicon span {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    height: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .llamada-accion {
+      background-position: center;
+    }
+  }
+  
