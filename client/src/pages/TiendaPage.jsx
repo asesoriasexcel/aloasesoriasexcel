@@ -6,7 +6,8 @@ import { FiShoppingCart } from 'react-icons/fi';
 import TreeMenu from '../components/Tienda/TreeMenu';
 import MenuBar from '../components/Tienda/MenuBar';
 import ProductosGrid from '../components/Tienda/ProductosGrid';
-import { getProducts, getCategories } from '../lib/api';
+import { getProducts } from '../lib/api';
+import tiendaCategorias from '../data/tiendaCategorias';
 import './TiendaPage.css';
 
 const TiendaPage = () => {
@@ -34,12 +35,9 @@ const TiendaPage = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const [prodData, catData] = await Promise.all([
-          getProducts(),
-          getCategories()
-        ]);
+        const prodData = await getProducts();
         setProductos(prodData);
-        setCategorias(catData);
+        setCategorias(tiendaCategorias);
       } catch (err) {
         setErrorMessage('Error al conectar con el servidor.');
         setIsErrorModalVisible(true);
