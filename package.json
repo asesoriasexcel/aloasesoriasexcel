@@ -1,6 +1,7 @@
 {
   "name": "asesoriasexcel-root",
   "version": "1.0.0",
+  "type": "module",
   "private": true,
   "description": "Asesorias Excel - Proyecto monorepo. Frontend en /client, Vercel Functions en /api.",
   "scripts": {

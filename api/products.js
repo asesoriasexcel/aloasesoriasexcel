@@ -3,7 +3,9 @@
  * Retorna la lista de productos disponibles.
  * Por ahora lee de un archivo JSON estático; luego puede venir de Firestore.
  */
-import productosList from './_data/productos.json' assert { type: 'json' };
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const productosList = require('./_data/productos.json');
 
 export default function handler(req, res) {
   if (req.method !== 'GET') {
