@@ -20,7 +20,7 @@ const Header = () => {
       <div className="header-video-wrapper">
         <video
           className="header-video"
-          src="/asesoriasexcel/landinghead.mp4"
+          src="/landinghead.mp4"
           autoPlay
           muted
           loop
