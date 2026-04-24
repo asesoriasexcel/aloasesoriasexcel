@@ -19,9 +19,9 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    font-family: 'Ink Free', cursive;
-    font-size: 1.25rem;
-    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 800;
 }
 
 .logo-container-link {
@@ -32,15 +32,14 @@
 }
 
 .logo-container p {
-    color: var(--tono-mediano3);
+    color: var(--alo-blanco);
     display: flex;
     flex-direction: row;
     margin: 6px 0 0 4px;
 }
 
 .logo-container p span {
-    color: var(--tono-mediano1) !important;
-    color: #fff;
+    color: var(--alo-verde-claro) !important;
     margin-left: 4px;
 }
 

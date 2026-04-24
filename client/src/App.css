@@ -9,7 +9,8 @@ body, html {
   height: 100%;
   margin: 0;
   overflow-x: hidden;
-  background: #ffffff;
+  background: #121212;
+  color: #f8f8f8;
 }
 
 #root,
@@ -65,12 +66,12 @@ main,
 }
 
 .centered-content {
-  width: 80%;
+  width: 90%;
   max-width: 1200px;
-  overflow: hidden; /* Evita el desbordamiento */
-  padding: 20px 30px 100px 30px;
+  overflow: hidden;
+  padding: 20px 20px 60px 20px;
   margin-inline: auto;
-   
+  box-sizing: border-box;
 }
 
 .contenido {
@@ -163,7 +164,7 @@ main,
 .btn-azul {
   text-align: center;
   color: #fff;
-  background-color: #0093b0;
+  background-color: var(--alo-verde);
   border-radius: 8px;
   padding: .6rem 1.5rem;
   white-space: break-spaces;
@@ -172,12 +173,12 @@ main,
 }
 
 .btn-azul:hover {
-  background-color: #097186 !important;
-  box-shadow: 0 2px 8px rgba(0, 147, 176, 0.35);
+  background-color: #167a40 !important;
+  box-shadow: 0 2px 8px rgba(26, 138, 74, 0.45);
 }
 
 .btn-azul:focus-visible {
-  outline: 2px solid #0093b0;
+  outline: 2px solid var(--alo-verde);
   outline-offset: 2px;
 }
 
@@ -235,7 +236,7 @@ main,
 .btn-verde {
   text-align: center;
   color: #fff;
-  background-color: #228d3b;
+  background-color: var(--alo-verde);
   border-radius: 8px;
   padding: .6rem 1.5rem;
   white-space: break-spaces;
@@ -244,12 +245,12 @@ main,
 }
 
 .btn-verde:hover {
-  background-color: #1b702f !important;
-  box-shadow: 0 2px 8px rgba(34, 141, 59, 0.35);
+  background-color: #167a40 !important;
+  box-shadow: 0 2px 8px rgba(26, 138, 74, 0.45);
 }
 
 .btn-verde:focus-visible {
-  outline: 2px solid #228d3b;
+  outline: 2px solid var(--alo-verde);
   outline-offset: 2px;
 }
 
@@ -314,7 +315,7 @@ main,
     width: 100% !important;
     max-width: 100% !important;
     margin-inline: 0px !important;
-    padding: 0px 15px 40px 15px!important;
+    padding: 0px 16px 40px 16px !important;
   }
 
   .contenido {
@@ -357,8 +358,7 @@ main,
 
 /* Header → InfoSection: transición manejada directamente en Header.css */
 
-/* InfoSection (white) → ProductoDestacado (#567ba6):
-   productos-section arranca con un fade desde blanco */
+/* InfoSection → ProductoDestacado: fade oscuro */
 .productos-section {
   position: relative;
 }
@@ -369,13 +369,12 @@ main,
   left: 0;
   width: 100%;
   height: 100px;
-  background: linear-gradient(to bottom, #ffffff, transparent);
+  background: linear-gradient(to bottom, #121212, transparent);
   pointer-events: none;
   z-index: 1;
 }
 
-/* ProductoDestacado (#567ba6) → Categorias (#c7d4e2):
-   fade blanco en la parte superior, detrás del contenido */
+/* ProductoDestacado → Categorias */
 .categoria-grid-section {
   position: relative;
   isolation: isolate;
@@ -387,14 +386,12 @@ main,
   left: 0;
   width: 100%;
   height: 50%;
-  background: linear-gradient(to bottom, #ffffff, transparent);
+  background: linear-gradient(to bottom, #1a1a1a, transparent);
   pointer-events: none;
   z-index: -1;
 }
 
-/* Categorias (#c7d4e2) → Diseño (white):
-   el gradiente va en el ::after de categoria-grid-section (parte inferior),
-   no invade el contenido de diseno-section */
+/* Categorias → Diseño */
 .categoria-grid-section::after {
   content: '';
   position: absolute;
@@ -402,7 +399,7 @@ main,
   left: 0;
   width: 100%;
   height: 180px;
-  background: linear-gradient(to bottom, transparent, #ffffff);
+  background: linear-gradient(to bottom, transparent, #1a1a1a);
   pointer-events: none;
   z-index: -1;
 }
@@ -426,11 +423,11 @@ main,
 
 /* === PAGINAS SECUNDARIAS ===*/
 .cuerpo-page-container {
-  min-height: calc(100vh - 346px); /* Resta 250px de la altura de la pantalla */
-  background: var(--blanco);
+  min-height: calc(100vh - 346px);
+  background: var(--alo-oscuro);
   display: flex;
-  justify-content: left; /* Centrar el contenido horizontalmente */
-  align-items: left; /* Centrar el contenido verticalmente */
+  justify-content: left;
+  align-items: left;
 }
 
 .cuerpo-page {
@@ -438,6 +435,14 @@ main,
   flex-direction: column;
   width: 100%; /* Asegura que el contenido ocupe el ancho completo */
   text-align: center;
+}
+
+/* Tablet intermedio */
+@media (min-width: 600px) and (max-width: 900px) {
+  .centered-content {
+    width: 95% !important;
+    padding: 20px 24px 60px 24px !important;
+  }
 }
 
 /* Media query para pantallas más pequeñas */

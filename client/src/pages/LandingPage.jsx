@@ -11,7 +11,6 @@ import PreguntasFrecuentes from '../components/Main/PreguntasFrecuentes/Pregunta
 import FloatingButtons from '../components/Main/FloatingButtons/FloatingButtons';
 
 import './LandingPage.css';
-import '../styles/paleta4.css';
 
 const LandingPage = () => {
   return (

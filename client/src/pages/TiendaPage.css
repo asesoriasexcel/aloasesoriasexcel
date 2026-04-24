@@ -23,10 +23,10 @@
     justify-content: flex-start;
     flex-shrink: 0;
     width: 240px;
-    background-color: #ffffff;
+    background-color: var(--alo-oscuro2);
     box-sizing: border-box;
     position: relative;
-    border-right: 1px solid #d4d5d8;
+    border-right: 1px solid rgba(26, 138, 74, 0.2);
   }
 
   /* Ajustes al canvas del menú */
@@ -48,7 +48,7 @@
   .TreeMenu-container-img {
     margin-bottom: 12px;
     padding-bottom: 12px;
-    border-bottom: 1px solid var(--lh_c);
+    border-bottom: 1px solid var(--alo-borde);
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -66,7 +66,7 @@
   .TreeMenu-container-volver {
     padding-left: 4px;
     padding-bottom: 10px;
-    border-bottom: 1px solid var(--lh_c);
+    border-bottom: 1px solid var(--alo-borde);
   }
   
   .TreeMenu-container-volver a {
@@ -76,7 +76,7 @@
 
   .TreeMenu-container-volver:hover,
   .TreeMenu-container-mostrar:hover {
-    color: var(--lh_mo) !important;
+    color: var(--alo-blanco) !important;
   }
 
   .TreeMenu-container svg {
@@ -84,7 +84,7 @@
   }
 
   .TreeMenu-container-mostrar {
-    color: rgba(0, 0, 0, 0.88);
+    color: var(--alo-gris-claro);
     font-size: .9rem;
     line-height: 24px;
     font-weight: 300;
@@ -106,7 +106,7 @@
     flex: 1;
     min-width: 0;
     position: relative;
-    background-color: #f6f7f9;
+    background-color: var(--alo-oscuro);
     box-sizing: border-box;
     overflow-y: auto;
   }
@@ -132,7 +132,7 @@
   .titulo-productos {
     font-size: 1.75rem;
     font-weight: 400;
-    color: var(--lh_mo);
+    color: var(--alo-blanco);
     margin-bottom: 20px;
     text-align: left;
     width: 100%;
@@ -211,11 +211,26 @@
     font-size: 1.4rem;
   }
 
+  /* mobile-first: 1 col → 2 col (tablet) → 3 col (desktop) */
   .productos-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Cuatro columnas por defecto */
-    gap: 20px;
+    grid-template-columns: 1fr;
+    gap: 16px;
     padding-bottom: 50px;
+  }
+
+  @media (min-width: 480px) {
+    .productos-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .productos-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
   }
   
   .tiendapage-contenido .producto-card {
@@ -224,16 +239,17 @@
     flex-direction: column;
     align-items: flex-start;
     height: 100% !important;
-    background: #fff;
-    border: 2px transparent solid;
-    border-radius: 2px;
-    box-shadow: 0 0 0 1px rgba(17, 20, 24, .15);
-    transition: transform .2s cubic-bezier(.4,1,.75,.9), box-shadow .2s cubic-bezier(.4,1,.75,.9), -webkit-transform .2s cubic-bezier(.4,1,.75,.9), -webkit-box-shadow .2s cubic-bezier(.4,1,.75,.9);
+    background: var(--alo-oscuro2);
+    border: 1px solid rgba(26, 138, 74, 0.15);
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+    transition: transform .2s cubic-bezier(.4,1,.75,.9), box-shadow .2s cubic-bezier(.4,1,.75,.9), border-color .2s ease;
     cursor: pointer;
   }
   
   .producto-card:hover {
-    box-shadow: 0 0 0 1px rgba(17, 20, 24, .1), 0 2px 4px rgba(17, 20, 24, .2), 0 8px 24px rgba(17, 20, 24, .2);
+    border-color: rgba(61, 184, 102, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
     transform: translateY(-2px);
   }
 
@@ -376,7 +392,7 @@
 
     .tiendapage-contenido {
       padding-inline: 0;
-      background-color: #fff;
+      background-color: var(--alo-oscuro);
     }
 
     .tiendapage-contenido-canvas {
@@ -384,18 +400,16 @@
     }
 
     .productos-grid {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      gap: 20px;
+      grid-template-columns: 1fr;
+      gap: 14px;
     }
 
     .producto-card {
-      border-radius: 16px;
-      padding: 22px;
-      background: #fff;
-      border: 2px transparent solid;
-      box-shadow: 0 4px 20px rgba(92, 133, 150, 0.24);
+      border-radius: 12px;
+      padding: 18px;
+      background: var(--alo-oscuro2);
+      border: 1px solid rgba(26, 138, 74, 0.18);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     }
 
     .cardproducto-imagen {
@@ -474,8 +488,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #fff;
-    color: var(--comentarios_oscuro);
+    background-color: var(--alo-oscuro2);
+    border-bottom: 1px solid rgba(26, 138, 74, 0.15);
+    color: var(--alo-gris-claro);
     width: 100%;
     position: fixed;
     top: 0;

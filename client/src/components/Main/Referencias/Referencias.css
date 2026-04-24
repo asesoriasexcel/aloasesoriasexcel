@@ -1,6 +1,6 @@
 .referencias-section {
     background: var(--seccion_referencias_fondo);
-    background-image: linear-gradient(to top, rgba(7, 16, 22, 0.8), hsla(0, 0%, 100%, 0));
+    background-image: linear-gradient(to top, rgba(7, 16, 22, 0.8), rgba(13,13,13,0));
     position: relative;
     overflow: visible;
 }
@@ -55,11 +55,13 @@
 }
 
 .referencias-card {
-    border: 1px solid rgba(151, 150, 150, 0.2);
+    border: 1px solid var(--alo-borde);
+    background: rgba(26, 26, 26, 0.7);
+    backdrop-filter: blur(10px);
     padding: 1.5rem;
     border-radius: 1.5rem;
     width: 100%;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     height: fit-content;
 }
 
@@ -123,24 +125,44 @@
 
 /* Estilos Responsivos */
 @media (max-width: 768px) {
-
   .referencias-rows {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 14px;
   }
 
-  .referencias-column:nth-child(2),
+  /* Mostrar solo la columna central (más reseñas) en móvil */
+  .referencias-column:nth-child(1),
   .referencias-column:nth-child(3) {
     display: none;
   }
 
   .referencias-column-2 {
     grid-template-columns: 1fr;
+    gap: 14px;
   }
 
   .referencias-card {
-    padding: 1.2rem;
-    border-radius: 1.2rem;
+    padding: 1rem 1.2rem;
+    border-radius: 1rem;
+  }
+
+  .referencias-section .centered-content {
+    padding-bottom: 50px !important;
+  }
+}
+
+/* Tablet: 2 columnas */
+@media (min-width: 600px) and (max-width: 900px) {
+  .referencias-rows {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .referencias-column:nth-child(3) {
+    display: none;
+  }
+
+  .referencias-column-2 {
+    grid-template-columns: 1fr;
   }
 }
   

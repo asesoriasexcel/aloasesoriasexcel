@@ -13,15 +13,15 @@
   }
 
   .productos-sheet {
-    border: 1px solid rgb(146, 146, 146, 0.2);
+    border: 1px solid rgba(26, 138, 74, 0.2);
     border-radius: 20px;
-    background-image: radial-gradient(100% 25% at 50% -10%, rgba(94, 176, 239, .1), hsla(0, 0%, 100%, 0));
+    background-image: radial-gradient(100% 25% at 50% -10%, rgba(26, 138, 74, .08), rgba(0,0,0,0));
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
   }
 
   .productos-sheet:hover {
-    border-color: rgba(94, 176, 239, 0.25);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border-color: rgba(61, 184, 102, 0.3);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
   }
 
   .productos-content {
@@ -31,8 +31,8 @@
     align-items: flex-start;
     gap: 40px;
     margin: 20px auto;
-    padding: 15px 0; /* Ajustado */
-    border-bottom: 1px solid rgb(146, 146, 146, 0.3);
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(26, 138, 74, 0.2);
     height: auto;
   }
 
@@ -65,8 +65,8 @@
   /* Estilos para el Tag */
   .productos-section .tag-label {
     background: transparent !important;
-    border: 1px solid rgb(0, 255, 242) !important;
-    color: rgb(0, 255, 242) !important;
+    border: 1px solid var(--alo-verde-claro) !important;
+    color: var(--alo-verde-claro) !important;
     border-radius: 9999px;
     padding: .25rem .875rem;
     font-weight: 500;
@@ -92,7 +92,7 @@
   }
   
   .precio {
-    color: var(--lh_c) !important;
+    color: var(--alo-verde-claro) !important;
     font-size: 0.9rem !important;
     font-weight: 600;
     margin: 0;

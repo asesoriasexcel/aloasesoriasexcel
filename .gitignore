@@ -9,6 +9,8 @@ build/
 .vite/
 coverage/
 
+# referencias
+frontend_portadas
 # Backend (Python/Django) — legacy, mantenido por si acaso
 __pycache__/
 *.pyc
@@ -67,3 +69,5 @@ yarn-error.log*
 .claude/
 cuentas.txt
 COMANDOS_DEV.txt
+.vercel
+.env*.local

@@ -34,7 +34,7 @@
 
 .p-accordion-header-link:hover {
     border-color: var(--seccion_faq_preguntaicon) !important;
-    background: rgba(0, 0, 0, 0.03) !important;
+    background: rgba(26, 138, 74, 0.08) !important;
 }
 
 .p-accordion-header svg {

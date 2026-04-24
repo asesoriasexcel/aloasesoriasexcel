@@ -12,42 +12,43 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #007bff;
+  background-color: var(--alo-verde);
   border-radius: 50%;
   width: 53px;
   height: 53px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 16px rgba(26, 138, 74, 0.4);
   transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
-  border: 1px solid transparent;
+  border: 1px solid rgba(61, 184, 102, 0.25);
   cursor: pointer;
 }
 
 .floating-button:hover {
-  background-color: #0056b3;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  background-color: #167a40;
+  box-shadow: 0 6px 20px rgba(26, 138, 74, 0.55);
   transform: translateY(-2px);
 }
 
 .floating-button:active {
   transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .floating-button.storefront {
-  background-color: #28a745;
+  background-color: var(--alo-verde);
 }
 
 .floating-button.storefront:hover {
-  background-color: #19692b;
-  box-shadow: 0 6px 16px rgba(40, 167, 69, 0.35);
+  background-color: #167a40;
+  box-shadow: 0 6px 20px rgba(26, 138, 74, 0.55);
 }
 
 .floating-button.arrow {
-  background-color: #8d959c;
+  background-color: var(--alo-oscuro2);
+  border: 1px solid rgba(160, 168, 176, 0.25);
 }
 
 .floating-button.arrow:hover {
-  background-color: #5a6064;
+  background-color: var(--alo-oscuro3);
 }
 
 @media (max-width: 768px) {

@@ -16,10 +16,10 @@ const AnnouncementBanner = () => {
       <div className="banner">
         <div>.</div>
         <span className="text">
-          Planillas de Lanzamiento
+          Nuevos productos disponibles
           <HiMiniRocketLaunch />
-          <Link to="/tienda/liberados" className="liberadas"> {/* Cambio aquí */}
-            <strong>Ver Liberadas</strong>
+          <Link to="/tienda" className="liberadas">
+            <strong>Ver catálogo</strong>
           </Link>
         </span>
         <button className="closeButton" onClick={handleClose}>

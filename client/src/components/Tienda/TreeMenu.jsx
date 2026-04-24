@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { AiOutlineHome } from 'react-icons/ai';
 import { IoGridOutline } from 'react-icons/io5';
 import { Tree, Folder, File } from '../ui/file-tree';
-import logo from '../../images/logo/logo4.png';
 import tiendaSubcategorias from '../../data/tiendaSubcategorias';
 import './TreeMenu.css';
 
@@ -14,8 +13,9 @@ const TreeMenu = ({ onSelect, onMostrarTodo, selectedId, categories = [], produc
   return (
     <div className="TreeMenu-container">
       <div className="TreeMenu-container-img">
-        <Link to="/">
-          <img src={logo} alt="Logo" />
+        <Link to="/" className="treemenu-logo">
+          <span className="treemenu-logo-alo">Aló Asesorías </span>
+          <span className="treemenu-logo-excel">Excel</span>
         </Link>
       </div>
 

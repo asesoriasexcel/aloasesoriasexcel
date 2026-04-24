@@ -3,22 +3,22 @@ import { FaClock, FaGem, FaTrophy, FaChartLine } from 'react-icons/fa';
 export const cardInfo = [
   {
     icon: FaGem,
-    title: "Un Valor Único",
-    description: "Planillas funcionales y precisas, diseñadas con un enfoque único que supera soluciones comunes."
+    title: "Hecho en Chile",
+    description: "Diseñado para la realidad del aula chilena. No encontrarás esto en el Ministerio ni en el mercado genérico."
   },
   {
     icon: FaClock,
-    title: "Optimización del Tiempo",
-    description: "Ahorra horas con informes automatizados que hacen el trabajo pesado por ti."
+    title: "Minutos, no horas",
+    description: "Tu análisis DIA listo antes de que termine el recreo. Sin fórmulas manuales, sin errores."
   },
   {
     icon: FaTrophy,
-    title: "Gana Prestigio y Reputación",
-    description: "Presenta datos claros, ordenados y atractivos que impresionan a jefes y colegas."
+    title: "Datos que convencen",
+    description: "Llega al consejo de profesores con información real. Informes que impresionan sin esfuerzo extra."
   },
   {
     icon: FaChartLine,
-    title: "Análisis Claro y Medible",
-    description: "Convierte datos en información útil con gráficos y reportes fáciles de interpretar."
+    title: "Soporte real",
+    description: "Si algo falla, respondemos. No eres un número de ticket — trabajamos contigo hasta que funcione."
   }
 ];

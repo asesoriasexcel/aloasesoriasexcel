@@ -4,13 +4,15 @@
     justify-content: space-between;
     align-items: center;
     text-align: center;
-    background-color: var(--primary);
-    color: #333;
+    background-color: var(--alo-verde);
+    color: #fff;
     padding: 6px 1rem;
     font-size: 12px;
     min-height: 27px;
     width: 100%;
     position: relative;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.03em;
   }
   
   .banner span {

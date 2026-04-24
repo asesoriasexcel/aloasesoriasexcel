@@ -1,5 +1,26 @@
+/* Logo en sidebar de tienda */
+.treemenu-logo {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  display: flex;
+  align-items: baseline;
+  text-decoration: none;
+  letter-spacing: -0.4px;
+  white-space: nowrap;
+}
 
-  
+.treemenu-logo-alo {
+  color: #e8e8e8;
+}
+
+.treemenu-logo-excel {
+  color: #3db866;
+  text-shadow:
+    0 0 8px rgba(61, 184, 102, 0.60),
+    0 0 18px rgba(61, 184, 102, 0.25);
+}
+
 .TreeMenu-container-mostrar,
 .TreeMenu-container-volver {
   display: flex;

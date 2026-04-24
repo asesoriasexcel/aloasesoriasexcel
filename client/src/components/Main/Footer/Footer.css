@@ -1,9 +1,9 @@
 .footer {
-  background-color: #24313d;
+  background-color: var(--alo-negro);
   color: #fff;
   padding: 20px;
-  background-image: linear-gradient(to top, rgba(7, 16, 22, 0.8), hsla(0, 0%, 100%, 0));
-
+  background-image: linear-gradient(to top, rgba(7, 16, 22, 0.9), rgba(13,13,13,0));
+  border-top: 1px solid rgba(26, 138, 74, 0.2);
 }
 
 .footer-content {
@@ -47,20 +47,28 @@
   color:rgb(179, 179, 179);
 }
 
-/* Estilo para la palabra 'asesoria' con un degradado blanquecino */
-.footer-title .footer-title_a {
-  background: linear-gradient(to right, #f0f0f0, #dcdcdc);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  font-weight: 400;
-  font-size: 1.1rem;
+/* Logo Aló Asesorías Excel en el footer */
+.footer-logo {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0;
+  letter-spacing: -0.5px;
+  margin-bottom: 2px;
 }
 
-.footer-title .footer-title_b {
-  color: #107c10;  /* Color verde de Excel */
-  font-weight: 400;
-  font-size: 1.1rem;
+.footer-logo_alo {
+  color: #f0f0f0;
+}
+
+.footer-logo_excel {
+  color: #3db866;
+  text-shadow:
+    0 0 8px rgba(61, 184, 102, 0.55),
+    0 0 18px rgba(61, 184, 102, 0.25);
 }
 
 .social-icons {

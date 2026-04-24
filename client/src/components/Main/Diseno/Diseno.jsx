@@ -18,22 +18,22 @@ const Diseno = () => {
 
         {/* Columna Derecha con Contenido */}
         <Col xs={24} md={12} className="content-container">
-          <Tag color="blue" className="tag-label">Diseño</Tag>
-          <Title level={2} className="diseno-title">Diseñamos la herramienta perfecta para ti</Title>
+          <Tag color="blue" className="tag-label">Personalizado</Tag>
+          <Title level={2} className="diseno-title">¿Necesitas algo que no está en el catálogo?</Title>
           <Text className="diseno-subtitle">
-            ¿Tienes necesidades específicas? Te ayudamos a crear planillas personalizadas que se adaptan a tu forma de trabajar.
+            Te diseñamos la herramienta exacta para tu realidad. Sin plantillas genéricas, sin funciones que no usarás.
           </Text>
           <List
             className="diseno-list"
             dataSource={[
-              'Indicamos tus requerimientos',
-              'Recibe cotización en menos de 24 horas',
-              'Trabajamos contigo para perfeccionar la solución',
-              'Obtén una planilla que supera tus expectativas',
+              'Cuéntanos lo que necesitas — sin formularios complicados',
+              'Cotización en menos de 24 horas',
+              'Iteramos contigo hasta que quede exacto',
+              'Soporte incluido: si algo falla, lo resolvemos',
             ]}
             renderItem={(item) => (
               <List.Item>
-                <CheckCircleOutlined style={{ color: '#1890ff', marginRight: '10px' }} /> {/* Icono de check */}
+                <CheckCircleOutlined style={{ color: '#52d17c', marginRight: '10px' }} />
                 {item}
               </List.Item>
             )}

@@ -7,7 +7,7 @@ import './LlamadaAccion.css';
 const LlamadaAccion = () => {
   return (
     <div className="llamada-accion">
-      <h1 className="llamada-accion-titulo">Nuestros productos son únicos. Revisa nuestra tienda.</h1>
+      <h1 className="llamada-accion-titulo">Automatización que antes solo tenían los colegios con presupuesto. Ahora está aquí.</h1>
       {/* Usamos Link para la navegación */}
       <Link to="/tienda">
         <Button type="primary" className="btn-conicon btn-verde">

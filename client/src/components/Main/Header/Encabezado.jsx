@@ -8,7 +8,7 @@ import './Encabezado.css';
 const Encabezado = () => {
 
 
-    const whatsappUrl = "https://wa.me/56981605147?text=%C2%A1Hola%20Bazar%20Multicolor!%20tengo%20una%20consulta:";
+    const whatsappUrl = "https://wa.me/56981605147?text=%C2%A1Hola%20Al%C3%B3%20Asesor%C3%ADas%20Excel!%20tengo%20una%20consulta:";
 
 
     return (
@@ -16,7 +16,7 @@ const Encabezado = () => {
             <div className='logo-container'>
                 <Link to="/home" className='logo-container-link'>
      
-                    <p>Bazar <span>Multicolor</span></p>
+                    <p>Aló Asesorías <span>Excel</span></p>
                 </Link>
             </div>
             <div className="encabezado-menu">

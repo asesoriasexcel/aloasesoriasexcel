@@ -1,0 +1,134 @@
+/* ============================================================
+   PALETA ALÓ ASESORÍAS EXCEL — Identidad visual 2026
+   Basada en frontend_portadas: oscuro + verde Excel + Montserrat
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@400;700;800;900&display=swap');
+
+:root {
+
+    /* ── Colores base ─────────────────────────────────────── */
+    --alo-verde:        #1a8a4a;   /* Verde Aló — primario (≠ Excel #107c41) */
+    --alo-verde-claro:  #3db866;   /* Verde Aló claro — acentos */
+    --alo-verde-neon:   #2de065;   /* Verde Aló neon — destellos hover */
+    --alo-negro:        #0d0d0d;   /* Fondo más oscuro */
+    --alo-oscuro:       #121212;   /* Fondo principal */
+    --alo-oscuro2:      #1a1a1a;   /* Fondo cards */
+    --alo-oscuro3:      #222222;   /* Fondo hover / bordes */
+    --alo-blanco:       #f8f8f8;   /* Texto principal */
+    --alo-gris:         #a0a8b0;   /* Texto secundario */
+    --alo-gris-claro:   #e2e8f0;   /* Texto en dark */
+    --alo-amarillo:     #ffeb3b;   /* Highlight / cifras */
+    --alo-borde:        rgba(26, 138, 74, 0.3);
+
+    /* ── Tipografía ───────────────────────────────────────── */
+    --font-titulo:   'Montserrat', sans-serif;
+    --font-cuerpo:   'Inter', sans-serif;
+
+    /* ── Glass morphism ───────────────────────────────────── */
+    --glass-bg:     rgba(10, 15, 20, 0.75);
+    --glass-blur:   blur(25px);
+    --glass-borde:  1px solid rgba(26, 138, 74, 0.25);
+
+    /* ── Categorías (neon tags) ───────────────────────────── */
+    --cat-basico:      #aaaaaa;
+    --cat-pro:         #00e5ff;
+    --cat-full:        #ffe600;
+    --cat-master:      #ff3b3b;
+    --cat-legendario:  #c678dd;
+
+    /* ── Shadows ──────────────────────────────────────────── */
+    --shadow-verde:  0 0 20px rgba(26, 138, 74, 0.4);
+    --shadow-card:   0 8px 32px rgba(0, 0, 0, 0.6);
+
+    /* ═══════════════════════════════════════════════════════
+       MAPEO DE VARIABLES DE SECCIÓN (reemplaza paleta4.css)
+       ═══════════════════════════════════════════════════════ */
+
+    /* HEADER */
+    --seccion_header_fondo:              var(--alo-oscuro);
+    --seccion_header_titulo_1:           var(--alo-blanco);
+    --seccion_header_titulo_2:           var(--alo-verde-claro);
+    --seccion_header_titulo_subtitulo:   var(--alo-gris);
+    --seccion_header_topmenu_fondo:      var(--alo-oscuro2);
+    --seccion_header_topmenu_text:       var(--alo-gris-claro);
+    --seccion_header_topmenu_hover:      var(--alo-verde-claro);
+
+    /* INFO */
+    --seccion_info_fondo:                var(--alo-oscuro);
+    --seccion_info_svg:                  var(--alo-verde-claro);
+    --seccion_info_titulo_1:             var(--alo-blanco);
+    --seccion_info_titulo_2:             var(--alo-verde-claro);
+    --seccion_info_subtitulo:            var(--alo-gris);
+
+    /* INFO GRID */
+    --seccion_info_grid_icon:            var(--alo-verde-claro);
+    --seccion_info_grid_titulo:          var(--alo-blanco);
+    --seccion_info_grid_descripcion:     var(--alo-gris);
+
+    /* DESTACADOS */
+    --seccion_destacados_fondo:          var(--alo-oscuro2);
+    --seccion_destacados_titulo:         var(--alo-blanco);
+    --seccion_destacados_subtitulo:      var(--alo-gris-claro);
+    --seccion_destacados_precio:         var(--alo-verde-claro);
+
+    /* CATEGORÍAS */
+    --seccion_categorias_fondo:          var(--alo-negro);
+    --seccion_categorias_titulo:         var(--alo-blanco);
+    --seccion_categorias_subtitulo:      var(--alo-gris);
+    --seccion_categorias_icono:          var(--alo-verde-claro);
+    --seccion_categorias_fondoicono:     var(--alo-oscuro2);
+
+    /* DISEÑO */
+    --seccion_diseno_fondo:              var(--alo-oscuro2);
+    --seccion_diseno_titulo:             var(--alo-blanco);
+    --seccion_diseno_subtitulo:          var(--alo-gris-claro);
+    --seccion_diseno_textolista:         var(--alo-gris);
+
+    /* REFERENCIAS */
+    --seccion_referencias_fondo:         var(--alo-negro);
+    --seccion_referencias_icon:          var(--alo-verde-claro);
+    --seccion_referencias_titulo:        var(--alo-blanco);
+    --seccion_referencias_subtitulo:     var(--alo-gris);
+    --seccion_referencias_bordecards:    var(--alo-borde);
+    --seccion_referencias_textocards:    var(--alo-gris-claro);
+    --seccion_referencias_cardnombre:    var(--alo-blanco);
+    --seccion_referencias_cardjob:       var(--alo-verde-claro);
+
+    /* FAQ */
+    --seccion_faq_fondo:                 var(--alo-oscuro);
+    --seccion_faq_icon:                  var(--alo-verde-claro);
+    --seccion_faq_titulo:                var(--alo-blanco);
+    --seccion_faq_subtitulo:             var(--alo-gris);
+    --seccion_faq_bordeacordeon:         var(--alo-borde);
+    --seccion_faq_pregunta:              var(--alo-blanco);
+    --seccion_faq_preguntaicon:          var(--alo-verde-claro);
+    --seccion_faq_respuesta:             var(--alo-gris);
+
+    /* TIENDA */
+    --tienda-titulo:                     var(--alo-blanco);
+    --tienda_texto:                      var(--alo-gris-claro);
+
+    /* Generales heredados */
+    --primary:                           var(--alo-verde);
+    --blanco:                            var(--alo-blanco);
+    --comentarios:                       var(--alo-gris);
+    --comentarios_oscuro:                var(--alo-gris-claro);
+
+    /* Aliases de paleta vieja — para compatibilidad con referencias aún no migradas */
+    --lh_mc:                             var(--alo-gris);
+    --lh_c:                              var(--alo-borde);
+    --lh_o:                              var(--alo-verde-claro);
+    --lh_mo:                             var(--alo-blanco);
+    --lh_po:                             var(--alo-blanco);
+    --tono-mediano1:                     var(--alo-verde-claro);
+    --tono-mediano3:                     var(--alo-blanco);
+    --texto2:                            var(--alo-blanco);
+}
+
+/* ── Global body override ─────────────────────────────────── */
+body {
+    background-color: var(--alo-oscuro);
+    color: var(--alo-blanco);
+    font-family: var(--font-cuerpo);
+}

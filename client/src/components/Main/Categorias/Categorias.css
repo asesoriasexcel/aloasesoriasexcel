@@ -27,11 +27,28 @@
 
 .categoria-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  width: 80%;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  width: 100%;
   margin-inline: auto;
-  margin-top: 70px !important;
+  margin-top: 30px !important;
+}
+
+@media (min-width: 480px) {
+  .categoria-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    width: 90%;
+  }
+}
+
+@media (min-width: 900px) {
+  .categoria-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 80%;
+    margin-top: 70px !important;
+  }
 }
 
 .categoria-grid .btn-naranjo {
@@ -105,14 +122,11 @@
   }
 
   .categoria-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-    margin-inline: 0;
-    margin-top: 20px;
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+    margin-inline: 0 !important;
+    margin-top: 16px !important;
+    gap: 14px;
   }
 
   .categoria-card {
@@ -120,7 +134,7 @@
     flex-direction: column;
     align-items: center;
     padding: 16px;
-    background-color: rgba(255,255,255,0.6);
+    background-color: rgba(26,26,26,0.85);
     border-radius: 12px;
   }
 

@@ -15,15 +15,15 @@
 .producto-container .producto-card {
   display: flex;
   flex-direction: column;
-  border: 1px solid #ddd;
+  border: 1px solid var(--alo-borde);
   padding: 20px;
   border-radius: 8px;
-  width: 90%;
+  width: 94%;
   margin-inline: auto;
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden; /* Evita desbordamientos */
-  
+  background-color: var(--alo-oscuro2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .producto-container .producto-card .p-info1 {
@@ -101,13 +101,12 @@
 }
 
 .producto-container .p-nombre h2 {
-  color: var(--lh_mo);
+  color: var(--alo-blanco);
   margin-bottom: 0px;
 }
 
 .producto-container .p-titulovideo h2 {
-  color: var(--lh_mo);
-
+  color: var(--alo-blanco);
 }
 
 
@@ -117,7 +116,7 @@
 
 .producto-container .p-nombre svg {
   font-size: 1.5rem;
-  color: var(--lh_mo);
+  color: var(--alo-verde-claro);
   margin-right: 8px;
 }
 
@@ -130,8 +129,7 @@
 .producto-container .p-descripcion_larga p {
   font-size: 1.1rem;
   text-align: justify;
-  color: var(--lh_mo);
-  
+  color: var(--alo-gris-claro);
 }
 
 .producto-container .p-precio {
@@ -143,7 +141,7 @@
   font-weight: 600;
   margin-bottom: 0px;
   text-align: justify;
-  color: var(--lh_mo);
+  color: var(--alo-verde-claro);
 }
 
 .producto-container .p-categoria {
@@ -197,7 +195,7 @@
 
 .producto-container .p-titulovideo svg {
   font-size: 1.5rem;
-  color: var(--lh_mo);
+  color: var(--alo-verde-claro);
   margin-right: 8px;
 }
 
@@ -214,15 +212,15 @@
 }
 
 @media (max-width: 768px) {
-
   .producto-container .volver-tienda {
-    padding-left: 2%;
-    padding-right: 8%;
+    padding-left: 3%;
+    padding-right: 3%;
   }
 
   .producto-container .producto-card {
     width: 100%;
-    padding: 15px;
+    padding: 14px;
+    border-radius: 6px;
   }
 
   .producto-container .producto-card .p-info1 {

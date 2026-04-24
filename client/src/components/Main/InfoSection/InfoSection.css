@@ -37,7 +37,27 @@
 
 /* Responsive styles */
 @media (max-width: 768px) {
+  .info-section .centered-content {
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+  }
+
   .info-section .header-centrado .icon-title svg {
-    font-size: 70px !important;
+    font-size: 56px !important;
+  }
+
+  .info-section .header-centrado h2 {
+    font-size: 1.6rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .info-section .centered-content p {
+    font-size: 0.9rem !important;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 900px) {
+  .info-section .header-centrado h2 {
+    font-size: 1.8rem !important;
   }
 }

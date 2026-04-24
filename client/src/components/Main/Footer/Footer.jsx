@@ -12,11 +12,10 @@ const Footer = () => {
       <div className="footer-content">
         {/* Columna 1 */}
         <div className="footer-column">
-          <span className="footer-title">
-            <span className="footer-title_a">Asesorias</span>
-            <span className="footer-title_b">Excel</span>
+          <span className="footer-logo">
+            <span className="footer-logo_alo">Aló Asesorías </span><span className="footer-logo_excel">Excel</span>
           </span>
-          <span className="footer-subtitle">Soluciones en Excel y Otras Tecnologías.</span>
+          <span className="footer-subtitle">Soluciones precisas, en Excel y otras tecnologías.</span>
           <span>Síguenos</span>
           <div className="social-icons">
             <a href="https://www.facebook.com/profile.php?id=61566069431755&mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer">

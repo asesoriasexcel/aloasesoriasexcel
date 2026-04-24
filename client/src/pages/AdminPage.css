@@ -1,0 +1,97 @@
+.admin-dashboard {
+  padding: 40px;
+  max-width: 1280px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background-color: #f8fafc;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+}
+
+.header-text h2 {
+  margin-bottom: 4px !important;
+  color: #0f172a;
+}
+
+.btn-gradient {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  border: none;
+  height: auto !important;
+  padding: 10px 24px !important;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.btn-gradient:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
+}
+
+.stats-row {
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  border-radius: 12px !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.table-card {
+  border-radius: 12px !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+
+.admin-loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.admin-no-access {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  padding: 20px;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  border-radius: 16px !important;
+  text-align: center;
+}
+
+/* Ant Design Customizations */
+.ant-table-thead > tr > th {
+  background: #f1f5f9 !important;
+  font-weight: 600 !important;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.ant-drawer-header {
+  background: #f8fafc;
+}
+
+.ant-form-item-label label {
+  font-weight: 500 !important;
+  color: #475569 !important;
+}
+
+/* Animaciones suaves para inputs */
+.ant-input, .ant-input-number, .ant-select-selector {
+  border-radius: 8px !important;
+}
+
+.ant-input:focus, .ant-input-number:focus {
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1) !important;
+}

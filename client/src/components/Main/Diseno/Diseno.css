@@ -38,8 +38,8 @@
 /* Estilos para el Tag */
 .diseno-section .tag-label {
   background: transparent !important;
-  border: 1px solid #1890ff !important;
-  color: #1890ff !important;
+  border: 1px solid var(--alo-verde-claro) !important;
+  color: var(--alo-verde-claro) !important;
   border-radius: 9999px;
   padding: .25rem .875rem;
   font-weight: 500;
@@ -86,9 +86,10 @@
 
 /* Estilos para el botón */
 .diseno-button {
-  align-self: flex-start; /* Alinea el botón a la izquierda */
-  background-color: #1890ff;
-  color: white;
+  align-self: flex-start;
+  background-color: var(--alo-verde) !important;
+  color: white !important;
+  border-color: var(--alo-verde) !important;
   border-radius: 9999px;
   padding: .25rem .875rem;
   font-weight: 500;
@@ -99,7 +100,9 @@
 }
 
 .diseno-button:hover {
-  background-color: #40a9ff;
+  background-color: #167a40 !important;
+  border-color: #167a40 !important;
+  box-shadow: 0 2px 16px rgba(26,138,74,0.45);
 }
 
 @media (min-width: 769px) {
@@ -110,14 +113,15 @@
 
 /* Responsividad para pantallas pequeñas */
 @media (max-width: 768px) {
-
   .diseno-section .centered-content {
-    padding-top: 40px !important;
-    padding-bottom: 40px !important;
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+    flex-direction: column !important;
   }
 
   .image-container {
     padding-inline: 0px !important;
+    width: 100%;
   }
 
   .diseno-image {
@@ -127,16 +131,31 @@
     border-radius: 1rem;
   }
 
-  .centered-content {
-    flex-direction: column;
+  .content-container {
+    width: 100%;
   }
 
   .diseno-section .diseno-title {
-    font-size: 1.8rem !important;
+    font-size: 1.6rem !important;
     margin-top: 0.5rem;
   }
 
   .diseno-section .diseno-subtitle {
-    font-size: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .diseno-list .ant-list-item {
+    font-size: 0.9rem;
+  }
+}
+
+/* Tablet */
+@media (min-width: 600px) and (max-width: 900px) {
+  .diseno-section .centered-content {
+    flex-direction: column !important;
+  }
+
+  .diseno-section .diseno-title {
+    font-size: 2rem !important;
   }
 }

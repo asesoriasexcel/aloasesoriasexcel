@@ -12,6 +12,8 @@ import ConfirmarCompraPage from './pages/ConfirmarCompraPage';
 import ContactoPage from './pages/ContactoPage';
 import DisenoPage from './pages/DisenoPage';
 import TerminosCondicionesPage from './pages/TerminosCondicionesPage';
+import AdminDashboard from './pages/AdminDashboard';
+import AdminProductForm from './pages/AdminProductForm';
 
 // Layouts
 import MainLayout from './layouts/MainLayout';
@@ -32,6 +34,9 @@ const App = () => {
             <Route path="/terminoscondiciones" element={<TerminosCondicionesPage />} />
             <Route path="/contacto" element={<ContactoPage />} />
             <Route path="/diseno" element={<DisenoPage />} />
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin/producto/nuevo" element={<AdminProductForm />} />
+            <Route path="/admin/producto/editar/:id" element={<AdminProductForm />} />
           </Route>
 
           {/* Rutas con elementos comunes para el interior del sitio */}

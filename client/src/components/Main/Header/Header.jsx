@@ -32,8 +32,12 @@ const Header = () => {
         <div className="header-content">
           <div className="column">
             <h1>
-              <span className="header1">Aló! AsesoriasExcel</span>
-              <span className="header2">Soluciones en Excel y Otras Tecnologías</span>
+              <span className="header-marca">
+                <span className="header-marca-alo">Aló</span>
+                <span className="header-marca-asesorias">Asesorías</span>
+                <span className="header-marca-excel">Excel</span>
+              </span>
+              <span className="header2">Soluciones precisas, en Excel y otras tecnologías.</span>
             </h1>
             <div className="button-group">
               <button

@@ -10,7 +10,6 @@ import './TopMenu.css';
 
 import AnnouncementBanner from '../Anuncio/AnnouncementBanner';
 import tiendaCategorias from '../../../data/tiendaCategorias';
-import logo from '../../../images/logo/logo4.png';
 import { useAuth } from '../../../context/AuthContext';
 import { loginWithGoogle, logout } from '../../../lib/firebase';
 
@@ -24,21 +23,16 @@ const TopMenu = () => {
 
   // Crear los items dinámicamente a partir de la data de tiendaCategorias
   const tiendaItems = tiendaCategorias.map(categoria => ({
-    label: (
-      <Link to={`/tienda/categoria/${categoria.id}`} className="menu-link">
-        {categoria.nombre}  {/* Usamos el nombre de cada categoría */}
-      </Link>
-    ),
+    label: categoria.nombre,
+    command: () => navigate(`/tienda/categoria/${categoria.id}`)
   }));
 
   // Lista de elementos del menú
   const items = [
     {
-      label: (
-        <Link to="/" className="menu-link">
-          <AiOutlineHome className="icon-menuapp" /> Inicio
-        </Link>
-      )
+      label: 'Inicio',
+      icon: <AiOutlineHome className="icon-menuapp" />,
+      command: () => navigate('/')
     },
     {
       label: 'Tienda de productos',
@@ -46,11 +40,9 @@ const TopMenu = () => {
       items: tiendaItems,  // Insertamos los items dinámicamente
     },
     {
-      label: (
-        <Link to="/diseno" className="menu-link">
-          <PiCompassTool className="icon-menuapp" /> Diseño y Personalización
-        </Link>
-      )
+      label: 'Diseño y Personalización',
+      icon: <PiCompassTool className="icon-menuapp" />,
+      command: () => navigate('/diseno')
     },
     {
       label: 'Términos y Condiciones',
@@ -118,7 +110,8 @@ const TopMenu = () => {
             end={
               <div className="movil-menu-right">
                 <Link to="/" className="movil-brand-name">
-                  <img src={logo} alt="Logo" style={{ height: '40px', width: 'auto' }} />
+                  <span className="desktop-brand-alo">Aló Asesorías </span>
+                  <span className="desktop-brand-excel">Excel</span>
                 </Link>
                 {carritoCount > 0 && (
                   <Badge
@@ -146,7 +139,8 @@ const TopMenu = () => {
           <AnnouncementBanner />
           <div id="main-menu" className="desktop-menu-container">
             <Link to="/" className="desktop-brand-name">
-              <img src={logo} alt="Logo" style={{ height: '40px', width: 'auto' }} />
+              <span className="desktop-brand-alo">Aló Asesorías </span>
+              <span className="desktop-brand-excel">Excel</span>
             </Link>
             <Menubar model={items} />
             <div className="topmenu-actions">

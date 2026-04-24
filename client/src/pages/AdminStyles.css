@@ -1,0 +1,67 @@
+/* AdminStyles.css - Corrección enfocada solo en Inputs */
+
+.admin-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 25px;
+}
+
+.admin-stat-card {
+  background: var(--alo-oscuro2) !important;
+  border: 1px solid rgba(26, 138, 74, 0.2) !important;
+  border-radius: 8px !important;
+}
+
+.admin-form-card {
+  background: var(--alo-oscuro2) !important;
+  border: 1px solid rgba(26, 138, 74, 0.15) !important;
+  border-radius: 12px !important;
+  padding: 30px !important;
+}
+
+.admin-form-card .ant-form-item-label label {
+  color: var(--alo-gris-claro) !important;
+}
+
+/* FIX: Inputs normales */
+.admin-form-card .ant-input, 
+.admin-form-card .ant-input-number,
+.admin-form-card .ant-input-number-input,
+.admin-form-card .ant-input-textarea,
+.admin-form-card .ant-select-selector {
+  background-color: #000 !important;
+  border: 1px solid #333 !important;
+  color: #fff !important;
+  border-radius: 6px !important;
+}
+
+/* FIX: Inputs con iconos (Drive, Youtube) */
+.admin-form-card .ant-input-affix-wrapper {
+  background-color: #000 !important;
+  border: 1px solid #333 !important;
+  border-radius: 6px !important;
+  padding: 8px 12px !important;
+}
+
+.admin-form-card .ant-input-affix-wrapper input {
+  background-color: transparent !important;
+  color: #fff !important;
+}
+
+.admin-form-card .ant-input-prefix {
+  color: var(--alo-verde) !important;
+  margin-right: 8px;
+}
+
+/* Tabla */
+.custom-admin-table .ant-table {
+  background: transparent !important;
+  color: #fff !important;
+}
+
+.custom-admin-table .ant-table-thead > tr > th {
+  background: rgba(26, 138, 74, 0.1) !important;
+  color: var(--alo-gris-claro) !important;
+}

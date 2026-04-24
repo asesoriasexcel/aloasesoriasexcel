@@ -1,165 +1,170 @@
-/* src/components/Header.css */
+/* src/components/Header.css — Mobile First */
 
-/* General header styles */
+/* ── Contenedor principal ───────────────────────────────── */
 .header {
   width: 100%;
-  height: 540px;
+  min-height: auto;
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
   isolation: isolate;
-  transform: translateZ(0);
+  overflow: hidden;
+  padding-bottom: 60px;
 }
 
-/* Wrapper que contiene el video y evita desbordamiento sin afectar backdrop-filter */
+/* ── Video de fondo ─────────────────────────────────────── */
 .header-video-wrapper {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+  inset: 0;
   z-index: 0;
-  transform: translateZ(0);
-  will-change: transform;
-  backface-visibility: hidden;
+  overflow: hidden;
 }
 
-/* Video de fondo */
 .header-video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
-  will-change: transform;
-  transform: translateZ(0);
 }
 
-
-/* Capa etérea: blanca densa a la izquierda + transición inferior hacia InfoSection */
+/* ── Overlay oscuro lateral + radial ───────────────────── */
 .header-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background:
-    linear-gradient(to right,
-      rgba(255,255,255,0.92) 0%,
-      rgba(255,255,255,0.60) 35%,
-      rgba(255,255,255,0.25) 65%,
-      rgba(255,255,255,0.10) 100%
-    ),
-    linear-gradient(to top,
-      rgba(255,255,255,1) 0%,
-      rgba(255,255,255,0) 20%
-    );
+  inset: 0;
   z-index: 1;
   pointer-events: none;
-  transform: translateZ(0);
-  will-change: transform;
-  backface-visibility: hidden;
-  isolation: isolate;
+  background:
+    linear-gradient(to bottom,
+      rgba(8,8,8,0.70)  0%,
+      rgba(8,8,8,0.55) 40%,
+      rgba(10,10,10,0.45) 70%,
+      rgba(12,12,12,0.60) 100%
+    );
 }
 
+/* ── Difuminado inferior de continuidad ─────────────────── */
+.header::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: clamp(80px, 12vw, 180px);
+  z-index: 3;
+  pointer-events: none;
+  background: linear-gradient(to bottom,
+    rgba(18,18,18,0)    0%,
+    rgba(18,18,18,0.20) 25%,
+    rgba(18,18,18,0.55) 55%,
+    rgba(18,18,18,0.88) 80%,
+    #121212             100%
+  );
+}
+
+/* ── Sheet (contenedor de contenido) ────────────────────── */
 .header-sheet {
   position: relative;
   z-index: 2;
-  width: 75%;
-
+  width: 100%;
+  margin-top: 0;
 }
 
-/* Header Content */
+/* ── Columna de texto ───────────────────────────────────── */
 .header-content {
   display: flex;
-  width: 87%;
-  justify-content: space-between;
+  width: 100%;
+  padding: 130px 24px 60px 24px;
+  justify-content: center;
   align-items: center;
-  margin: 150px auto;
-  margin-bottom: 50px;
-  gap: 50px;
+  flex-direction: column;
+  box-sizing: border-box;
 }
 
 .column {
-  width: 60%;
-  text-align: center;
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #333;
-}
-
-/* Estilos para el título (h1) */
-.column h1 {
-  font-size: 3.35rem;
-  text-align: left;
-  line-height: 1.1;
-  font-weight: 600;
-  max-width: 32rem; 
-  color: #ffffff;
-  margin-bottom: 30px;
-  background: linear-gradient(to right, var(--seccion_header_titulo_2), rgb(32, 32, 32));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.column h1 {
-  display: flex !important;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
-.column h1 .header1 {
-  font-size: 4.35rem;
-  text-align: left;
-  line-height: 1.1;
-  font-weight: 600;
-  max-width: 32rem;
-  color: #ffffff;
-  margin-bottom: 30px;
-  background: linear-gradient(to right, var(--seccion_header_titulo_2), rgb(32, 32, 32));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  margin-bottom: 0px;
-}
-
-.column h1 .header2 {
-  line-height: 1.1;
-  color: rgb(92, 94, 97);
-  font-size: 2.5rem;
-  font-weight: 600;
-}
-
-/* Estilos para el párrafo (p) */
-.column p {
-  font-size: 1.15rem;
-  font-weight: 600;
-  line-height: 1.5rem;
-  text-align: left;
-  color: rgb(182, 190, 201);
-  background: linear-gradient(to right, rgb(112, 117, 124), rgb(122, 131, 145));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* Imagen cuadrada que reemplaza el segundo mensaje */
-.column-image {
   width: 100%;
-  max-width: 32rem;
-  height: auto;
-  display: block;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
+/* ── h1 contenedor ──────────────────────────────────────── */
+.column h1 {
+  display: flex !important;
+  flex-direction: column;
+  text-align: center;
+  margin: 0 0 10px 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: none;
+  color: inherit;
+  overflow: visible;
+  line-height: 1;
+}
+
+/* ── Bloque de marca ────────────────────────────────────── */
+.column h1 .header-marca {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  line-height: 0.93;
+  margin-bottom: 12px;
+  letter-spacing: 0;
+  align-items: center;
+}
+
+/* "Aló" — pequeño, transparente */
+.column h1 .header-marca-alo {
+  font-size: clamp(1.4rem, 5vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: 0px;
+  color: rgba(240, 240, 240, 0.32);
+  display: block;
+  line-height: 1.2;
+}
+
+/* "Asesorías" — mediano, sólido */
+.column h1 .header-marca-asesorias {
+  font-size: clamp(2.8rem, 10vw, 6rem);
+  font-weight: 900;
+  letter-spacing: clamp(-2px, -0.5vw, -3px);
+  color: rgba(240, 240, 240, 0.90);
+  display: block;
+  line-height: 1;
+}
+
+/* "Excel" — imponente, neon */
+.column h1 .header-marca-excel {
+  font-size: clamp(4rem, 15vw, 9rem);
+  font-weight: 900;
+  letter-spacing: clamp(-4px, -1vw, -7px);
+  line-height: 0.92;
+  display: block;
+  color: #3db866;
+  text-shadow:
+    0 0 14px rgba(61, 184, 102, 0.72),
+    0 0 36px rgba(61, 184, 102, 0.40),
+    0 0 72px rgba(61, 184, 102, 0.18);
+}
+
+/* Subtítulo */
+.column h1 .header2 {
+  line-height: 1.5;
+  color: var(--alo-gris);
+  font-size: clamp(0.85rem, 2.5vw, 1rem);
+  font-weight: 400;
+  font-family: var(--font-cuerpo);
+  letter-spacing: 0;
+  max-width: 28rem;
+  margin-top: 4px;
+  text-align: center;
+}
+
+/* ── Botón ──────────────────────────────────────────────── */
 .button-group {
   display: flex;
   gap: 1rem;
-  margin-top: 1.7rem !important;
-  justify-content: start;
+  margin-top: 20px;
+  justify-content: center;
   position: relative;
   z-index: 1;
 }
@@ -168,137 +173,114 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 7rem;
+  min-width: 8rem;
   gap: .5rem;
-  height: 35px;
+  height: 42px;
   font-size: 1rem;
-  padding: .5rem 1.25rem;
-  font-weight: 500;
+  padding: .5rem 1.75rem;
+  font-weight: 600;
   border-radius: 40px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
   color: white;
   border: none;
   cursor: pointer;
 }
 
 .btn-primary {
-  background: #1677ff;
+  background: var(--alo-verde);
   transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btn-primary:hover {
-  background: rgb(64, 150, 255);
-  box-shadow: 0 2px 10px rgba(22, 119, 255, 0.4);
+  background: #167a40;
+  box-shadow: 0 2px 16px rgba(26, 138, 74, 0.55);
 }
 
 .btn-default {
-  background: #f5f5f5;
-  color: #484848;
-  border: 1px solid #d9d9d9;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  background: rgba(245, 245, 245, 0.12);
+  color: #e8e8e8;
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
 .btn-default:hover {
-  color: #4096ff;
-  border: 1px solid #4096ff;
+  background: rgba(245, 245, 245, 0.18);
+  border-color: rgba(255,255,255,0.35);
 }
 
-.header-content .column {
-  margin-bottom: 20px;
-}
-
-.column h1 {
-  overflow: visible;
-}
-
-
-/* Responsive styles */
-@media (max-width: 768px) {
+/* ── Tablet: diseño 2 columnas ──────────────────────────── */
+@media (min-width: 600px) {
   .header {
-    height: 540px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 0;
+    min-height: 80svh;
+    padding-bottom: 70px;
+  }
+
+  .header-sheet {
+    margin-top: 0;
+  }
+
+  .header-content {
+    padding: 90px 40px 50px 40px;
+  }
+
+  .header-overlay {
+    background:
+      linear-gradient(to right,
+        rgba(8,8,8,0.90)  0%,
+        rgba(8,8,8,0.72) 30%,
+        rgba(10,10,10,0.45) 60%,
+        rgba(12,12,12,0.18) 100%
+      ),
+      radial-gradient(ellipse at 30% 60%,
+        rgba(0,0,0,0) 40%,
+        rgba(0,0,0,0.30) 80%,
+        rgba(0,0,0,0.55) 100%
+      );
+  }
+}
+
+/* ── Desktop: layout izquierda ──────────────────────────── */
+@media (min-width: 900px) {
+  .header {
+    min-height: 720px;
+    padding-bottom: 80px;
+    align-items: flex-start;
+  }
+
+  .header-sheet {
+    width: 100%;
+    margin-top: 0;
   }
 
   .header-content {
     width: 100%;
-    margin: 0;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 100px 5% 0 10%;
     justify-content: flex-start;
-    background: transparent; /* Sin fondo para mantener el diseño limpio */
-    border-bottom: 1px solid #fff;
+    align-items: flex-start;
+    margin: 0;
+    gap: 50px;
+    flex-direction: row;
   }
 
   .column {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin-bottom: 40px;
+    width: 60%;
+    align-items: flex-start;
   }
 
   .column h1 {
-    font-size: 2rem;
-    text-align: center;
-    line-height: 1.3;
-    margin-bottom: 1rem;
-    background: linear-gradient(to right, rgb(66, 66, 66), rgb(62, 62, 80));
-    -webkit-background-clip: text;
+    text-align: left;
   }
 
-  .column p {
-    font-size: 1rem;
-    text-align: center;
-    font-weight: 600;
-    margin: 0 0 1.5rem 0;
-    line-height: 1.4;
-  }
-
-  .button-group {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around !important;
-    gap: 10px;
-    width: fit-content;
-    align-items: center;
-  }
-
-  .action-button {
-    width: auto;
-    padding: 0.75rem 1.5rem;
-  }
-
-  .btn-h1 {
-    padding: 1.3rem 1.7rem !important;
-    font-size: 18px;
-    font-weight: 400;
-  }
-
-  .header-content .column {
-    margin-bottom: 20px;
-  }
-
-  .column h1 {
-    line-height: 1;
-  }
-
-  .column h1 .header1 {
-    text-align: center;
-    font-size: 2.2rem;
-    font-weight: 600;
-    color: rgb(58, 62, 66);
+  .column h1 .header-marca {
+    align-items: flex-start;
   }
 
   .column h1 .header2 {
-    text-align: center;
-    font-size: 1.3rem;
-    font-weight: 600;
+    text-align: left;
   }
 
+  .button-group {
+    justify-content: flex-start;
+    margin-top: 14px;
+  }
 }

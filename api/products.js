@@ -1,15 +1,31 @@
-/**
- * GET /api/products
- * Retorna la lista de productos disponibles.
- * Por ahora lee de un archivo JSON estático; luego puede venir de Firestore.
- */
+import { db } from './_lib/firebaseAdmin.js';
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
-const productosList = require('./_data/productos.json');
+const fallbackProducts = require('./_data/productos.json');
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   if (req.method !== 'GET') {
     return res.status(405).json({ error: 'Método no permitido' });
   }
-  res.status(200).json(productosList);
+
+  try {
+    const snapshot = await db.collection('products').get();
+    
+    if (snapshot.empty) {
+      // Si la DB está vacía, devolvemos el JSON como respaldo temporal
+      return res.status(200).json(fallbackProducts);
+    }
+
+    const products = snapshot.docs.map(doc => ({
+      // Aseguramos que el id del documento sea el id del producto
+      id: doc.id,
+      ...doc.data()
+    }));
+
+    res.status(200).json(products);
+  } catch (error) {
+    console.error('Error fetching products from Firestore:', error);
+    // En caso de error de conexión, devolvemos el JSON para no romper el sitio
+    res.status(200).json(fallbackProducts);
+  }
 }
