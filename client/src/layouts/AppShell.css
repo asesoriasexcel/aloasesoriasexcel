@@ -1,0 +1,430 @@
+/* ============================================================
+   APP SHELL — Layout único para tienda + admin
+   El sidebar persiste. El contenido cambia con la ruta.
+   ============================================================ */
+
+/* ── Variables del shell ─────────────────────────────────────── */
+
+.app-shell {
+  --shell-sidebar-width: 220px;
+  --shell-header-h:      52px;
+  --shell-bg:            var(--alo-oscuro);
+  --shell-sidebar-bg:    var(--alo-negro);
+  --shell-border:        rgba(255, 255, 255, 0.06);
+  --shell-border-accent: var(--alo-borde);
+  --shell-text-primary:  var(--alo-blanco);
+  --shell-text-muted:    var(--alo-gris);
+  --shell-text-accent:   var(--alo-verde-claro);
+  --shell-item-hover:    rgba(255, 255, 255, 0.05);
+  --shell-item-active:   rgba(26, 138, 74, 0.15);
+  --shell-active-bar:    var(--alo-verde-claro);
+  --shell-radius:        8px;
+  --shell-space-xs:      4px;
+  --shell-space-sm:      8px;
+  --shell-space-md:      16px;
+  --shell-space-lg:      24px;
+  --shell-space-xl:      40px;
+
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  background: var(--shell-bg);
+  font-family: var(--font-cuerpo);
+  color: var(--shell-text-primary);
+}
+
+/* ── Sidebar ─────────────────────────────────────────────────── */
+
+.shell-sidebar {
+  width: var(--shell-sidebar-width);
+  min-width: var(--shell-sidebar-width);
+  flex-shrink: 0;
+  height: 100%;
+  background: var(--shell-sidebar-bg);
+  border-right: 1px solid var(--shell-border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 10;
+  transition: transform 250ms ease;
+}
+
+/* Brand */
+
+.shell-sidebar__brand {
+  height: var(--shell-header-h);
+  min-height: var(--shell-header-h);
+  display: flex;
+  align-items: center;
+  gap: var(--shell-space-sm);
+  padding: 0 var(--shell-space-md);
+  border-bottom: 1px solid var(--shell-border);
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.shell-sidebar__brand-dot {
+  width: 24px;
+  height: 24px;
+  background: var(--alo-verde);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  color: #fff;
+  flex-shrink: 0;
+  font-family: var(--font-titulo);
+}
+
+.shell-sidebar__brand-name {
+  font-family: var(--font-titulo);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--shell-text-primary);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Nav scrollable */
+
+.shell-sidebar__nav {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--shell-space-sm) 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.08) transparent;
+}
+
+.shell-sidebar__nav::-webkit-scrollbar { width: 3px; }
+.shell-sidebar__nav::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.1);
+  border-radius: 2px;
+}
+
+/* Sección */
+
+.shell-sidebar__section {
+  padding: var(--shell-space-sm) 0 0;
+}
+
+.shell-sidebar__section + .shell-sidebar__section {
+  border-top: 1px solid var(--shell-border);
+  margin-top: var(--shell-space-sm);
+}
+
+.shell-sidebar__section-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--shell-text-muted);
+  padding: var(--shell-space-sm) var(--shell-space-md) var(--shell-space-xs);
+  white-space: nowrap;
+}
+
+/* Items */
+
+.shell-sidebar__item {
+  display: flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 var(--shell-space-md);
+  gap: 10px;
+  text-decoration: none;
+  color: var(--shell-text-muted);
+  font-size: 13px;
+  font-weight: 400;
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  box-sizing: border-box;
+  position: relative;
+  transition: background 120ms, color 120ms;
+  border-radius: 0;
+}
+
+.shell-sidebar__item:hover {
+  background: var(--shell-item-hover);
+  color: var(--shell-text-primary);
+}
+
+.shell-sidebar__item.is-active {
+  background: var(--shell-item-active);
+  color: var(--shell-text-primary);
+  font-weight: 500;
+}
+
+.shell-sidebar__item.is-active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 18px;
+  background: var(--shell-active-bar);
+  border-radius: 0 2px 2px 0;
+  box-shadow: 0 0 8px var(--shell-active-bar);
+}
+
+.shell-sidebar__item-icon {
+  width: 15px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.shell-sidebar__item.is-active .shell-sidebar__item-icon,
+.shell-sidebar__item:hover .shell-sidebar__item-icon {
+  opacity: 1;
+}
+
+.shell-sidebar__item-label {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1;
+}
+
+.shell-sidebar__item-count {
+  font-size: 11px;
+  font-weight: 600;
+  color: #4ade80; /* Verde brillante pero limpio */
+  background: rgba(26, 138, 74, 0.15); /* Gris verdoso tenue */
+  border: 1px solid rgba(26, 138, 74, 0.25);
+  border-radius: 4px; /* Forma rectangular redondeada más ejecutiva */
+  padding: 0 6px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  /* Sin brillos ni sombras exageradas para mantener la elegancia */
+}
+
+/* Footer del sidebar */
+
+.shell-sidebar__footer {
+  padding: var(--shell-space-md);
+  border-top: 1px solid var(--shell-border);
+  flex-shrink: 0;
+}
+
+.shell-sidebar__back-link {
+  display: flex;
+  align-items: center;
+  gap: var(--shell-space-sm);
+  height: 32px;
+  padding: 0 var(--shell-space-sm);
+  font-size: 12px;
+  color: var(--shell-text-muted);
+  text-decoration: none;
+  border-radius: var(--shell-radius);
+  transition: background 120ms, color 120ms;
+}
+
+.shell-sidebar__back-link:hover {
+  background: var(--shell-item-hover);
+  color: var(--shell-text-primary);
+}
+
+/* ── Topbar ──────────────────────────────────────────────────── */
+
+.shell-main {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+}
+
+.shell-topbar {
+  height: var(--shell-header-h);
+  min-height: var(--shell-header-h);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--shell-space-lg);
+  border-bottom: 1px solid var(--shell-border);
+  gap: var(--shell-space-md);
+  flex-shrink: 0;
+  background: var(--shell-bg);
+}
+
+.shell-topbar__toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--shell-border);
+  border-radius: 6px;
+  background: none;
+  color: var(--shell-text-muted);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 120ms, color 120ms;
+}
+
+.shell-topbar__toggle:hover {
+  background: var(--shell-item-hover);
+  color: var(--shell-text-primary);
+}
+
+.shell-topbar__left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--shell-space-sm);
+  overflow: hidden;
+}
+
+.shell-topbar__title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--shell-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.shell-topbar__right {
+  display: flex;
+  align-items: center;
+  gap: var(--shell-space-sm);
+  flex-shrink: 0;
+}
+
+/* ── Contenido ───────────────────────────────────────────────── */
+
+.shell-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.08) transparent;
+}
+
+.shell-content::-webkit-scrollbar { width: 5px; }
+.shell-content::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.1);
+  border-radius: 3px;
+}
+
+/* Padding diferenciado por tipo de página */
+
+.shell-content--tienda {
+  padding: 0;
+}
+
+.shell-content--admin {
+  padding: var(--shell-space-xl) var(--shell-space-lg);
+}
+
+/* ── Overlay mobile ──────────────────────────────────────────── */
+
+.shell-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 9;
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+
+@media (max-width: 860px) {
+  .shell-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transform: translateX(-100%);
+    z-index: 20;
+  }
+
+  .shell-sidebar.is-open {
+    transform: translateX(0);
+  }
+
+  .shell-overlay {
+    display: block;
+  }
+
+  .shell-topbar__toggle {
+    display: flex;
+  }
+
+  .shell-content--admin {
+    padding: var(--shell-space-lg) var(--shell-space-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .shell-content--admin {
+    padding: var(--shell-space-md);
+  }
+
+  .shell-topbar {
+    padding: 0 var(--shell-space-md);
+  }
+}
+
+/* ── Overrides globales para Modales y Popconfirms (antd) ────────── */
+
+.ant-modal-content,
+.ant-popover-inner,
+.ant-popconfirm-inner {
+  background-color: var(--alo-oscuro2) !important;
+  border: 1px solid var(--alo-borde) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6) !important;
+}
+.ant-modal-header {
+  background-color: transparent !important;
+  border-bottom: 1px solid var(--alo-borde) !important;
+}
+.ant-modal-title {
+  color: var(--alo-blanco) !important;
+  font-weight: 600 !important;
+}
+.ant-modal-close-x {
+  color: var(--alo-gris) !important;
+}
+.ant-modal-close:hover .ant-modal-close-x {
+  color: var(--alo-blanco) !important;
+}
+.ant-modal-body,
+.ant-popover-inner-content,
+.ant-popconfirm-message-title {
+  color: var(--alo-blanco) !important;
+}
+.ant-modal-footer {
+  border-top: 1px solid var(--alo-borde) !important;
+}
+/* Flechas de Popover/Popconfirm */
+.ant-popover-arrow::before,
+.ant-popover-arrow::after {
+  background-color: var(--alo-oscuro2) !important;
+  border-color: var(--alo-borde) transparent transparent var(--alo-borde) !important;
+}
+.ant-popconfirm-message-icon {
+  color: var(--alo-verde-claro) !important;
+}

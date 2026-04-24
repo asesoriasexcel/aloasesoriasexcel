@@ -1,0 +1,62 @@
+/* ============================================================
+   ADMIN DESIGN TOKENS
+   Scoped bajo .admin-shell — no afecta el landing ni estilos globales.
+   Todos los valores referencian tokens de paleta_alo.css.
+   ============================================================ */
+
+.admin-shell {
+
+  /* ── Estructura ──────────────────────────────────────────── */
+  --admin-sidebar-width:      240px;
+  --admin-header-height:      56px;
+  --admin-content-max-width:  1200px;
+
+  /* ── Espaciado (escala 4px) ──────────────────────────────── */
+  --admin-space-xs:   4px;
+  --admin-space-sm:   8px;
+  --admin-space-md:   16px;
+  --admin-space-lg:   24px;
+  --admin-space-xl:   40px;
+  --admin-space-2xl:  64px;
+
+  /* ── Componentes ─────────────────────────────────────────── */
+  --admin-card-padding:      var(--admin-space-lg);
+  --admin-panel-padding:     var(--admin-space-lg);
+  --admin-grid-gap:          var(--admin-space-md);
+  --admin-card-min-width:    280px;
+
+  /* ── Forma ───────────────────────────────────────────────── */
+  --admin-radius-sm:   6px;
+  --admin-radius-md:   10px;
+  --admin-radius-lg:   14px;
+
+  /* ── Superficies (referencias a tokens globales) ─────────── */
+  --admin-bg:          var(--alo-oscuro);
+  --admin-surface:     var(--alo-oscuro2);
+  --admin-surface-2:   var(--alo-oscuro3);
+  --admin-border:      var(--alo-borde);
+  --admin-border-accent: var(--alo-borde);
+
+  /* ── Texto ───────────────────────────────────────────────── */
+  --admin-text-primary:   var(--alo-blanco);
+  --admin-text-secondary: var(--alo-gris);
+  --admin-text-subtle:    var(--alo-gris);
+  --admin-text-accent:    var(--alo-verde-claro);
+
+  /* ── Sidebar ─────────────────────────────────────────────── */
+  --admin-sidebar-bg:           var(--alo-negro);
+  --admin-sidebar-border:       rgba(255, 255, 255, 0.06);
+  --admin-sidebar-item-height:  40px;
+  --admin-sidebar-icon-size:    16px;
+  --admin-sidebar-indent:       var(--admin-space-xl);
+  --admin-sidebar-active-bg:    rgba(26, 138, 74, 0.15);
+  --admin-sidebar-active-bar:   var(--alo-verde-claro);
+  --admin-sidebar-hover-bg:     rgba(255, 255, 255, 0.05);
+
+  /* ── Sombras ─────────────────────────────────────────────── */
+  --admin-shadow-card:   0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
+  --admin-shadow-panel:  0 4px 16px rgba(0, 0, 0, 0.5);
+
+  /* ── Transiciones ────────────────────────────────────────── */
+  --admin-transition:   150ms ease;
+}

@@ -1,0 +1,1 @@
+te mostraré un ejemplo de como quiero que luzca (debes ignorar el estilo de letra o tamaño de letra, debes ignorar colores). solo debes tomarlo como ejemplo en cuanto a los componentes funcionales y la distribucion de elementos. recuerda usar la skill "skills\frontend-react-pro.md"

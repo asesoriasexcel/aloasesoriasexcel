@@ -1,26 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { List, Card, Image, Tag, Typography, Button, Checkbox, Alert, Table, Modal } from 'antd';
+import { Button, Checkbox, Input, Popconfirm } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
-import tiendaProductos from '../data/tiendaProductos';
-import tiendaCategorias from '../data/tiendaCategorias';
-import tiendaSubcategorias from '../data/tiendaSubcategorias';
+import { DeleteOutlined } from '@ant-design/icons';
 import './CarritoPage.css';
-
-const { Text } = Typography;
-const { confirm } = Modal;
-
-const obtenerColorPorGrado = (grado) => {
-  switch (grado) {
-    case 'Estándar':
-      return 'green';
-    case 'Avanzado':
-      return 'blue';
-    case 'Maestro':
-      return 'red';
-    default:
-      return 'gray';
-  }
-};
 
 const CarritoPage = () => {
   const [productosCarrito, setProductosCarrito] = useState([]);
@@ -33,17 +15,23 @@ const CarritoPage = () => {
 
   const cargarCarrito = () => {
     const carrito = JSON.parse(localStorage.getItem('ae-carrito')) || [];
-    const productos = carrito.map((item) => {
-      const producto = tiendaProductos.find(p => p.id_articulo === item.id_articulo);
-      return { ...producto, cantidad: item.cantidad };
+    const productos = carrito.map((item, idx) => {
+      // Usamos directamente los datos guardados en localStorage
+      return {
+        id_articulo: item.id_articulo || item.id || `item-${idx}`, // Fallback if corrupt
+        id: item.id || item.id_articulo,
+        nombre: item.nombre || 'Producto sin nombre',
+        precio: item.precio || 0,
+        imagen: item.imagen || '',
+        cantidad: item.cantidad || 1,
+      };
     });
     setProductosCarrito(productos);
   };
 
   const calcularResumen = () => {
-    const cantidadTotal = productosCarrito.reduce((acc, producto) => acc + producto.cantidad, 0);
-    const precioTotal = productosCarrito.reduce((acc, producto) => acc + producto.precio * producto.cantidad, 0);
-    return { cantidadTotal, precioTotal };
+    const precioTotal = productosCarrito.reduce((acc, producto) => acc + (producto.precio || 0) * producto.cantidad, 0);
+    return { precioTotal };
   };
 
   const resumen = calcularResumen();
@@ -52,189 +40,191 @@ const CarritoPage = () => {
     return new Intl.NumberFormat('es-CL', {
       style: 'currency',
       currency: 'CLP',
-    }).format(monto);
+    }).format(monto || 0);
   };
 
   const handleCheckboxChange = (e) => {
     setTerminosAceptados(e.target.checked);
   };
 
-  const mostrarConfirmacionEliminar = (id_articulo) => {
-    confirm({
-      title: '¿Estás seguro de que deseas eliminar este producto?',
-      content: 'Una vez eliminado, no podrás recuperarlo.',
-      okText: 'Sí, eliminar',
-      okType: 'danger',
-      cancelText: 'Cancelar',
-      onOk() {
-        eliminarArticulo(id_articulo);
-      },
-    });
-  };
-
-  const eliminarArticulo = (id_articulo) => {
-    const carritoActualizado = productosCarrito.filter(producto => producto.id_articulo !== id_articulo);
-    localStorage.setItem('ae-carrito', JSON.stringify(carritoActualizado.map(({ id_articulo, cantidad }) => ({ id_articulo, cantidad }))));
-
+  const eliminarArticulo = (id) => {
+    const carritoActualizado = productosCarrito.filter(p => String(p.id) !== String(id));
+    localStorage.setItem('ae-carrito', JSON.stringify(carritoActualizado.map(({ id_articulo, cantidad, id, nombre, precio, imagen }) => ({ id_articulo, cantidad, id, nombre, precio, imagen }))));
     setProductosCarrito(carritoActualizado);
+    window.dispatchEvent(new Event('storage'));
   };
 
-  const handleVerInfo = (id_articulo) => {
-    navigate(`/producto/${id_articulo}`);
-  };
 
-  const columns = [
-    {
-      title: 'Producto',
-      dataIndex: 'producto',
-      key: 'producto',
-    },
-    {
-      title: 'Subtotal',
-      dataIndex: 'subtotal',
-      key: 'subtotal',
-      align: 'right',
-    },
-  ];
-
-  const dataSource = productosCarrito.map((producto) => ({
-    key: producto.id_articulo,
-    producto: `${producto.nombre} x ${producto.cantidad}`,
-    subtotal: formatearMonto(producto.precio * producto.cantidad),
-  }));
 
   return (
-    <div className="carrito-container">
-      <div className="volver-tienda">
-        <Link to="/tienda" className="volver-tienda-link">
-          &larr; Volver a la tienda
-        </Link>
+    <div className="carrito-page" style={{ padding: '24px', maxWidth: '1100px', display: 'flex', flexDirection: 'column', gap: '24px', width: '100%' }}>
+      
+      {/* Cabecera */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <h1 style={{ margin: 0, fontSize: '24px', fontWeight: 600, color: 'var(--alo-blanco)' }}>Carrito</h1>
+        <div style={{ fontSize: '13px', color: 'var(--alo-gris)' }}>
+          Aló Excel {'>'} Carrito
+        </div>
       </div>
 
-      <h2 className="carrito-title">Carrito de compra</h2>
+      <div style={{ display: 'flex', gap: '24px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+        
+        {/* Panel Izquierdo: Lista de Productos */}
+        <div style={{ 
+          flex: 1, 
+          minWidth: '320px', 
+          background: 'var(--alo-oscuro2)', 
+          borderRadius: '8px', 
+          border: '1px solid var(--alo-borde)', 
+          padding: '24px' 
+        }}>
+          <h2 style={{ fontSize: '16px', color: 'var(--alo-blanco)', margin: '0 0 24px', fontWeight: 600 }}>Productos en el carrito</h2>
+          
+          {productosCarrito.length === 0 ? (
+            <p style={{ color: 'var(--alo-gris)', textAlign: 'center', padding: '40px 0' }}>No tienes productos en tu carrito.</p>
+          ) : (
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              {productosCarrito.map((producto, idx) => (
+                <div key={producto.id_articulo || idx} style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  padding: '16px 0', 
+                  borderBottom: idx !== productosCarrito.length - 1 ? '1px solid var(--alo-borde)' : 'none',
+                  gap: '16px',
+                  flexWrap: 'wrap'
+                }}>
+                  {/* Imagen */}
+                  <div style={{ width: '80px', height: '80px', borderRadius: '8px', overflow: 'hidden', flexShrink: 0, background: 'rgba(255,255,255,0.05)', border: '1px solid var(--alo-borde)' }}>
+                    <img src={producto.imagen} alt={producto.nombre} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  </div>
+                  
+                  {/* Info (Título y Precio Unitario) */}
+                  <div style={{ flex: 1, minWidth: '150px' }}>
+                    <h3 style={{ margin: '0 0 4px', fontSize: '15px', fontWeight: 600, color: 'var(--alo-blanco)' }}>
+                      {producto.nombre}
+                    </h3>
+                    <p style={{ margin: 0, fontSize: '13px', color: 'var(--alo-gris)' }}>
+                      Precio : {formatearMonto(producto.precio)}
+                    </p>
+                  </div>
 
-      {productosCarrito.length === 0 ? (
-        <Text className="carrito-empty-text">No tienes productos en tu carrito.</Text>
-      ) : (
-        <div className="carritopage-contenido">
-          <List
-            className="carrito-list"
-            grid={{ gutter: 16, column: 1 }}
-            dataSource={productosCarrito}
-            renderItem={(producto) => {
-              const categoria = tiendaCategorias.find(
-                cat => cat.id === parseInt(producto.id_categoria, 10)
-              )?.nombre || 'Sin categoría';
-
-              const subcategoria = tiendaSubcategorias.find(
-                sub => sub.id === parseInt(producto.id_subcategoria, 10)
-              )?.nombre || 'Sin subcategoría';
-
-              return (
-                <List.Item className="carrito-list-item">
-                  <Card className="carrito-card" bordered hoverable>
-                    <h4 className="carrito-categoria">
-                      Categoría: {categoria}
-                    </h4>
-
-                    <div className="carrito-producto">
-                      <div className="carrito-imagen-container">
-                        <Image
-                          className="carrito-imagen"
-                          src={producto.imagen}
-                          alt={producto.nombre}
-                          preview={false}
+                  {/* Acciones */}
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '12px', minWidth: '120px' }}>
+                    
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                      <Popconfirm
+                        title="¿Eliminar del carrito?"
+                        onConfirm={() => eliminarArticulo(producto.id)}
+                        okText="Eliminar"
+                        cancelText="Cancelar"
+                        placement="topRight"
+                      >
+                        <DeleteOutlined 
+                          style={{ color: '#ef4444', fontSize: '18px', cursor: 'pointer', transition: 'opacity 0.2s' }} 
+                          onMouseOver={e => e.currentTarget.style.opacity = '0.7'}
+                          onMouseOut={e => e.currentTarget.style.opacity = '1'}
                         />
-                      </div>
-
-                      <div className="carrito-info">
-                        <h4 className="carrito-subcategoria">
-                          {subcategoria}
-                        </h4>
-                        <p className="carrito-nombre">
-                          Planilla: <span>{producto.nombre}</span>
-                        </p>
-                        <div className="c-tag">
-                          <span className="c-tagversion">Version: </span>
-                          <Tag color={obtenerColorPorGrado(producto.grado)}>{producto.grado}</Tag>
-                        </div>
-                        <div className="carrito-detalles">
-                          <span>
-                            {formatearMonto(producto.precio)}
-                          </span>
-                          <p>
-                            Cant. {producto.cantidad}
-                          </p>
-                        </div>
-                      </div>
+                      </Popconfirm>
                     </div>
-                    <div className="carrito-acciones">
-                      <Button
-                        type="link"
-                        className="ver-info"
-                        onClick={() => handleVerInfo(producto.id_articulo)}
-                      >
-                        Ver info
-                      </Button>
-                      <Button
-                        type="link"
-                        danger
-                        className="eliminar"
-                        onClick={() => mostrarConfirmacionEliminar(producto.id_articulo)}
-                      >
-                        Eliminar
-                      </Button>
-                    </div>
-                  </Card>
-                </List.Item>
-              );
-            }}
-          />
-          <div className="carrito-resumen">
-            <div className="resumen-info">
-              <h4>Detalle de la compra</h4>
-              <Table
-                dataSource={dataSource}
-                columns={columns}
-                pagination={false}
-                className="carrito-resumen-tabla"
-              />
-              <hr />
-              <div className="resumen-total" >
-                <Text>Total: </Text>
-                <Text>{formatearMonto(resumen.precioTotal)}</Text>
-              </div>
+                  </div>
 
-              <div className="terminos-condiciones">
-                <Checkbox onChange={handleCheckboxChange}>
-                  He leído y acepto los{' '}
-                  <Link to="/terminoscondiciones" target="_blank">
-                    términos y condiciones
-                  </Link>.
-                </Checkbox>
-                {!terminosAceptados && (
-                  <Alert
-                    message="Debes aceptar los términos y condiciones para continuar."
-                    type="warning"
-                    showIcon
-                    style={{ marginTop: '10px' }}
-                  />
-                )}
-              </div>
-
-              <Link to="/confirmacompra">
-                <Button
-                  type="primary"
-                  className="btn-azul"
-                  disabled={!terminosAceptados}
-                >
-                  Comprar
-                </Button>
-              </Link>
+                </div>
+              ))}
             </div>
-          </div>
+          )}
         </div>
-      )}
+
+        {/* Panel Derecho: Resumen */}
+        <div style={{ 
+          width: '340px', 
+          flexShrink: 0, 
+          display: 'flex', 
+          flexDirection: 'column', 
+          gap: '24px' 
+        }}>
+          
+          {/* Tarjeta de Resumen */}
+          <div style={{
+            background: 'var(--alo-oscuro2)', 
+            borderRadius: '8px', 
+            border: '1px solid var(--alo-borde)', 
+            padding: '24px'
+          }}>
+            <h2 style={{ fontSize: '16px', color: 'var(--alo-blanco)', margin: '0 0 24px', fontWeight: 600 }}>Resumen de Compra</h2>
+            
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '24px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--alo-gris)', fontSize: '14px' }}>
+                <span>Sub-total</span>
+                <span>{formatearMonto(resumen.precioTotal)}</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--alo-gris)', fontSize: '14px' }}>
+                <span>Descuento</span>
+                <span>$0</span>
+              </div>
+              <div style={{ height: '1px', background: 'var(--alo-borde)' }} />
+              <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--alo-blanco)', fontSize: '16px', fontWeight: 600 }}>
+                <span>Total</span>
+                <span style={{ color: 'var(--alo-verde-claro)' }}>{formatearMonto(resumen.precioTotal)}</span>
+              </div>
+            </div>
+
+            <div style={{ marginBottom: '24px' }}>
+              <Checkbox onChange={handleCheckboxChange} style={{ color: 'var(--alo-gris)' }}>
+                Acepto los <Link to="/terminoscondiciones" target="_blank" style={{ color: 'var(--alo-verde-claro)', textDecoration: 'none' }}>términos y condiciones</Link>
+              </Checkbox>
+            </div>
+
+            <Button 
+              type="primary" 
+              disabled={!terminosAceptados || productosCarrito.length === 0}
+              onClick={() => navigate('/confirmacompra')}
+              style={{ 
+                width: '100%', 
+                height: '44px', 
+                borderRadius: '6px', 
+                background: (terminosAceptados && productosCarrito.length > 0) ? 'var(--alo-verde)' : undefined, 
+                fontWeight: 600 
+              }}
+            >
+              Proceder al pago
+            </Button>
+          </div>
+
+          {/* Tarjeta Aplicar Código */}
+          <div style={{
+            background: 'var(--alo-oscuro2)', 
+            borderRadius: '8px', 
+            border: '1px solid var(--alo-borde)', 
+            padding: '24px'
+          }}>
+            <h3 style={{ fontSize: '15px', color: 'var(--alo-blanco)', margin: '0 0 16px', fontWeight: 600 }}>Aplicar Cupón</h3>
+            <Input 
+              placeholder="Ingresa tu código" 
+              style={{ 
+                marginBottom: '16px', 
+                height: '40px',
+                background: 'var(--alo-oscuro)', 
+                borderColor: 'var(--alo-borde)', 
+                color: 'var(--alo-blanco)' 
+              }} 
+            />
+            <Button 
+              style={{ 
+                width: '100%', 
+                height: '40px',
+                borderRadius: '6px', 
+                background: 'transparent', 
+                borderColor: 'var(--alo-verde)', 
+                color: 'var(--alo-verde)', 
+                fontWeight: 500 
+              }}
+            >
+              Aplicar Código
+            </Button>
+          </div>
+
+        </div>
+      </div>
     </div>
   );
 };

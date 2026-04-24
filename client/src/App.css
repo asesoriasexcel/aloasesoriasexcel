@@ -15,9 +15,14 @@ body, html {
 
 #root,
 .app-container,
-main,
 .cuerpo-page-container {
   height: 100% !important;
+}
+
+/* El admin-shell gestiona su propia altura — no heredar height:100% global */
+.admin-shell,
+.admin-shell main {
+  height: auto !important;
 }
 
 .App {

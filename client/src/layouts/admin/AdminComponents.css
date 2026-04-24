@@ -1,0 +1,579 @@
+/* ============================================================
+   ADMIN PAGE COMPONENTS
+   Todos los selectores están scoped bajo .admin-shell
+   ============================================================ */
+
+/* ── AdminPageHeader ─────────────────────────────────────────── */
+
+.admin-page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--admin-space-lg);
+  margin-bottom: var(--admin-space-xl);
+}
+
+.admin-page-header__text {
+  flex: 1;
+  min-width: 0;
+}
+
+.admin-page-header__title {
+  font-family: var(--font-titulo);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--admin-text-primary);
+  line-height: 1.2;
+  margin: 0 0 var(--admin-space-xs) 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.admin-page-header__subtitle {
+  font-size: 13px;
+  color: var(--admin-text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.admin-page-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-sm);
+  flex-shrink: 0;
+}
+
+/* ── AdminToolbar ────────────────────────────────────────────── */
+
+.admin-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-sm);
+  margin-bottom: var(--admin-space-md);
+  flex-wrap: wrap;
+}
+
+.admin-toolbar__primary {
+  margin-left: auto;
+}
+
+.admin-toolbar__group {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-sm);
+}
+
+@media (max-width: 600px) {
+  .admin-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admin-toolbar__primary {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .admin-toolbar__primary .ant-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ── AdminStats ──────────────────────────────────────────────── */
+
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: var(--admin-grid-gap);
+  margin-bottom: var(--admin-space-xl);
+}
+
+.admin-stat-item {
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius-md);
+  padding: var(--admin-card-padding);
+  display: flex;
+  flex-direction: column;
+  gap: var(--admin-space-sm);
+}
+
+.admin-stat-item__label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--admin-text-subtle);
+  margin: 0;
+}
+
+.admin-stat-item__value {
+  font-family: var(--font-titulo);
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--admin-text-primary);
+  line-height: 1;
+  margin: 0;
+}
+
+.admin-stat-item__value--accent {
+  color: var(--alo-verde-claro);
+}
+
+.admin-stat-item__value--gold {
+  color: var(--alo-amarillo);
+}
+
+/* ── AdminContentPanel ───────────────────────────────────────── */
+
+.admin-content-panel {
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius-md);
+  overflow: hidden;
+}
+
+.admin-content-panel--padded {
+  padding: var(--admin-panel-padding);
+}
+
+/* ── ProductGrid ─────────────────────────────────────────────── */
+
+.admin-product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--admin-card-min-width), 1fr));
+  gap: var(--admin-grid-gap);
+  padding: var(--admin-panel-padding);
+}
+
+/* ── ProductCard ─────────────────────────────────────────────── */
+
+.admin-product-card {
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius-md);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: border-color var(--admin-transition), box-shadow var(--admin-transition);
+  min-height: 260px;
+}
+
+.admin-product-card:hover {
+  border-color: var(--admin-border-accent);
+  box-shadow: var(--admin-shadow-card);
+}
+
+/* Header de la tarjeta */
+
+.admin-product-card__header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--admin-space-md);
+  padding: var(--admin-card-padding);
+  padding-bottom: var(--admin-space-md);
+  border-bottom: 1px solid var(--admin-border);
+}
+
+.admin-product-card__thumb {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: var(--admin-radius-sm);
+  background: var(--admin-surface-2);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--admin-border);
+}
+
+.admin-product-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.admin-product-card__thumb-placeholder {
+  font-size: 20px;
+  color: var(--admin-text-subtle);
+}
+
+.admin-product-card__identity {
+  flex: 1;
+  min-width: 0;
+}
+
+.admin-product-card__name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--admin-text-primary);
+  margin: 0 0 var(--admin-space-xs) 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 1.4;
+}
+
+.admin-product-card__id {
+  font-size: 11px;
+  color: var(--admin-text-subtle);
+  font-family: monospace;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Badge de grado */
+
+.admin-grade-badge {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 100px;
+  border: 1px solid currentColor;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+.admin-grade-badge--basico   { color: var(--cat-basico); }
+.admin-grade-badge--pro      { color: var(--cat-pro); }
+.admin-grade-badge--full     { color: var(--cat-full); }
+.admin-grade-badge--master   { color: var(--cat-master); }
+.admin-grade-badge--legendario { color: var(--cat-legendario); }
+
+/* Body de la tarjeta */
+
+.admin-product-card__body {
+  flex: 1;
+  padding: var(--admin-space-md) var(--admin-card-padding);
+  display: flex;
+  flex-direction: column;
+  gap: var(--admin-space-sm);
+}
+
+.admin-product-card__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-sm);
+}
+
+.admin-product-card__meta-icon {
+  width: 14px;
+  height: 14px;
+  color: var(--admin-text-subtle);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.admin-product-card__meta-value {
+  font-size: 12px;
+  color: var(--admin-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.admin-product-card__meta-value--price {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--alo-verde-claro);
+}
+
+/* Status badges */
+
+.admin-status-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--admin-space-xs);
+  margin-top: auto;
+}
+
+.admin-status-pill {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 2px 8px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.admin-status-pill--active {
+  background: rgba(61, 184, 102, 0.15);
+  color: var(--alo-verde-claro);
+  border: 1px solid rgba(61, 184, 102, 0.3);
+}
+
+.admin-status-pill--free {
+  background: rgba(255, 235, 59, 0.1);
+  color: var(--alo-amarillo);
+  border: 1px solid rgba(255, 235, 59, 0.25);
+}
+
+.admin-status-pill--paused {
+  background: rgba(160, 168, 176, 0.1);
+  color: var(--admin-text-subtle);
+  border: 1px solid rgba(160, 168, 176, 0.2);
+}
+
+/* Footer de la tarjeta */
+
+.admin-product-card__footer {
+  padding: var(--admin-space-md) var(--admin-card-padding);
+  border-top: 1px solid var(--admin-border);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--admin-space-sm);
+}
+
+/* ── AdminForm layout ────────────────────────────────────────── */
+
+.admin-form-surface {
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius-md);
+  padding: var(--admin-space-xl);
+}
+
+.admin-form-section-title {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--admin-text-accent);
+  margin: 0 0 var(--admin-space-lg) 0;
+  padding-bottom: var(--admin-space-md);
+  border-bottom: 1px solid var(--admin-border-accent);
+}
+
+.admin-form-section-title + .admin-form-section-title,
+.admin-form-section + .admin-form-section-title {
+  margin-top: var(--admin-space-xl);
+}
+
+.admin-form-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--admin-space-sm);
+  padding-top: var(--admin-space-lg);
+  margin-top: var(--admin-space-lg);
+  border-top: 1px solid var(--admin-border);
+}
+
+/* ── Ant Design overrides scoped al admin ────────────────────── */
+
+.admin-shell .ant-table {
+  background: transparent !important;
+  color: var(--admin-text-primary) !important;
+}
+
+.admin-shell .ant-table-thead > tr > th {
+  background: rgba(255, 255, 255, 0.03) !important;
+  color: var(--admin-text-secondary) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  border-bottom: 1px solid var(--admin-border) !important;
+}
+
+.admin-shell .ant-table-tbody > tr > td {
+  border-bottom: 1px solid var(--admin-border) !important;
+  color: var(--admin-text-primary) !important;
+}
+
+.admin-shell .ant-table-tbody > tr:hover > td {
+  background: var(--admin-sidebar-hover-bg) !important;
+}
+
+.admin-shell .ant-table-wrapper {
+  background: transparent !important;
+}
+
+.admin-shell .ant-pagination {
+  padding: var(--admin-space-md) var(--admin-panel-padding) !important;
+}
+
+/* Form inputs */
+
+.admin-shell .ant-form-item-label label {
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: var(--admin-text-secondary) !important;
+  letter-spacing: 0.01em;
+}
+
+.admin-shell .ant-input,
+.admin-shell .ant-input-number,
+.admin-shell .ant-input-number-input,
+.admin-shell textarea.ant-input,
+.admin-shell .ant-select-selector {
+  background-color: var(--alo-negro) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: var(--admin-text-primary) !important;
+  border-radius: var(--admin-radius-sm) !important;
+}
+
+.admin-shell .ant-input:focus,
+.admin-shell .ant-input-number:focus,
+.admin-shell .ant-input-number-focused,
+.admin-shell .ant-select-focused .ant-select-selector {
+  border-color: var(--alo-verde) !important;
+  box-shadow: 0 0 0 2px rgba(26, 138, 74, 0.2) !important;
+}
+
+.admin-shell .ant-input-affix-wrapper {
+  background-color: var(--alo-negro) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: var(--admin-radius-sm) !important;
+  padding: 8px 12px !important;
+}
+
+.admin-shell .ant-input-affix-wrapper input {
+  background: transparent !important;
+  color: var(--admin-text-primary) !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.admin-shell .ant-input-prefix {
+  color: var(--alo-verde) !important;
+  margin-right: var(--admin-space-sm);
+}
+
+.admin-shell .ant-select-selection-item,
+.admin-shell .ant-select-selection-placeholder {
+  color: var(--admin-text-primary) !important;
+}
+
+.admin-shell .ant-switch {
+  background: var(--admin-surface-2) !important;
+}
+
+.admin-shell .ant-switch.ant-switch-checked {
+  background: var(--alo-verde) !important;
+}
+
+/* Statistic */
+
+.admin-shell .ant-statistic-title {
+  color: var(--admin-text-subtle) !important;
+  font-size: 11px !important;
+}
+
+.admin-shell .ant-statistic-content {
+  color: var(--admin-text-primary) !important;
+}
+
+/* Tags */
+
+.admin-shell .ant-tag {
+  border-radius: 100px !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  padding: 2px 8px !important;
+  border: none !important;
+}
+
+/* Popconfirm */
+
+.admin-shell .ant-popconfirm-message-title {
+  color: var(--admin-text-primary) !important;
+}
+
+/* Spin */
+
+.admin-shell .ant-spin-text {
+  color: var(--admin-text-secondary) !important;
+}
+
+/* ── Loading / empty states ──────────────────────────────────── */
+
+.admin-loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 320px;
+  gap: var(--admin-space-md);
+  color: var(--admin-text-secondary);
+  font-size: 13px;
+}
+
+.admin-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 240px;
+  gap: var(--admin-space-sm);
+  color: var(--admin-text-subtle);
+  text-align: center;
+  padding: var(--admin-space-xl);
+}
+
+.admin-empty-state__icon {
+  font-size: 32px;
+  margin-bottom: var(--admin-space-sm);
+  opacity: 0.4;
+}
+
+.admin-empty-state__title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--admin-text-secondary);
+  margin: 0;
+}
+
+.admin-empty-state__desc {
+  font-size: 12px;
+  color: var(--admin-text-subtle);
+  margin: 0;
+}
+
+/* ── Access denied ───────────────────────────────────────────── */
+
+.admin-access-denied {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: var(--admin-bg);
+}
+
+.admin-access-denied__card {
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius-lg);
+  padding: var(--admin-space-2xl);
+  text-align: center;
+  max-width: 360px;
+  width: 90%;
+}
+
+.admin-access-denied__title {
+  font-family: var(--font-titulo);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--admin-text-primary);
+  margin: 0 0 var(--admin-space-sm) 0;
+}
+
+.admin-access-denied__desc {
+  font-size: 13px;
+  color: var(--admin-text-secondary);
+  margin: 0 0 var(--admin-space-xl) 0;
+  line-height: 1.6;
+}

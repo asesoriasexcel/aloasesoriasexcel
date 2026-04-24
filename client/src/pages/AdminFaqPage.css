@@ -1,0 +1,32 @@
+/* AdminFaqPage.css */
+
+.faq-collapse .ant-collapse-item .ant-collapse-header {
+  padding: 20px 24px !important;
+  align-items: center !important;
+}
+
+.faq-collapse .ant-collapse-item .ant-collapse-header .faq-panel-title {
+  color: var(--alo-blanco) !important;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+/* Cuando el panel está activo, pintamos el título de verde corporativo (similar al mock donde el texto es verde) */
+.faq-collapse .ant-collapse-item-active .ant-collapse-header .faq-panel-title {
+  color: var(--alo-verde-claro) !important;
+  font-weight: 600;
+}
+
+.faq-collapse .ant-collapse-item .ant-collapse-arrow {
+  color: var(--alo-gris) !important;
+  font-size: 14px !important;
+}
+
+.faq-collapse .ant-collapse-item .ant-collapse-content {
+  background-color: transparent !important;
+  border-top: none !important;
+}
+
+.faq-collapse .ant-collapse-item .ant-collapse-content-box {
+  padding: 0 24px 24px 24px !important;
+}
