@@ -14,8 +14,11 @@
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1.5fr;
   gap: 48px;
-  padding: 56px 10% 40px 10%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 56px 5% 40px 5%;
   text-align: left;
+  box-sizing: border-box;
 }
 
 .footer-column {
@@ -155,9 +158,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 10%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 16px 5%;
   border-top: 1px solid var(--alo-borde);
   gap: 12px;
+  box-sizing: border-box;
 }
 
 .footer-bottom__copy {

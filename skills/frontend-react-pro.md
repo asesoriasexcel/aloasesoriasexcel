@@ -27,6 +27,17 @@ This document serves as a "skill" or rule-set for developing the frontend of the
   - For **functional panels and forms** (Admin, Cart), **align them to the left** to provide a professional, native-app feel that respects reading flow.
   - For **general reading pages** (Terms and Conditions, FAQs, Contact form layouts), **center** the main container (`alignItems: center` or `margin: 0 auto`) to provide a better visual balance on ultra-wide screens.
 - **Scroll & Overflow:** Ensure sidebars and independent panels have their own scroll context (`overflow-y: auto`) and custom scrollbars instead of scrolling the entire `<body>`. This maintains an app-like behavior.
+- **🖥️ Ultra-Wide Screen Pattern — "Full-Bleed Background with Constrained Content":** This is the correct way to make the site look great on large monitors (>1400px) without stretching content awkwardly to the edges.
+  - **❌ WRONG approach:** Setting `max-width` on `#root`. This cuts off full-bleed backgrounds (videos, sticky headers, section colors).
+  - **✅ CORRECT approach:** Keep the outer shell full-width. Apply `max-width + margin: 0 auto` to the **inner content wrapper only**. The background of navbars, sections, and footers remains 100% wide, while the readable content is centered.
+  - **Implementation pattern for landing pages:**
+    ```css
+    /* The outer element (navbar, footer, section) stays full-width */
+    .desktop-menu-container { width: 100%; }
+    /* An inner wrapper centers the content */
+    .menu-inner { max-width: 1400px; margin: 0 auto; display: flex; }
+    ```
+  - **Implementation pattern for AppShell (admin/tienda):** Apply `display: flex; flex-direction: column; align-items: center;` on `.shell-content--admin`, then constrain children with `.shell-content--admin > * { max-width: 1200px; width: 100%; }`.
 
 ## 4. State Management & Real-time Sync
 - **Event-Driven Synchronization:** For data shared across disjointed parts of the DOM tree (like Cart counts or Sidebar category counts), use Custom Events (e.g., `window.dispatchEvent(new Event('adminProductsChanged'))`) to notify independent components and keep data perfectly synchronized without heavy Context setups.

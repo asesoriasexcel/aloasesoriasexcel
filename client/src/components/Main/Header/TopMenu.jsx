@@ -138,26 +138,28 @@ const TopMenu = () => {
         <>
           <AnnouncementBanner />
           <div id="main-menu" className="desktop-menu-container">
-            <Link to="/" className="desktop-brand-name">
-              <span className="desktop-brand-alo">Aló Asesorías </span>
-              <span className="desktop-brand-excel">Excel</span>
-            </Link>
-            <Menubar model={items} />
-            <div className="topmenu-actions">
-              {carritoCount > 0 && (
-                <Badge
-                  count={carritoCount}
-                  overflowCount={99}
-                  style={{ backgroundColor: '#ff4d4f' }}
-                >
-                  <Button
-                    icon="pi pi-shopping-cart"
-                    className="p-button-rounded p-button-text desktop-cart-button"
-                    onClick={() => navigate('/carrito')}
-                  />
-                </Badge>
-              )}
-              {authButton}
+            <div className="menu-inner">
+              <Link to="/" className="desktop-brand-name">
+                <span className="desktop-brand-alo">Aló Asesorías </span>
+                <span className="desktop-brand-excel">Excel</span>
+              </Link>
+              <Menubar model={items} />
+              <div className="topmenu-actions">
+                {carritoCount > 0 && (
+                  <Badge
+                    count={carritoCount}
+                    overflowCount={99}
+                    style={{ backgroundColor: '#ff4d4f' }}
+                  >
+                    <Button
+                      icon="pi pi-shopping-cart"
+                      className="p-button-rounded p-button-text desktop-cart-button"
+                      onClick={() => navigate('/carrito')}
+                    />
+                  </Badge>
+                )}
+                {authButton}
+              </div>
             </div>
           </div>
         </>

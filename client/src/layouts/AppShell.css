@@ -336,6 +336,18 @@
 
 .shell-content--admin {
   padding: var(--shell-space-xl) var(--shell-space-lg);
+  /* Patrón full-bleed con contenido centrado:
+     el fondo del área se extiende al 100% del main,
+     pero el contenido de cada página no supera 1200px */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Garantizar que el contenido directo de admin no supere 1200px */
+.shell-content--admin > * {
+  width: 100%;
+  max-width: 1200px;
 }
 
 /* ── Overlay mobile ──────────────────────────────────────────── */

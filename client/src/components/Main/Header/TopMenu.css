@@ -1,21 +1,30 @@
 /* === Menú Superior: Escritorio === */
 .desktop-menu-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.9rem;
+  /* Fondo se expande al 100% del viewport — full-bleed */
+  display: block;
   color: var(--seccion_header_topmenu_text);
   border-bottom: 1px solid rgba(26, 138, 74, 0.15);
   background: rgba(13, 13, 13, 0.72);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  padding-inline: 4% 3%;
-  height: 62px;
   width: 100%;
   position: sticky;
   top: 0;
   z-index: 100;
+  box-sizing: border-box;
+}
+
+/* El contenido del menú se centra y se limita — patrón full-bleed */
+.menu-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-inline: 4% 3%;
+  height: 62px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
   box-sizing: border-box;
 }
 
