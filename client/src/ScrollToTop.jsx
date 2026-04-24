@@ -5,9 +5,18 @@ const ScrollToTop = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Forzar el scroll al inicio cada vez que cambie la ruta
+    // Resetear scroll en window y en los contenedores internos
+    // (necesario cuando #root o .app-container tienen height:100% y generan su propio scroll)
     window.scrollTo(0, 0);
-  }, [location.pathname]); // Ejecuta el efecto cuando la ruta cambia
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+
+    const root = document.getElementById('root');
+    if (root) root.scrollTop = 0;
+
+    const appContainer = document.querySelector('.app-container');
+    if (appContainer) appContainer.scrollTop = 0;
+  }, [location.pathname]);
 
   return null;
 };

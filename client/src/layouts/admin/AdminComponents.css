@@ -3,6 +3,22 @@
    Todos los selectores están scoped bajo .admin-shell
    ============================================================ */
 
+/* ── Global Typography for Admin/Tienda ───────────────────────── */
+.admin-shell h1 {
+  font-size: 32px !important;
+  font-weight: 700 !important;
+  color: var(--admin-text-primary) !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.2 !important;
+  margin-bottom: 16px !important;
+}
+
+.admin-shell p {
+  font-size: 15px;
+  color: var(--admin-text-secondary);
+  line-height: 1.6;
+}
+
 /* ── AdminPageHeader ─────────────────────────────────────────── */
 
 .admin-page-header {
@@ -19,22 +35,23 @@
 }
 
 .admin-page-header__title {
-  font-family: var(--font-titulo);
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--admin-text-primary);
-  line-height: 1.2;
-  margin: 0 0 var(--admin-space-xs) 0;
+  font-family: var(--font-titulo) !important;
+  font-size: 32px !important;
+  font-weight: 700 !important;
+  color: var(--admin-text-primary) !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.2 !important;
+  margin: 0 0 var(--admin-space-xs) 0 !important;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .admin-page-header__subtitle {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--admin-text-secondary);
   margin: 0;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .admin-page-header__actions {
@@ -381,16 +398,20 @@
 .admin-shell .ant-table-thead > tr > th {
   background: rgba(255, 255, 255, 0.03) !important;
   color: var(--admin-text-secondary) !important;
-  font-size: 11px !important;
+  font-size: 12px !important;
   font-weight: 600 !important;
-  letter-spacing: 0.06em !important;
+  letter-spacing: 0.04em !important;
   text-transform: uppercase !important;
   border-bottom: 1px solid var(--admin-border) !important;
+  padding: 10px 16px !important;
 }
 
 .admin-shell .ant-table-tbody > tr > td {
   border-bottom: 1px solid var(--admin-border) !important;
   color: var(--admin-text-primary) !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  padding: 10px 16px !important;
 }
 
 .admin-shell .ant-table-tbody > tr:hover > td {
@@ -403,6 +424,40 @@
 
 .admin-shell .ant-pagination {
   padding: var(--admin-space-md) var(--admin-panel-padding) !important;
+}
+
+.admin-shell .ant-pagination-item {
+  background: var(--admin-surface-2) !important;
+  border-color: var(--admin-border) !important;
+  border-radius: var(--admin-radius-sm) !important;
+}
+
+.admin-shell .ant-pagination-item a {
+  color: var(--admin-text-secondary) !important;
+}
+
+.admin-shell .ant-pagination-item-active {
+  background: rgba(61, 184, 102, 0.15) !important;
+  border-color: var(--alo-verde-claro) !important;
+}
+
+.admin-shell .ant-pagination-item-active a {
+  color: var(--alo-verde-claro) !important;
+  font-weight: 600 !important;
+}
+
+.admin-shell .ant-pagination-prev .ant-pagination-item-link,
+.admin-shell .ant-pagination-next .ant-pagination-item-link {
+  background: var(--admin-surface-2) !important;
+  border-color: var(--admin-border) !important;
+  color: var(--admin-text-secondary) !important;
+  border-radius: var(--admin-radius-sm) !important;
+}
+
+.admin-shell .ant-pagination-disabled .ant-pagination-item-link {
+  color: rgba(255, 255, 255, 0.2) !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-color: transparent !important;
 }
 
 /* Form inputs */

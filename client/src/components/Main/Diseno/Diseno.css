@@ -21,8 +21,8 @@
   max-width: 462px; /* Limita el ancho máximo */
   height: auto; /* Mantiene las proporciones de la imagen */
   object-fit: cover; /* Asegura que la imagen cubra el área del contenedor */
-  border-radius: 2rem; /* Bordes redondeados */
-  box-shadow: 0px 59px 16px -8px rgba(120,149,206,0),0px 38px 15px -8px rgba(120,149,206,.01),0px 21px 13px -8px rgba(120,149,206,.04),0px 9px 9px -4px rgba(120,149,206,.07),0px 2px 5px 0px rgba(120,149,206,.08);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
 
 /* Estilos para la columna de la derecha (Contenido) */
@@ -40,7 +40,7 @@
   background: transparent !important;
   border: 1px solid var(--alo-verde-claro) !important;
   color: var(--alo-verde-claro) !important;
-  border-radius: 9999px;
+  border-radius: 6px;
   padding: .25rem .875rem;
   font-weight: 500;
   width: fit-content;
@@ -90,7 +90,7 @@
   background-color: var(--alo-verde) !important;
   color: white !important;
   border-color: var(--alo-verde) !important;
-  border-radius: 9999px;
+  border-radius: 6px;
   padding: .25rem .875rem;
   font-weight: 500;
   width: fit-content;
@@ -128,7 +128,7 @@
     width: 100%;
     max-height: fit-content;
     object-fit: contain;
-    border-radius: 1rem;
+    border-radius: 12px;
   }
 
   .content-container {

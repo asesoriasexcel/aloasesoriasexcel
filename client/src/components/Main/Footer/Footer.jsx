@@ -1,59 +1,78 @@
-import React from 'react'; 
+import React from 'react';
 import './Footer.css';
 import { FaFacebookF, FaInstagram, FaTiktok } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 import { GrYoutube } from "react-icons/gr";
-import { IoMdSend } from "react-icons/io";
 import { IoIosMail } from "react-icons/io";
 
 const Footer = () => {
   return (
     <footer id="footer" className="footer">
+      {/* Columnas principales */}
       <div className="footer-content">
-        {/* Columna 1 */}
-        <div className="footer-column">
+
+        {/* Columna 1 — Marca */}
+        <div className="footer-column footer-column--brand">
           <span className="footer-logo">
-            <span className="footer-logo_alo">Aló Asesorías </span><span className="footer-logo_excel">Excel</span>
+            <span className="footer-logo_alo">Aló Asesorías </span>
+            <span className="footer-logo_excel">Excel</span>
           </span>
-          <span className="footer-subtitle">Soluciones precisas, en Excel y otras tecnologías.</span>
-          <span>Síguenos</span>
-          <div className="social-icons">
-            <a href="https://www.facebook.com/profile.php?id=61566069431755&mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer">
-              <FaFacebookF className="footer-facebook" />
-            </a>
-            <a href="https://www.youtube.com/@aloasesoriasexcel" target="_blank" rel="noopener noreferrer">
-              <GrYoutube className="footer-youtube" />
-            </a>
-            <a href="https://www.instagram.com/aloasesoriasexcel" target="_blank" rel="noopener noreferrer">
-              <FaInstagram className="footer-instagram" />
-            </a>
-            <a href="https://www.tiktok.com/@aloasesoriasexcel1" target="_blank" rel="noopener noreferrer">
-              <FaTiktok className="footer-tiktok" />
-            </a>
+          <span className="footer-subtitle">
+            Soluciones precisas en Excel<br />y otras tecnologías digitales.
+          </span>
+          <div className="footer-social">
+            <span className="footer-social-label">Síguenos</span>
+            <div className="social-icons">
+              <a href="https://www.facebook.com/profile.php?id=61566069431755&mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" className="social-icon social-icon--facebook" aria-label="Facebook">
+                <FaFacebookF />
+              </a>
+              <a href="https://www.youtube.com/@aloasesoriasexcel" target="_blank" rel="noopener noreferrer" className="social-icon social-icon--youtube" aria-label="YouTube">
+                <GrYoutube />
+              </a>
+              <a href="https://www.instagram.com/aloasesoriasexcel" target="_blank" rel="noopener noreferrer" className="social-icon social-icon--instagram" aria-label="Instagram">
+                <FaInstagram />
+              </a>
+              <a href="https://www.tiktok.com/@aloasesoriasexcel1" target="_blank" rel="noopener noreferrer" className="social-icon social-icon--tiktok" aria-label="TikTok">
+                <FaTiktok />
+              </a>
+            </div>
           </div>
-          <span className="copyright">© AsesoriasExcel 2025.</span>
         </div>
 
-        {/* Columna 2 */}
+        {/* Columna 2 — Explorar */}
         <div className="footer-column">
-          <span className="footer-title important">IMPORTANTE</span>
-          <Link to="/terminoscondiciones" className="contactostyle" >
-            <span>Términos y Condiciones</span>
-          </Link>
+          <span className="footer-title">Explorar</span>
+          <Link to="/tienda" className="footer-link">Tienda de productos</Link>
+          <Link to="/tienda/liberados" className="footer-link">Productos gratuitos</Link>
+          <Link to="/diseno" className="footer-link">Diseño personalizado</Link>
+          <Link to="/admin/faq" className="footer-link">Preguntas frecuentes</Link>
         </div>
 
-        {/* Columna 3 */}
+        {/* Columna 3 — Legal */}
         <div className="footer-column">
-          <span className="footer-title contact">Contáctanos</span>
-          <Link className="contactostyle" to="/contacto">
-            <IoMdSend className="footer-mail" />
-            Mensaje
-          </Link>
-          <a href="mailto:asesoriasexcel@gmail.com" className="contactostyle">
-            <IoIosMail className="footer-mail" />
+          <span className="footer-title">Legal</span>
+          <Link to="/terminoscondiciones" className="footer-link">Términos y Condiciones</Link>
+          <Link to="/contacto" className="footer-link">Política de privacidad</Link>
+        </div>
+
+        {/* Columna 4 — Contacto */}
+        <div className="footer-column">
+          <span className="footer-title">Contacto</span>
+          <a href="mailto:aloasesoriasexcel@gmail.com" className="footer-link footer-link--mail">
+            <IoIosMail className="footer-link-icon" />
             aloasesoriasexcel@gmail.com
           </a>
+          <Link to="/contacto" className="footer-link">
+            Enviar mensaje
+          </Link>
         </div>
+
+      </div>
+
+      {/* Barra inferior */}
+      <div className="footer-bottom">
+        <span className="footer-bottom__copy">© 2025 Aló Asesorías Excel. Todos los derechos reservados.</span>
+        <span className="footer-bottom__made">Hecho en Chile 🇨🇱</span>
       </div>
     </footer>
   );

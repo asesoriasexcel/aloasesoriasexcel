@@ -21,16 +21,12 @@ const TerminosCondicionesPage = () => {
         
         {/* Cabecera del Documento */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '40px', borderBottom: '1px solid var(--alo-borde)', paddingBottom: '32px' }}>
-          <div style={{ width: '56px', height: '56px', borderRadius: '12px', background: 'rgba(61, 184, 102, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--alo-verde-claro)', fontSize: '28px', flexShrink: 0 }}>
+          <div style={{ width: '56px', height: '56px', borderRadius: '12px', background: 'rgba(61, 184, 102, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
             <FileProtectOutlined />
           </div>
           <div>
-            <h1 style={{ margin: 0, fontSize: '32px', fontWeight: 700, color: 'var(--alo-blanco)', letterSpacing: '-0.02em' }}>
-              Términos y Condiciones
-            </h1>
-            <p style={{ margin: '6px 0 0', fontSize: '15px', color: 'var(--alo-gris)' }}>
-              Última actualización: Abril 2026
-            </p>
+            <h1 style={{ margin: 0 }}>Términos y Condiciones</h1>
+            <p style={{ margin: '8px 0 0' }}>Última actualización: 24 de Abril de 2026</p>
           </div>
         </div>
 

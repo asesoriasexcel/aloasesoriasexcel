@@ -60,14 +60,21 @@
   display: flex;
   flex-direction: column;
   margin-top: 20px;
-  background-color: transparent;
-  border: 1px solid transparent;
-  border-radius: 8px;
+  background-color: var(--alo-oscuro2);
+  border: 1px solid var(--alo-borde);
+  border-radius: 12px;
   text-align: center;
-  justify-content: space-between; /* Asegura que los elementos se distribuyan de manera adecuada */
-  height: 100%; /* Asegura que las tarjetas ocupen toda la altura disponible */
-  height: auto;
+  justify-content: space-between;
+  height: 100%;
   min-height: 100px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  overflow: hidden;
+}
+
+.categoria-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  border-color: var(--alo-verde);
 }
 
 .categoria-grid {
@@ -134,7 +141,7 @@
     flex-direction: column;
     align-items: center;
     padding: 16px;
-    background-color: rgba(26,26,26,0.85);
+    background-color: var(--alo-oscuro2);
     border-radius: 12px;
   }
 

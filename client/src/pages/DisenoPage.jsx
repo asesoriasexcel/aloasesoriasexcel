@@ -51,10 +51,10 @@ const DisenoPage = () => {
               </Tag>
             </div>
             
-            <h1 style={{ margin: '0 0 16px 0', fontSize: '32px', fontWeight: 800, color: 'var(--alo-blanco)', letterSpacing: '-0.02em', lineHeight: 1.2 }}>
+            <h1 style={{ margin: '0 0 16px 0' }}>
               ¿Necesitas algo que no está en el catálogo?
             </h1>
-            <p style={{ margin: '0 0 32px 0', fontSize: '16px', color: 'var(--alo-gris)', lineHeight: '1.6' }}>
+            <p style={{ margin: '0 0 32px 0' }}>
               Te diseñamos la herramienta exacta para tu realidad. Sin plantillas genéricas, sin funciones que no usarás.
             </p>
             
@@ -138,7 +138,7 @@ const DisenoPage = () => {
             <BulbOutlined style={{ color: 'var(--alo-amarillo, #eab308)', fontSize: '24px' }} />
             <h3 style={{ margin: 0, fontSize: '18px', fontWeight: 600, color: 'var(--alo-blanco)' }}>Consejos para redactar tu solicitud</h3>
           </div>
-          <p style={{ margin: '0 0 20px 0', fontSize: '15px', color: 'var(--alo-gris)', lineHeight: '1.6' }}>
+          <p style={{ margin: '0 0 20px 0' }}>
             Para poder entregarte una cotización precisa y rápida, te recomendamos incluir la siguiente información en tu correo:
           </p>
           <ul style={{ margin: 0, paddingLeft: '24px', color: 'var(--alo-gris)', fontSize: '15px', lineHeight: '1.8' }}>

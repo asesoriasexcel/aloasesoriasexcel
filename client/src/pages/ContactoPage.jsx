@@ -24,10 +24,10 @@ const ContactoPage = () => {
         
         {/* Cabecera */}
         <div>
-          <h1 style={{ margin: 0, fontSize: '36px', fontWeight: 700, color: 'var(--alo-blanco)', letterSpacing: '-0.02em', marginBottom: '16px' }}>
+          <h1 style={{ margin: '0 0 16px 0' }}>
             Ponte en contacto
           </h1>
-          <p style={{ margin: 0, fontSize: '16px', color: 'var(--alo-gris)', lineHeight: '1.6' }}>
+          <p style={{ margin: 0 }}>
             ¿Tienes alguna pregunta, sugerencia o necesitas ayuda con alguna de nuestras planillas? Escríbenos directamente y te responderemos lo antes posible.
           </p>
         </div>

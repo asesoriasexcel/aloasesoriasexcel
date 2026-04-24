@@ -24,16 +24,16 @@ const columns = [
     title: 'OrderID', 
     dataIndex: 'orderId', 
     key: 'orderId', 
-    render: text => <span style={{ color: 'var(--alo-blanco)', fontWeight: 500 }}>{text}</span> 
+    render: text => <span style={{ color: 'var(--alo-blanco)' }}>{text}</span> 
   },
   { 
     title: 'Product', 
     key: 'product', 
     render: (_, record) => (
       <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-        <span style={{ color: 'var(--alo-blanco)', fontWeight: 500 }}>{record.product}</span>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '12px', color: 'var(--alo-gris)' }}>
-          <StarFilled style={{ color: 'var(--alo-verde)', fontSize: '10px' }} />
+        <span style={{ color: 'var(--alo-blanco)' }}>{record.product}</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: 'var(--alo-gris)' }}>
+          <StarFilled style={{ color: 'var(--alo-verde)' }} />
           <span>{record.rating}</span>
         </div>
       </div>
@@ -43,7 +43,7 @@ const columns = [
     title: 'Amount', 
     dataIndex: 'amount', 
     key: 'amount', 
-    render: amount => <span style={{ color: 'var(--alo-blanco)', fontWeight: 600 }}>$ {amount.toFixed(1)}</span> 
+    render: amount => <span style={{ color: 'var(--alo-blanco)' }}>$ {amount.toFixed(1)}</span> 
   },
   { 
     title: 'Status', 
@@ -116,8 +116,8 @@ const MisComprasPage = () => {
         padding: '24px',
         overflow: 'hidden'
       }}>
-        <h1 style={{ fontSize: '20px', color: 'var(--alo-blanco)', margin: '0 0 24px', fontWeight: 600 }}>
-          Order List
+        <h1 style={{ margin: '0 0 24px' }}>
+          Mis Compras
         </h1>
         
         {/* Table container for responsive scroll */}
