@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { FileProtectOutlined } from '@ant-design/icons';
+import './TerminosCondicionesPage.css';
 
 const TerminosCondicionesPage = () => {
   useEffect(() => {
@@ -7,21 +8,14 @@ const TerminosCondicionesPage = () => {
   }, []);
 
   return (
-    <div style={{ padding: '60px 24px', background: 'var(--alo-oscuro)', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <div className="terminos-page-wrapper">
       
       {/* Contenedor Principal Limitado y centrado */}
-      <div style={{ 
-        maxWidth: '1100px', 
-        width: '100%', 
-        background: 'var(--alo-oscuro2)', 
-        borderRadius: '8px', 
-        border: '1px solid var(--alo-borde)', 
-        padding: '40px' 
-      }}>
+      <div className="terminos-container">
         
         {/* Cabecera del Documento */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '40px', borderBottom: '1px solid var(--alo-borde)', paddingBottom: '32px' }}>
-          <div style={{ width: '56px', height: '56px', borderRadius: '12px', background: 'rgba(61, 184, 102, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+        <div className="terminos-header">
+          <div className="terminos-header-icon">
             <FileProtectOutlined />
           </div>
           <div>

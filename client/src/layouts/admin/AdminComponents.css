@@ -4,15 +4,6 @@
    ============================================================ */
 
 /* ── Global Typography for Admin/Tienda ───────────────────────── */
-.admin-shell h1 {
-  font-size: 32px !important;
-  font-weight: 700 !important;
-  color: var(--admin-text-primary) !important;
-  letter-spacing: -0.02em !important;
-  line-height: 1.2 !important;
-  margin-bottom: 16px !important;
-}
-
 .admin-shell p {
   font-size: 15px;
   color: var(--admin-text-secondary);
@@ -259,11 +250,11 @@
   white-space: nowrap;
 }
 
-.admin-grade-badge--basico   { color: var(--cat-basico); }
+.admin-grade-badge--simple   { color: var(--cat-simple); }
 .admin-grade-badge--pro      { color: var(--cat-pro); }
 .admin-grade-badge--full     { color: var(--cat-full); }
 .admin-grade-badge--master   { color: var(--cat-master); }
-.admin-grade-badge--legendario { color: var(--cat-legendario); }
+.admin-grade-badge--leyenda { color: var(--cat-leyenda); }
 
 /* Body de la tarjeta */
 

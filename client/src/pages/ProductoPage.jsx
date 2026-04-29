@@ -1,33 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { Typography, Button, Tag, Image, Alert, Badge, Spin } from 'antd';
+import { Typography, Button, Tag, Spin, Breadcrumb } from 'antd';
 import { RiFileExcel2Line } from "react-icons/ri";
 import { FaYoutube } from 'react-icons/fa';
 import { FiShoppingCart } from 'react-icons/fi';
 import { getProductById } from '../lib/api';
 import './ProductoPage.css';
 
-const { Title, Text } = Typography;
+const { Text } = Typography;
 
 const obtenerColorPorGrado = (grado) => {
   switch (grado) {
-    case 'estandar':
-      return 'green';
-    case 'avanzado':
-      return 'blue';
-    case 'premium':
-      return 'red';
-    default:
-      return 'gray';
+    case 'Simple':   return 'default';
+    case 'Full':     return 'gold';
+    case 'Pro':      return 'cyan';
+    case 'Master':   return 'red';
+    case 'Leyenda':  return 'purple';
+    default:         return 'default';
   }
 };
+
+const gradoBorderColor = (grado) =>
+  obtenerColorPorGrado(grado) === 'default' ? '#555' : 'currentColor';
 
 const ProductoPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [producto, setProducto] = useState(null);
   const [loading, setLoading] = useState(true);
-  
+
   useEffect(() => {
     const fetchProducto = async () => {
       try {
@@ -42,11 +43,9 @@ const ProductoPage = () => {
     fetchProducto();
   }, [id]);
 
-  const carritoCount = (JSON.parse(localStorage.getItem('ae-carrito')) || []).length;
-
   if (loading) {
     return (
-      <div style={{ display: 'flex', justifyContent: 'center', padding: '100px' }}>
+      <div className="producto-loading">
         <Spin size="large" />
       </div>
     );
@@ -54,30 +53,20 @@ const ProductoPage = () => {
 
   if (!producto) {
     return (
-      <div className="producto-container">
-        <div className="volver-tienda">
-          <Link to="/tienda" className="volver-tienda-link">
-            &larr; Volver a la tienda
-          </Link>
-        </div>
-        <Title level={2}>Producto no encontrado</Title>
+      <div className="producto-page-wrapper">
+        <Link to="/tienda" className="producto-volver">← Volver al catálogo</Link>
+        <p style={{ color: 'var(--alo-gris)', fontSize: '15px' }}>Producto no encontrado.</p>
       </div>
     );
   }
 
-  const formatearPrecio = (precio) => {
-    return new Intl.NumberFormat('es-CL', {
-      style: 'currency',
-      currency: 'CLP',
-    }).format(precio);
-  };
-
   const convertirEnlaceEmbed = (link) => {
-    if (link && link.includes("youtube.com/watch?v=")) {
-      const videoId = link.split("v=")[1];
-      return `https://www.youtube.com/embed/${videoId}`;
-    }
-    return link;
+    if (!link) return '';
+    let videoId = '';
+    if (link.includes("youtube.com/watch?v="))      videoId = link.split("v=")[1].split("&")[0];
+    else if (link.includes("youtu.be/"))             videoId = link.split("youtu.be/")[1].split("?")[0];
+    else if (link.includes("youtube.com/embed/"))    videoId = link.split("embed/")[1].split("?")[0];
+    return videoId ? `https://www.youtube.com/embed/${videoId}` : link;
   };
 
   const handleAddToCart = () => {
@@ -92,115 +81,192 @@ const ProductoPage = () => {
         timestamp: new Date().toISOString()
       });
       localStorage.setItem('ae-carrito', JSON.stringify(carrito));
-      navigate('/carrito');
+      window.dispatchEvent(new Event('storage'));
     }
+    navigate('/carrito');
+  };
+
+  const gradoTagStyle = {
+    textTransform: 'uppercase',
+    fontSize: '11px',
+    fontWeight: 800,
+    background: 'transparent',
+    border: `1px solid ${gradoBorderColor(producto.grado)}`,
+    margin: 0,
   };
 
   return (
-    <div className="producto-container">
-      <div className="volver-tienda">
-        <Link to="/tienda" className="volver-tienda-link">
-          &larr; Volver a la tienda
-        </Link>
-        <Link to="/carrito" className="carrito-link">
-          <Badge
-            count={carritoCount}
-            overflowCount={99}
-            style={{ backgroundColor: 'var(--especial)' }}
-          >
-            <FiShoppingCart
-              style={{
-                fontSize: '1.5rem',
-                cursor: 'pointer',
-                marginLeft: '10px',
-              }}
-            />
-          </Badge>
-        </Link>
+    <div className="producto-page-wrapper">
+
+      {/* Header: título + breadcrumb */}
+      <div className="producto-page-header">
+        <h1 className="producto-page-title">Detalle del Producto</h1>
+        <Breadcrumb
+          separator={<span style={{ color: 'var(--alo-gris)', opacity: 0.5 }}>/</span>}
+          items={[
+            { title: <Link to="/tienda" style={{ color: 'var(--alo-gris-claro)', textDecoration: 'none' }}>Catálogo</Link> },
+            { title: <span style={{ color: 'var(--alo-verde-claro)' }}>{producto.nombre}</span> }
+          ]}
+        />
       </div>
 
-      <div className="producto-card">
-        <div className="p-nombre titulo-cabezal">
-          <RiFileExcel2Line />
-          <h2>Planilla {producto.nombre}</h2>
-        </div>
+      {/* Card principal */}
+      <div className="producto-card-main">
 
-        <Alert
-          message="Este producto cuenta con 2 licencias de uso para diferentes equipos."
-          type="warning"
-          showIcon
-          style={{ marginBottom: '20px' }}
-        />
+        {/* Columna izquierda: media */}
+        <div className="producto-col-media">
 
-        <div className="p-info1">
-          <div className="p-galeria-imagen" style={{ display: 'flex', justifyContent: 'center' }}>
-            {producto.imagen && (
-              <div className="p-imagen">
-                <Image
-                  alt={producto.nombre}
-                  src={producto.imagen}
-                  className="producto-imagen"
-                  preview={{ src: producto.imagen }}
-                />
-              </div>
-            )}
-          </div>
-
-          <div className="p-info">
-            <div className="p-tag">
-              <div className="p-tag1">
-                <span>Versión:</span>
-                <Tag color={obtenerColorPorGrado(producto.grado)} style={{ marginLeft: '8px' }}>
-                  {producto.grado.toUpperCase()}
-                </Tag>
-              </div>
-            </div>
-            <div className="p-nombre titulo-central">
-              <RiFileExcel2Line />
-              <h2>Planilla {producto.nombre}</h2>
-            </div>
-            <div className="p-descripcion_larga">
-              <p>{producto.descripcion_larga}</p>
-            </div>
-            <div className="p-precio">
-              <p>{formatearPrecio(producto.precio)}</p>
-            </div>
-            <div className="p-categoria">
-              <Text>
-                <strong>Categoría:</strong> {producto.categoria_nombre || 'Desconocida'}
-              </Text>
-            </div>
-            <div className="p-botones">
-              <Button
-                type="primary"
-                className="btn-azul"
-                onClick={handleAddToCart}
-              >
-                Comprar ahora
-              </Button>
-            </div>
-          </div>
-        </div>
-
-        {producto.video_link && (
-          <div id="p-info2" className="p-info2">
-            <hr />
-            <div className="p-titulovideo">
-              <FaYoutube /><h2>Video demostrativo</h2>
-            </div>
-            <div className="p-video">
+          {/* Video */}
+          {producto.video_link ? (
+            <div className="producto-video-wrapper">
               <iframe
-                width="100%"
-                height="600"
+                className="producto-video-iframe"
                 src={convertirEnlaceEmbed(producto.video_link)}
                 title="Video demostrativo"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
-              ></iframe>
+              />
+            </div>
+          ) : (
+            <div className="producto-video-placeholder">
+              <Text style={{ color: 'var(--alo-gris-claro)', fontSize: '13px' }}>Sin video disponible</Text>
+            </div>
+          )}
+
+          {/* ── MÓVIL ONLY: versión + grado (izq) · demo (der) ── */}
+          <div className="producto-meta-mobile">
+            <div className="producto-meta-left">
+              {producto.version && (
+                <span className="producto-meta-version">{producto.version}</span>
+              )}
+              <Tag
+                color={obtenerColorPorGrado(producto.grado)}
+                bordered={false}
+                style={gradoTagStyle}
+              >
+                {producto.grado}
+              </Tag>
+            </div>
+            {producto.demo_link && (
+              <div className="neon-demo-tag" onClick={() => window.open(producto.demo_link, '_blank')}>
+                Demo Disponible
+              </div>
+            )}
+          </div>
+
+          {/* ── MÓVIL ONLY: nombre con label ── */}
+          <div className="producto-nombre-section-mobile">
+            <span className="producto-spec-label">Nombre</span>
+            <h2 className="producto-info-nombre">{producto.nombre}</h2>
+          </div>
+
+          {/* ── MÓVIL ONLY: descripción ── */}
+          {producto.descripcion && (
+            <div className="producto-desc-mobile">
+              <span className="producto-spec-label">Descripción</span>
+              <p className="producto-desc-mobile-text">{producto.descripcion}</p>
+            </div>
+          )}
+
+          {/* Label YouTube (solo desktop) */}
+          <div className="producto-media-label producto-only-desktop">
+            <FaYoutube />
+            <span>Video Demostrativo / Tutorial</span>
+          </div>
+
+          {/* Tags (solo desktop) */}
+          {producto.tags && producto.tags.length > 0 && (
+            <div className="producto-tags-list producto-only-desktop">
+              {producto.tags.map(tag => (
+                <Tag key={tag} bordered={false} style={{ background: 'rgba(255,255,255,0.05)', color: 'var(--alo-gris-claro)', fontSize: '12px' }}>
+                  #{tag}
+                </Tag>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Columna derecha: info */}
+        <div className="producto-col-info">
+
+          {/* Tags categoría + grado + demo (solo desktop) */}
+          <div className="producto-info-tags producto-only-desktop">
+            <Tag color="default" bordered={false} style={{ fontSize: '10px', fontWeight: 700, opacity: 0.6, margin: 0 }}>
+              {producto.categoria_nombre}{producto.subcategoria_nombre && ` / ${producto.subcategoria_nombre}`}
+            </Tag>
+            <Tag color={obtenerColorPorGrado(producto.grado)} bordered={false} style={gradoTagStyle}>
+              {producto.grado}
+            </Tag>
+            {producto.demo_link && (
+              <div className="neon-demo-tag" onClick={() => window.open(producto.demo_link, '_blank')}>
+                Demo Disponible
+              </div>
+            )}
+          </div>
+
+          {/* Nombre (solo desktop) */}
+          <h2 className="producto-info-nombre producto-only-desktop">{producto.nombre}</h2>
+
+          {/* Descripción corta (solo desktop) */}
+          {producto.descripcion && (
+            <p className="producto-info-desc-corta producto-only-desktop">{producto.descripcion}</p>
+          )}
+
+          {/* Badge de licencia — siempre visible */}
+          {producto.has_license && (
+            <div className="producto-license-badge">
+              <div style={{ color: '#39FF14', fontSize: '20px', flexShrink: 0 }}>
+                <RiFileExcel2Line />
+              </div>
+              <div>
+                <span className="producto-license-title">Producto con Licencia</span>
+                <span className="producto-license-desc">
+                  Incluye licencia de uso para{' '}
+                  <span style={{ color: '#39FF14' }}>{producto.license_quantity}</span>{' '}
+                  {producto.license_type === 'Uso' ? 'equipo(s)' : 'usuario(s)'}.
+                </span>
+              </div>
+            </div>
+          )}
+
+          {/* Grid de specs — siempre visible */}
+          <div className="producto-specs-grid">
+            <div className="producto-spec">
+              <span className="producto-spec-label">Requisitos</span>
+              <p className="producto-spec-text">{producto.requisitos || 'No especificados'}</p>
+            </div>
+            <div className="producto-spec">
+              <span className="producto-spec-label">Funcionalidades</span>
+              <p className="producto-spec-text">{producto.funcionalidades || 'No especificadas'}</p>
             </div>
           </div>
-        )}
+
+          {/* Descripción larga — siempre visible */}
+          {producto.descripcion_larga && (
+            <p className="producto-info-desc-larga">{producto.descripcion_larga}</p>
+          )}
+
+          {/* Bloque de compra */}
+          <div className="producto-purchase-block">
+            <div>
+              <span className="producto-precio-label">Pago único</span>
+              <span className="producto-precio-valor">
+                {producto.precio?.toLocaleString('es-CL', { style: 'currency', currency: 'CLP' })}
+              </span>
+            </div>
+            <Button
+              type="primary"
+              size="large"
+              icon={<FiShoppingCart />}
+              onClick={handleAddToCart}
+              className="producto-btn-comprar"
+            >
+              Comprar
+            </Button>
+          </div>
+
+        </div>
       </div>
     </div>
   );

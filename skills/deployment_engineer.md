@@ -12,8 +12,13 @@ Eres el experto encargado de la configuración, integración continua y desplieg
 - **Base de Datos / Servicios**: Utiliza Firebase (Firestore y Firebase Admin SDK).
 - **Plataforma de Despliegue**: Vercel (la configuración base está en `vercel.json`).
 
-## Instrucciones de Ejecución
-1. **Validación Previa**: Antes de cualquier despliegue, verifica que la estructura de carpetas (client/api) exista y que el `vercel.json` mantenga la configuración de build y rutas correctamente.
-2. **Variables de Entorno**: Asegura que las variables de entorno de producción (especialmente las credenciales de Firebase como `FIREBASE_PROJECT_ID`, `FIREBASE_CLIENT_EMAIL`, `FIREBASE_PRIVATE_KEY`) estén correctamente configuradas en el proyecto de Vercel.
-3. **Manejo de Errores de Build**: Si el despliegue falla en el frontend, revisa posibles dependencias faltantes en `client/package.json` o errores de ESLint. Recuerda que se utiliza el flag `--legacy-peer-deps`.
-4. **Verificación Post-Despliegue**: Una vez finalizado el despliegue, verifica que la API responda correctamente en `/api/` y que la aplicación React cargue las rutas sin errores de indexación.
+## Instrucciones de Ejecución y Flujo de Trabajo
+1. **Desarrollo Local**: Utiliza siempre el comando `npx vercel dev` para levantar el servidor de desarrollo. Esto asegura que tanto el Frontend de React como las APIs (Serverless Functions) se ejecuten bajo el mismo entorno y puerto simulando fielmente a producción.
+2. **Validación Previa**: Antes de cualquier despliegue, verifica que la estructura de carpetas (client/api) exista y que el `vercel.json` mantenga la configuración de build y rutas correctamente.
+3. **Variables de Entorno**: Asegura que las variables de entorno de producción estén configuradas en Vercel. Las críticas son:
+   - *Firebase*: `FIREBASE_PROJECT_ID`, `FIREBASE_CLIENT_EMAIL`, `FIREBASE_PRIVATE_KEY`
+   - *Mercado Pago*: `MERCADOPAGO_ACCESS_TOKEN` (y opcionalmente Webhook secrets).
+4. **Comando de Despliegue (Deploy)**: Cuando las pruebas locales estén listas, despliega a producción utilizando Vercel CLI. Ejecuta en la raíz del proyecto: `npx vercel --prod`. Si deseas omitir confirmaciones usa `npx vercel --prod --yes`.
+5. **Manejo de Errores de Build**: Si el despliegue falla en el frontend, revisa posibles dependencias faltantes en `client/package.json` o errores de ESLint. Recuerda que se utiliza el flag `--legacy-peer-deps`.
+6. **Verificación Post-Despliegue**: Una vez finalizado el despliegue, verifica que la API responda correctamente en `/api/` y que la aplicación React cargue las rutas sin errores de indexación.
+

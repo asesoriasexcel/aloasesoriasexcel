@@ -1,5 +1,4 @@
-// src/data/categorias.js
-import { FaCogs, FaUserTie, FaHandsHelping } from "react-icons/fa";
+import { FaCogs, FaUserTie, FaHandsHelping, FaBuilding, FaUsers } from "react-icons/fa";
 
 const categorias = [
   {
@@ -19,6 +18,18 @@ const categorias = [
     titulo: "Profesor Jefe",
     descripcion: "Para un acompañamiento cercano y pedagógico para el desarrollo personal y académico.",
     icono: <FaHandsHelping />
+  },
+  {
+    id: 4,
+    titulo: "Administrativo/Jefatura",
+    descripcion: "Optimiza la gestión directiva y administrativa de tu institución con herramientas precisas.",
+    icono: <FaBuilding />
+  },
+  {
+    id: 5,
+    titulo: "Convivencia Escolar",
+    descripcion: "Herramientas diseñadas para el seguimiento y mejora del clima escolar y bienestar estudiantil.",
+    icono: <FaUsers />
   },
 ];
 

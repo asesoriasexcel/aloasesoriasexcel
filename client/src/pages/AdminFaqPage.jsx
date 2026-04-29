@@ -1,9 +1,6 @@
 import React from 'react';
-import { Collapse, Button } from 'antd';
-import { MessageOutlined, FileTextOutlined } from '@ant-design/icons';
+import { Collapse } from 'antd';
 import './AdminFaqPage.css';
-
-const { Panel } = Collapse;
 
 const faqData = [
   {
@@ -44,7 +41,7 @@ const AdminFaqPage = () => {
       
       {/* Header Section (Centered) */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: '16px', maxWidth: '800px', margin: '0 auto' }}>
-        <h1 style={{ margin: 0, fontSize: '32px', fontWeight: 700, color: 'var(--alo-blanco)', letterSpacing: '-0.02em' }}>
+        <h1 style={{ margin: 0, fontSize: '20px', fontWeight: 600, color: 'var(--alo-blanco)' }}>
           Frequently Asked Questions
         </h1>
         <p style={{ margin: 0, fontSize: '15px', color: 'var(--alo-gris)', lineHeight: '1.6' }}>
@@ -59,19 +56,17 @@ const AdminFaqPage = () => {
           ghost 
           expandIconPosition="end"
           className="faq-collapse"
-        >
-          {faqData.map((item) => (
-            <Panel 
-              header={<span className="faq-panel-title">{item.question}</span>} 
-              key={item.key}
-              style={{ borderBottom: item.key !== faqData[faqData.length -1].key ? '1px solid var(--alo-borde)' : 'none' }}
-            >
+          items={faqData.map(item => ({
+            key: item.key,
+            label: <span className="faq-panel-title">{item.question}</span>,
+            children: (
               <p style={{ color: 'var(--alo-gris)', margin: 0, fontSize: '14px', lineHeight: '1.6', paddingRight: '24px' }}>
                 {item.answer}
               </p>
-            </Panel>
-          ))}
-        </Collapse>
+            ),
+            style: { borderBottom: item.key !== faqData[faqData.length -1].key ? '1px solid var(--alo-borde)' : 'none' }
+          }))}
+        />
       </div>
 
     </div>

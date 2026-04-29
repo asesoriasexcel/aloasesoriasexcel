@@ -1,3 +1,9 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /carrito/
+Disallow: /confirmacompra/
+
+Sitemap: https://aloasesoriasexcel.cl/sitemap.xml

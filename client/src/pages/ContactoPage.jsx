@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { MailOutlined } from '@ant-design/icons';
 import '../layouts/admin/AdminTokens.css';
 import '../layouts/admin/AdminComponents.css';
+import './ContactoPage.css';
 
 const ContactoPage = () => {
   useEffect(() => {
@@ -9,7 +10,7 @@ const ContactoPage = () => {
   }, []);
 
   return (
-    <div className="admin-shell" style={{ padding: '80px 24px', background: 'var(--alo-oscuro)', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <div className="admin-shell contacto-page-wrapper">
       
       {/* Contenedor centrado con max-width reducido para una mejor lectura */}
       <div style={{ 

@@ -4,8 +4,6 @@ import { FaHeadset } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import './PreguntasFrecuentes.css';
 
-const { Panel } = Collapse;
-
 const faqData = [
   {
     key: '1',
@@ -36,7 +34,7 @@ const faqData = [
 
 const PreguntasFrecuentes = () => {
   return (
-    <section className="preguntas-section seccion">
+    <section id="faq" className="preguntas-section seccion">
       <div className="centered-content">
         <div className="seccion-encabezado">
           <div className="header-centrado">
@@ -52,32 +50,28 @@ const PreguntasFrecuentes = () => {
             ghost
             expandIconPosition="end"
             className="faq-collapse preguntas-collapse"
-          >
-            {faqData.map((item) => (
-              <Panel
-                header={<span className="faq-panel-title">{item.question}</span>}
-                key={item.key}
-                style={{
-                  borderBottom: item.key !== String(faqData.length)
-                    ? '1px solid var(--alo-borde)'
-                    : 'none'
-                }}
-              >
-                {item.answer ? (
-                  <p style={{ color: 'var(--alo-gris)', margin: 0, fontSize: '14px', lineHeight: '1.6', paddingRight: '24px' }}>
-                    {item.answer}
-                  </p>
-                ) : (
-                  <p style={{ color: 'var(--alo-gris)', margin: 0, fontSize: '14px', lineHeight: '1.6', paddingRight: '24px' }}>
-                    Puedes revisar el video explicativo antes de comprar. Si necesitas algo especial, puedes solicitar un diseño personalizado en nuestra sección de{' '}
-                    <Link to="/diseno" style={{ color: 'var(--alo-verde-claro)', fontWeight: 600, textDecoration: 'none' }}>
-                      Diseño y Personalización
-                    </Link>.
-                  </p>
-                )}
-              </Panel>
-            ))}
-          </Collapse>
+            items={faqData.map(item => ({
+              key: item.key,
+              label: <span className="faq-panel-title">{item.question}</span>,
+              children: item.answer ? (
+                <p style={{ color: 'var(--alo-gris)', margin: 0, fontSize: '14px', lineHeight: '1.6', paddingRight: '24px' }}>
+                  {item.answer}
+                </p>
+              ) : (
+                <p style={{ color: 'var(--alo-gris)', margin: 0, fontSize: '14px', lineHeight: '1.6', paddingRight: '24px' }}>
+                  Puedes revisar el video explicativo antes de comprar. Si necesitas algo especial, puedes solicitar un diseño personalizado en nuestra sección de{' '}
+                  <Link to="/diseno" style={{ color: 'var(--alo-verde-claro)', fontWeight: 600, textDecoration: 'none' }}>
+                    Diseño y Personalización
+                  </Link>.
+                </p>
+              ),
+              style: {
+                borderBottom: item.key !== String(faqData.length)
+                  ? '1px solid var(--alo-borde)'
+                  : 'none'
+              }
+            }))}
+          />
         </div>
       </div>
     </section>

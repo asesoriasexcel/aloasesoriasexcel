@@ -11,7 +11,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src'),
+      '@': resolve(process.cwd(), 'src'),
     },
   },
   server: {
@@ -19,7 +19,7 @@ export default defineConfig({
     host: true,
     open: false,
     proxy: {
-      '/api': 'http://localhost:3000',
+      '/api': 'http://localhost:3001',
     },
   },
 });

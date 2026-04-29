@@ -14,26 +14,57 @@
 
 /* ── Cabecera ────────────────────────────────────────────────── */
 
-.tienda-page__header {
+.tienda-header-container {
   display: flex;
-  align-items: baseline;
-  gap: 12px;
-  margin-bottom: 24px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
 }
 
-.tienda-page__title {
-  font-family: var(--font-titulo);
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--alo-blanco);
+.tienda-title-main {
   margin: 0;
+  font-size: 20px; /* Tamaño ideal del catálogo */
+  font-weight: 600;
+  color: var(--alo-blanco);
   line-height: 1.2;
 }
 
-.tienda-page__count {
-  font-size: 12px;
-  color: var(--alo-gris);
+.tienda-title-count {
+  font-size: 14px;
+  color: var(--alo-gris-claro);
+  margin-left: 10px;
+  font-weight: 400;
 }
+
+.tienda-breadcrumb {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 640px) {
+  .tienda-header-container {
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    gap: 8px;
+  }
+  
+  .tienda-title-main {
+    width: 100%;
+    text-align: left;
+    font-size: 20px;
+  }
+  
+  .tienda-title-count {
+    font-size: 14px;
+  }
+  
+  .tienda-breadcrumb {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
 
 /* ── Estados ─────────────────────────────────────────────────── */
 
@@ -74,7 +105,6 @@
 .producto-card:hover {
   border-color: rgba(61, 184, 102, 0.3);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-  transform: translateY(-2px);
 }
 
 .cardproducto-imagen {
@@ -307,4 +337,150 @@
 }
 .tienda-filters-sidebar .ant-checkbox-wrapper-checked span {
   color: var(--alo-blanco) !important;
+}
+
+.tienda-layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  flex-direction: row;
+}
+
+.tienda-filters-sidebar {
+  width: 260px;
+  flex-shrink: 0;
+  background: var(--alo-oscuro2);
+  border-radius: 8px;
+  border: 1px solid var(--alo-borde);
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.tienda-main-content {
+  flex: 1;
+  background: var(--alo-oscuro2);
+  border-radius: 8px;
+  border: 1px solid var(--alo-borde);
+  padding: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.tienda-page-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 24px 60px;
+  gap: 24px;
+  box-sizing: border-box;
+}
+
+/* ── Mobile search bar + filter toggle ───────────────────────── */
+
+.tienda-mobile-searchbar {
+  display: none;
+}
+
+.tienda-filter-btn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 10px;
+  background: var(--alo-oscuro2);
+  border: 1px solid var(--alo-borde);
+  border-radius: 8px;
+  color: var(--alo-gris-claro);
+  cursor: pointer;
+  transition: background 150ms, border-color 150ms, color 150ms;
+}
+
+.tienda-filter-btn:hover {
+  border-color: var(--alo-verde-claro);
+  color: var(--alo-blanco);
+}
+
+.tienda-filter-btn.is-active {
+  background: var(--alo-verde);
+  border-color: var(--alo-verde);
+  color: var(--alo-blanco);
+}
+
+.tienda-filter-btn.has-filters {
+  background: rgba(26, 138, 74, 0.12);
+  border-color: var(--alo-verde-claro);
+  color: var(--alo-verde-claro);
+  padding: 0 14px;
+}
+
+.tienda-filter-btn.has-filters:hover {
+  background: rgba(26, 138, 74, 0.2);
+}
+
+.tienda-filter-clear-label {
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .tienda-layout {
+    flex-direction: column;
+  }
+  .tienda-filters-sidebar {
+    width: 100%;
+    padding: 16px;
+    display: none;
+  }
+  .tienda-filters-sidebar.is-open {
+    display: block;
+  }
+  .tienda-main-content {
+    padding: 12px;
+  }
+  .tienda-page-wrapper {
+    padding: 16px 12px 80px; /* extra bottom padding so last product is never cut */
+    gap: 16px;
+  }
+  .tienda-mobile-searchbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+  .tienda-mobile-searchbar .ant-input-affix-wrapper {
+    flex: 1;
+    background: var(--alo-oscuro) !important;
+    border-color: var(--alo-borde) !important;
+    color: var(--alo-blanco) !important;
+    height: 40px;
+    border-radius: 8px;
+  }
+  .tienda-mobile-searchbar .ant-input {
+    background: transparent !important;
+    color: var(--alo-blanco) !important;
+  }
+  .tienda-desktop-search {
+    display: none;
+  }
+}
+
+.tienda-modal-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+@media (max-width: 500px) {
+  .tienda-modal-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .tienda-modal-actions button {
+    width: 100%;
+    white-space: nowrap;
+  }
 }

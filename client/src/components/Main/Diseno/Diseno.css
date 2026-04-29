@@ -54,8 +54,8 @@
 .diseno-section .diseno-title {
   color: var(--seccion_diseno_titulo);
   text-align: left;
-  font-size: 2.5rem !important;
-  line-height: 1;
+  font-size: 1.9rem !important;
+  line-height: 1.1;
   font-weight: 600;
   margin-top: 0.3rem;
 }
@@ -64,9 +64,10 @@
 .diseno-section .diseno-subtitle {
   text-align: left;
   color: var(--seccion_diseno_subtitulo);
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-  margin-top: .4rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-top: .6rem;
+  display: block;
 }
 
 /* Estilos para la lista */
@@ -77,10 +78,10 @@
 }
 
 .diseno-list .ant-list-item {
-  font-size: 1rem;
-  line-height: 1.2rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
   color: var(--seccion_diseno_textolista);
-  padding-bottom: 0;
+  padding-bottom: 12px;
   border-bottom: 1px solid transparent;
 }
 
@@ -136,16 +137,20 @@
   }
 
   .diseno-section .diseno-title {
-    font-size: 1.6rem !important;
+    font-size: 1.5rem !important;
     margin-top: 0.5rem;
   }
 
   .diseno-section .diseno-subtitle {
-    font-size: 0.95rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-top: 12px;
   }
 
   .diseno-list .ant-list-item {
     font-size: 0.9rem;
+    line-height: 1.5;
+    padding-bottom: 8px;
   }
 }
 
@@ -156,6 +161,6 @@
   }
 
   .diseno-section .diseno-title {
-    font-size: 2rem !important;
+    font-size: 1.7rem !important;
   }
 }

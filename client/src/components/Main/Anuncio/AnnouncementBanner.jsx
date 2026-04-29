@@ -14,12 +14,11 @@ const AnnouncementBanner = () => {
   return (
     isVisible && (
       <div className="banner">
-        <div>.</div>
         <span className="text">
-          Nuevos productos disponibles
+          Productos liberados disponibles
           <HiMiniRocketLaunch />
-          <Link to="/tienda" className="liberadas">
-            <strong>Ver catálogo</strong>
+          <Link to="/tienda/liberados" className="liberadas">
+            <strong>Ver productos</strong>
           </Link>
         </span>
         <button className="closeButton" onClick={handleClose}>

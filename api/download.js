@@ -25,28 +25,53 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'productId requerido' });
   }
 
-  // Verificar que el usuario tiene la compra completada
-  const snapshot = await db
+  // Verificar que el usuario tiene una compra aprobada que incluye este producto
+  const purchasesSnap = await db
     .collection('purchases')
     .where('userEmail', '==', decoded.email)
-    .where('productId', '==', productId)
-    .where('status', '==', 'completed')
-    .limit(1)
+    .where('status', '==', 'approved')
     .get();
 
-  if (snapshot.empty) {
+  if (purchasesSnap.empty) {
     return res.status(403).json({ error: 'No tienes acceso a este producto' });
   }
 
-  // El archivo en Drive debe llamarse igual que el productId (ej: "producto-001.xlsm")
-  const purchase = snapshot.docs[0].data();
-  const fileName = purchase.driveFileName;
+  const hasPurchase = purchasesSnap.docs.some(doc => {
+    const items = doc.data().items || [];
+    return items.some(item => String(item.id) === String(productId));
+  });
 
-  if (!fileName) {
+  if (!hasPurchase) {
+    return res.status(403).json({ error: 'No tienes acceso a este producto' });
+  }
+
+  // Obtener driveFileName del producto (buscar por doc ID primero, luego por id_articulo)
+  let driveFileName = null;
+
+  const docRef = await db.collection('products').doc(String(productId)).get();
+  if (docRef.exists) {
+    driveFileName = docRef.data().driveFileName;
+  }
+
+  if (!driveFileName) {
+    const idNumerico = Number(productId);
+    if (!isNaN(idNumerico)) {
+      const snap = await db
+        .collection('products')
+        .where('id_articulo', '==', idNumerico)
+        .limit(1)
+        .get();
+      if (!snap.empty) {
+        driveFileName = snap.docs[0].data().driveFileName;
+      }
+    }
+  }
+
+  if (!driveFileName) {
     return res.status(404).json({ error: 'Archivo no configurado para este producto' });
   }
 
-  const fileId = await findFileByName(fileName);
+  const fileId = await findFileByName(driveFileName);
   if (!fileId) {
     return res.status(404).json({ error: 'Archivo no encontrado en Drive' });
   }

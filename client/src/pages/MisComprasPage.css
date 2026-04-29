@@ -1,0 +1,114 @@
+@import './TiendaPage.css';
+
+.mis-compras-wrapper .tienda-title-main {
+  font-size: 20px !important;
+  margin: 0 !important;
+  font-weight: 600 !important;
+}
+
+.mis-compras-wrapper .tienda-title-count {
+  font-size: 14px !important;
+  margin-left: 10px !important;
+  font-weight: 400 !important;
+}
+
+.mis-compras-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 24px 60px;
+  gap: 24px;
+  width: 100%;
+  max-width: 1400px; 
+  align-self: flex-start;
+  box-sizing: border-box;
+  min-height: 100%;
+}
+
+.mis-compras-card {
+  background: var(--alo-oscuro2);
+  border: 1px solid var(--alo-borde);
+  border-radius: 8px;
+  padding: 0px; 
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Estilos de la tabla */
+.mis-compras-table .ant-table {
+  background: transparent !important;
+}
+
+.mobile-only-info {
+  display: none;
+}
+
+/* Forzar visibilidad de iconos de acción */
+.mis-compras-table .anticon {
+  transition: transform 0.2s, opacity 0.2s;
+  display: inline-flex !important;
+}
+
+.mis-compras-table .anticon:hover {
+  transform: scale(1.2);
+  opacity: 1 !important;
+}
+
+/* Modal de Licencias Premium */
+.license-key-container {
+  margin-top: 24px;
+  background: var(--alo-negro);
+  border: 1px solid var(--alo-amarillo);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(234, 179, 8, 0.15);
+}
+
+.license-key-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.license-key-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--alo-gris);
+}
+
+.license-key-code {
+  display: block;
+  font-family: 'Fira Code', 'Courier New', Courier, monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--alo-amarillo);
+  letter-spacing: 0.1em;
+  padding: 16px;
+  background: rgba(234, 179, 8, 0.05);
+  border-radius: 6px;
+  margin: 12px 0;
+  word-break: break-all;
+}
+
+.license-key-footer {
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--alo-gris-claro);
+  margin-bottom: 0;
+}
+
+@media (max-width: 900px) {
+  .mis-compras-wrapper {
+    padding: 16px 12px 80px;
+    gap: 16px;
+  }
+
+  .mobile-only-info {
+    display: block;
+  }
+}
+
+

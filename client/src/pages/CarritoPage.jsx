@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Checkbox, Input, Popconfirm } from 'antd';
+import { Button, Checkbox, Input, Popconfirm, Breadcrumb } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import { DeleteOutlined } from '@ant-design/icons';
 import './CarritoPage.css';
@@ -57,27 +57,24 @@ const CarritoPage = () => {
 
 
   return (
-    <div className="carrito-page" style={{ padding: '24px', maxWidth: '1100px', display: 'flex', flexDirection: 'column', gap: '24px', width: '100%' }}>
+    <div className="carrito-page carrito-wrapper">
       
       {/* Cabecera */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <h1 style={{ margin: 0, fontSize: '24px', fontWeight: 600, color: 'var(--alo-blanco)' }}>Carrito</h1>
-        <div style={{ fontSize: '13px', color: 'var(--alo-gris)' }}>
-          Aló Excel {'>'} Carrito
-        </div>
+      <div className="carrito-header">
+        <h1 className="carrito-page-title">Carrito</h1>
+        <Breadcrumb
+          separator={<span style={{ color: 'var(--alo-gris)', opacity: 0.5 }}>/</span>}
+          items={[
+            { title: <Link to="/tienda" style={{ color: 'var(--alo-gris-claro)', textDecoration: 'none' }}>Catálogo</Link> },
+            { title: <span style={{ color: 'var(--alo-verde-claro)' }}>Carrito</span> }
+          ]}
+        />
       </div>
 
-      <div style={{ display: 'flex', gap: '24px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+      <div className="carrito-layout">
         
         {/* Panel Izquierdo: Lista de Productos */}
-        <div style={{ 
-          flex: 1, 
-          minWidth: '320px', 
-          background: 'var(--alo-oscuro2)', 
-          borderRadius: '8px', 
-          border: '1px solid var(--alo-borde)', 
-          padding: '24px' 
-        }}>
+        <div className="carrito-panel-izquierdo">
           <h2 style={{ fontSize: '16px', color: 'var(--alo-blanco)', margin: '0 0 24px', fontWeight: 600 }}>Productos en el carrito</h2>
           
           {productosCarrito.length === 0 ? (
@@ -85,34 +82,39 @@ const CarritoPage = () => {
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               {productosCarrito.map((producto, idx) => (
-                <div key={producto.id_articulo || idx} style={{ 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  padding: '16px 0', 
+                <div key={producto.id_articulo || idx} style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  padding: '16px 0',
                   borderBottom: idx !== productosCarrito.length - 1 ? '1px solid var(--alo-borde)' : 'none',
-                  gap: '16px',
-                  flexWrap: 'wrap'
+                  gap: '12px',
+                  flexWrap: 'nowrap'
                 }}>
-                  {/* Imagen */}
-                  <div style={{ width: '80px', height: '80px', borderRadius: '8px', overflow: 'hidden', flexShrink: 0, background: 'rgba(255,255,255,0.05)', border: '1px solid var(--alo-borde)' }}>
-                    <img src={producto.imagen} alt={producto.nombre} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                  </div>
-                  
-                  {/* Info (Título y Precio Unitario) */}
-                  <div style={{ flex: 1, minWidth: '150px' }}>
-                    <h3 style={{ margin: '0 0 4px', fontSize: '15px', fontWeight: 600, color: 'var(--alo-blanco)' }}>
-                      {producto.nombre}
-                    </h3>
-                    <p style={{ margin: 0, fontSize: '13px', color: 'var(--alo-gris)' }}>
-                      Precio : {formatearMonto(producto.precio)}
-                    </p>
-                  </div>
+                  {/* Imagen + Info: clickeables → detalle del producto */}
+                  <Link
+                    to={`/producto/${producto.id}`}
+                    style={{ display: 'flex', alignItems: 'center', gap: '12px', flex: 1, minWidth: 0, textDecoration: 'none' }}
+                  >
+                    <div style={{ width: '60px', height: '60px', borderRadius: '8px', overflow: 'hidden', flexShrink: 0, background: 'rgba(255,255,255,0.05)', border: '1px solid var(--alo-borde)' }}>
+                      <img src={producto.imagen} alt={producto.nombre} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    </div>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <h3 style={{ margin: '0 0 4px', fontSize: '15px', fontWeight: 600, color: 'var(--alo-blanco)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', transition: 'color 0.15s' }}
+                        onMouseOver={e => e.currentTarget.style.color = 'var(--alo-verde-claro)'}
+                        onMouseOut={e => e.currentTarget.style.color = 'var(--alo-blanco)'}
+                      >
+                        {producto.nombre}
+                      </h3>
+                      <p style={{ margin: 0, fontSize: '13px', color: 'var(--alo-gris)' }}>
+                        {formatearMonto(producto.precio)}
+                      </p>
+                    </div>
+                  </Link>
 
                   {/* Acciones */}
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '12px', minWidth: '120px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', minWidth: '40px' }}>
                     
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                      <Popconfirm
+                    <Popconfirm
                         title="¿Eliminar del carrito?"
                         onConfirm={() => eliminarArticulo(producto.id)}
                         okText="Eliminar"
@@ -125,7 +127,6 @@ const CarritoPage = () => {
                           onMouseOut={e => e.currentTarget.style.opacity = '1'}
                         />
                       </Popconfirm>
-                    </div>
                   </div>
 
                 </div>
@@ -135,13 +136,7 @@ const CarritoPage = () => {
         </div>
 
         {/* Panel Derecho: Resumen */}
-        <div style={{ 
-          width: '340px', 
-          flexShrink: 0, 
-          display: 'flex', 
-          flexDirection: 'column', 
-          gap: '24px' 
-        }}>
+        <div className="carrito-panel-derecho">
           
           {/* Tarjeta de Resumen */}
           <div style={{

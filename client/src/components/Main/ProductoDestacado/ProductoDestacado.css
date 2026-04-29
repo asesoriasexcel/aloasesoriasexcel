@@ -51,7 +51,7 @@
     justify-content:space-evenly;
     width: 50%;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: bold;
     color: #333;
     padding: 20px 40px;
@@ -76,17 +76,17 @@
   }
     
   .productos-column h2 {
-    font-size: 1.3rem;
+    font-size: 1.15rem;
     text-align: left;
     color: var(--seccion_destacados_titulo);
     font-weight: 500;
     max-width: 32rem;
   }
-  
+
   /* Estilo para el párrafo */
   .productos-column p {
-    font-size: 1rem;
-    line-height: 1.5rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
     text-align: justify;
     color: var(--seccion_destacados_subtitulo);
   }
@@ -103,7 +103,7 @@
     display: flex;
     flex-direction: row;
     gap: 1rem;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     align-items: end;
   }
    

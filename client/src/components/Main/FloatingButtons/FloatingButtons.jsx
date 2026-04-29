@@ -1,10 +1,12 @@
 import React from 'react';
 import { MdOutlineStorefront } from "react-icons/md"; // Ícono de tienda
 import { IoIosArrowUp } from "react-icons/io"; // Ícono de flecha
+import { useNavigate } from 'react-router-dom';
 
 import './FloatingButtons.css';
 
 const FloatingButtons = () => {
+  const navigate = useNavigate();
 
   // Función para hacer scroll al div con id especificado
   const scrollToElement = (id) => {
@@ -18,7 +20,7 @@ const FloatingButtons = () => {
     <div className="floating-buttons-container">
       {/* Botón de tienda */}
       <button
-        onClick={() => scrollToElement('lp-tienda')} // Cambia el id según corresponda
+        onClick={() => navigate('/tienda')}
         className="floating-button storefront"
       >
         <MdOutlineStorefront size={32} color="#fff" />

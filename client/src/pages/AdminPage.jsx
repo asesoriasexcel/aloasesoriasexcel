@@ -117,7 +117,7 @@ const AdminPage = () => {
   if (!user || user.email !== 'aloasesoriasexcel@gmail.com') {
     return (
       <div className="admin-no-access">
-        <Card bordered={false} className="glass-card">
+        <Card variant="borderless" className="glass-card">
           <Title level={2}>Acceso Restringido</Title>
           <Text type="secondary">Inicia sesión con la cuenta de administrador para gestionar la tienda.</Text>
         </Card>
@@ -149,23 +149,23 @@ const AdminPage = () => {
 
       <Row gutter={[16, 16]} className="stats-row">
         <Col span={8}>
-          <Card className="stat-card" bordered={false}>
+          <Card className="stat-card" variant="borderless">
             <Statistic title="Total Productos" value={products.length} prefix={<ShoppingOutlined />} />
           </Card>
         </Col>
         <Col span={8}>
-          <Card className="stat-card" bordered={false}>
+          <Card className="stat-card" variant="borderless">
             <Statistic title="Disponibles" value={products.filter(p => p.disponible).length} valueStyle={{ color: '#3f8600' }} />
           </Card>
         </Col>
         <Col span={8}>
-          <Card className="stat-card" bordered={false}>
+          <Card className="stat-card" variant="borderless">
             <Statistic title="Gratuitos" value={products.filter(p => p.liberado).length} valueStyle={{ color: '#cf1322' }} />
           </Card>
         </Col>
       </Row>
 
-      <Card className="table-card" bordered={false}>
+      <Card className="table-card" variant="borderless">
         <Table 
           columns={columns} 
           dataSource={products} 

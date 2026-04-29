@@ -14,7 +14,8 @@ const Footer = () => {
         {/* Columna 1 — Marca */}
         <div className="footer-column footer-column--brand">
           <span className="footer-logo">
-            <span className="footer-logo_alo">Aló Asesorías </span>
+            <span className="footer-logo_alo">Aló&nbsp;</span>
+            <span className="footer-logo_asesoria">Asesorías&nbsp;</span>
             <span className="footer-logo_excel">Excel</span>
           </span>
           <span className="footer-subtitle">
@@ -23,18 +24,18 @@ const Footer = () => {
           <div className="footer-social">
             <span className="footer-social-label">Síguenos</span>
             <div className="social-icons">
-              <a href="https://www.facebook.com/profile.php?id=61566069431755&mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" className="social-icon social-icon--facebook" aria-label="Facebook">
+              <a href="https://www.facebook.com/profile.php?id=61574372969450" target="_blank" rel="noopener noreferrer" className="social-icon social-icon--facebook" aria-label="Facebook">
                 <FaFacebookF />
               </a>
               <a href="https://www.youtube.com/@aloasesoriasexcel" target="_blank" rel="noopener noreferrer" className="social-icon social-icon--youtube" aria-label="YouTube">
                 <GrYoutube />
               </a>
-              <a href="https://www.instagram.com/aloasesoriasexcel" target="_blank" rel="noopener noreferrer" className="social-icon social-icon--instagram" aria-label="Instagram">
+              {/* <a href="https://www.instagram.com/aloasesoriasexcel" target="_blank" rel="noopener noreferrer" className="social-icon social-icon--instagram" aria-label="Instagram">
                 <FaInstagram />
-              </a>
-              <a href="https://www.tiktok.com/@aloasesoriasexcel1" target="_blank" rel="noopener noreferrer" className="social-icon social-icon--tiktok" aria-label="TikTok">
+              </a> */}
+              {/* <a href="https://www.tiktok.com/@aloasesoriasexcel1" target="_blank" rel="noopener noreferrer" className="social-icon social-icon--tiktok" aria-label="TikTok">
                 <FaTiktok />
-              </a>
+              </a> */}
             </div>
           </div>
         </div>
@@ -45,14 +46,14 @@ const Footer = () => {
           <Link to="/tienda" className="footer-link">Tienda de productos</Link>
           <Link to="/tienda/liberados" className="footer-link">Productos gratuitos</Link>
           <Link to="/diseno" className="footer-link">Diseño personalizado</Link>
-          <Link to="/admin/faq" className="footer-link">Preguntas frecuentes</Link>
+          <a href="/#faq" className="footer-link">Preguntas frecuentes</a>
         </div>
 
         {/* Columna 3 — Legal */}
         <div className="footer-column">
           <span className="footer-title">Legal</span>
           <Link to="/terminoscondiciones" className="footer-link">Términos y Condiciones</Link>
-          <Link to="/contacto" className="footer-link">Política de privacidad</Link>
+          <Link to="/terminoscondiciones" className="footer-link">Política de privacidad</Link>
         </div>
 
         {/* Columna 4 — Contacto */}

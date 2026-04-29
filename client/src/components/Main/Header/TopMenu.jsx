@@ -5,7 +5,7 @@ import { Menubar } from 'primereact/menubar';
 import { Button } from 'primereact/button';
 import { AiOutlineAppstore, AiOutlineHome } from "react-icons/ai";
 import { PiCompassTool } from "react-icons/pi";
-import { Badge } from 'antd';
+import { Badge, Dropdown } from 'antd';
 import './TopMenu.css';
 
 import AnnouncementBanner from '../Anuncio/AnnouncementBanner';
@@ -35,9 +35,9 @@ const TopMenu = () => {
       command: () => navigate('/')
     },
     {
-      label: 'Tienda de productos',
+      label: 'Catálogo de productos',
       icon: <AiOutlineAppstore className="icon-menuapp" />,
-      items: tiendaItems,  // Insertamos los items dinámicamente
+      command: () => navigate('/tienda')
     },
     {
       label: 'Diseño y Personalización',
@@ -53,7 +53,12 @@ const TopMenu = () => {
       label: 'Contacto',
       icon: 'pi pi-envelope',
       command: () => navigate('/contacto') // Redirige a la ruta /contacto
-    }
+    },
+    ...(user ? [{
+      label: 'Mis Compras',
+      icon: 'pi pi-history',
+      command: () => navigate('/admin/miscompras')
+    }] : [])
   ];
 
   // Detectar el tamaño de la pantalla
@@ -77,24 +82,44 @@ const TopMenu = () => {
     }
   };
 
+  const userMenuItems = [
+    {
+      key: 'email',
+      label: <span style={{ fontSize: '12px', color: 'var(--alo-gris)' }}>{user?.email}</span>,
+      disabled: true,
+    },
+    { type: 'divider' },
+    {
+      key: 'logout',
+      label: 'Cerrar sesión',
+      icon: <i className="pi pi-sign-out" style={{ fontSize: '12px' }} />,
+      onClick: handleAuthClick,
+      danger: true,
+    },
+  ];
+
   const authButton = user ? (
-    <div className="topmenu-auth" title={user.email}>
-      {user.photoURL && (
-        <img src={user.photoURL} alt="avatar" className="topmenu-avatar" referrerPolicy="no-referrer" />
-      )}
-      <Button
-        label="Salir"
-        icon="pi pi-sign-out"
-        className="p-button-text p-button-sm topmenu-auth-btn"
-        onClick={handleAuthClick}
-      />
-    </div>
+    <Dropdown
+      menu={{ items: userMenuItems }}
+      trigger={['click']}
+      placement="bottomRight"
+      overlayClassName="topmenu-user-dropdown"
+    >
+      <div className="topmenu-avatar-trigger" title={user.email}>
+        {user.photoURL ? (
+          <img src={user.photoURL} alt="avatar" className="topmenu-avatar" referrerPolicy="no-referrer" />
+        ) : (
+          <div className="topmenu-avatar-fallback">{user.email?.[0]?.toUpperCase()}</div>
+        )}
+      </div>
+    </Dropdown>
   ) : (
     <Button
-      label="Iniciar sesión"
+      label={isMobile ? "" : "Iniciar sesión"}
       icon="pi pi-google"
       className="p-button-outlined p-button-sm topmenu-auth-btn"
       onClick={handleAuthClick}
+      title="Iniciar sesión"
     />
   );
 
@@ -110,7 +135,8 @@ const TopMenu = () => {
             end={
               <div className="movil-menu-right">
                 <Link to="/" className="movil-brand-name">
-                  <span className="desktop-brand-alo">Aló Asesorías </span>
+                  <span className="desktop-brand-alo">Aló </span>
+                  <span className="desktop-brand-asesoria">Asesorías </span>
                   <span className="desktop-brand-excel">Excel</span>
                 </Link>
                 {carritoCount > 0 && (
@@ -140,8 +166,11 @@ const TopMenu = () => {
           <div id="main-menu" className="desktop-menu-container">
             <div className="menu-inner">
               <Link to="/" className="desktop-brand-name">
-                <span className="desktop-brand-alo">Aló Asesorías </span>
-                <span className="desktop-brand-excel">Excel</span>
+                <span className="desktop-brand-text">
+                  <span className="desktop-brand-alo">Aló </span>
+                  <span className="desktop-brand-asesoria">Asesorías </span>
+                  <span className="desktop-brand-excel">Excel</span>
+                </span>
               </Link>
               <Menubar model={items} />
               <div className="topmenu-actions">

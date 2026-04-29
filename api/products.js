@@ -25,7 +25,7 @@ export default async function handler(req, res) {
     res.status(200).json(products);
   } catch (error) {
     console.error('Error fetching products from Firestore:', error);
-    // En caso de error de conexión, devolvemos el JSON para no romper el sitio
-    res.status(200).json(fallbackProducts);
+    // Devolver el error en produccion para diagnostico
+    return res.status(500).json({ error: error.message, stack: error.stack?.split('\n').slice(0,5) });
   }
 }

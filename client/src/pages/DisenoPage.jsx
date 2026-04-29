@@ -4,6 +4,7 @@ import { CheckCircleOutlined, FormatPainterOutlined, MailOutlined, BulbOutlined 
 import disenoImage from '../images/diseno.jpg';
 import '../layouts/admin/AdminTokens.css';
 import '../layouts/admin/AdminComponents.css';
+import './DisenoPage.css';
 
 const DisenoPage = () => {
   useEffect(() => {
@@ -11,7 +12,7 @@ const DisenoPage = () => {
   }, []);
 
   return (
-    <div className="admin-shell" style={{ padding: '80px 24px', background: 'var(--alo-oscuro)', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <div className="admin-shell diseno-page-wrapper">
       
       {/* Contenedor principal centrado (Lectura General / Form) */}
       <div style={{ 

@@ -8,7 +8,7 @@ const productosDestacados = [
     nombre: 'Monitor de Tareas',
     descripcion: 'La planilla Gestión de Tareas permite registrar entregas, monitorear el progreso de los estudiantes o empleados, y generar informes detallados de manera fácil, con opciones para exportar a PDF e imprimir.',
     descripcion_larga: 'Esta planilla ha sido diseñada para simplificar la gestión y seguimiento de tareas, permitiendo registrar entregas, monitorear el progreso y generar informes detallados de forma eficiente. Su estructura organizada facilita la supervisión y análisis del desempeño de estudiantes o empleados, con la opción de exportar informes a PDF o imprimirlos de manera rápida gracias a las macros integradas. Es ideal para profesores y jefes de área que gestionan y supervisan los procesos de tareas, brindando una herramienta fácil de usar para el control y análisis del cumplimiento de responsabilidades.',
-    grado: 'Básico',
+    grado: 'Simple',
     id_categoria: '3',
     id_subcategoria: '2',
     precio: 8000,

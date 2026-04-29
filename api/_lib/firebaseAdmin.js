@@ -22,7 +22,12 @@ if (!admin.apps.length) {
     // Si no está el archivo, usamos la variable de entorno
     console.warn('[FIREBASE ADMIN] No se encontró el JSON local, buscando en ENV...');
     if (process.env.GOOGLE_SERVICE_ACCOUNT_JSON) {
+      try {
         serviceAccount = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON);
+      } catch (err) {
+        console.error('[FIREBASE ADMIN] Error al parsear GOOGLE_SERVICE_ACCOUNT_JSON:', err);
+        throw new Error('CRÍTICO: GOOGLE_SERVICE_ACCOUNT_JSON no es un JSON válido.');
+      }
     } else {
         throw new Error(`CRÍTICO: No se encontró el archivo ${localKeyName}.`);
     }

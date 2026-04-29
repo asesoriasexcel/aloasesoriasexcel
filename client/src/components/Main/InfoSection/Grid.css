@@ -64,14 +64,14 @@
   }
 
   .grid-section .grid-card h3 {
-    font-size: 1.3rem; /* Tamaño más grande para el título */
+    font-size: 1.1rem;
     font-weight: 600;
     color: var(--seccion_info_grid_titulo);
   }
 
   .grid-section .grid-card p {
     color: var(--seccion_info_grid_descripcion);
-    font-size: 1rem; /* Aumentar un poco el tamaño */
+    font-size: 0.9rem;
   }
 
   .grid-card .icon {
@@ -112,7 +112,7 @@
 
     
   .grid-section .grid-card h3 {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 
   .grid-card .icon svg {

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link, useParams, useNavigate, useLocation } from 'react-router-dom';
-import { Modal, Button, Spin, Input, Slider, Checkbox } from 'antd';
+import { Modal, Button, Spin, Input, Slider, Checkbox, Breadcrumb } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
-import { FiShoppingCart } from 'react-icons/fi';
+import { FiShoppingCart, FiFilter, FiX } from 'react-icons/fi';
 import ProductosGrid from '../components/Tienda/ProductosGrid';
 import { getProducts } from '../lib/api';
 import tiendaCategorias from '../data/tiendaCategorias';
@@ -29,6 +30,7 @@ const TiendaPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [priceRange, setPriceRange] = useState([0, 100000]);
   const [selectedCats, setSelectedCats] = useState(id_categoria ? [id_categoria] : []);
+  const [filtersOpen, setFiltersOpen] = useState(false);
 
   useEffect(() => {
     if (id_categoria && !selectedCats.includes(id_categoria)) {
@@ -116,36 +118,76 @@ const TiendaPage = () => {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', padding: '24px', gap: '24px' }}>
-      
-      {/* Cabecera superior simple */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <h1 style={{ margin: 0, fontSize: '24px', fontWeight: 600, color: 'var(--alo-blanco)' }}>
+    <>
+      <Helmet>
+        <title>Catálogo | Aló Asesorías Excel</title>
+        <meta name="description" content="Catálogo de productos y herramientas de Excel para educación y empresas." />
+        <link rel="canonical" href="https://aloasesoriasexcel.cl/tienda" />
+      </Helmet>
+      <div className="tienda-page-wrapper">
+        
+        {/* Cabecera superior simple */}
+      <div className="tienda-header-container">
+        <h1 className="tienda-title-main">
           {location.pathname === '/tienda/liberados' ? 'Productos Gratuitos' : 'Catálogo'}
+          <span className="tienda-title-count">
+            ({productosFiltrados.length})
+          </span>
         </h1>
-        <div style={{ fontSize: '13px', color: 'var(--alo-gris)' }}>
-          Aló Excel {'>'} Tienda {'>'} Catálogo
-        </div>
+        <Breadcrumb
+          className="tienda-breadcrumb"
+          separator={<span style={{ color: 'var(--alo-gris)', opacity: 0.5 }}>/</span>}
+          items={[
+            { title: <Link to="/tienda" style={{ color: 'var(--alo-gris-claro)' }}>Catálogo</Link> },
+            { title: <span style={{ color: 'var(--alo-verde-claro)' }}>{location.pathname === '/tienda/liberados' ? 'Gratuitos' : 'Todos'}</span> }
+          ]}
+        />
       </div>
 
-      <div style={{ display: 'flex', gap: '24px', alignItems: 'flex-start' }}>
-        
+      {/* Mobile: barra búsqueda + botón filtros */}
+      <div className="tienda-mobile-searchbar">
+        <Input
+          prefix={<SearchOutlined style={{ color: 'var(--alo-gris)', marginRight: '8px' }} />}
+          placeholder="Buscar producto..."
+          value={searchTerm}
+          onChange={e => setSearchTerm(e.target.value)}
+          style={{ background: 'var(--alo-oscuro)', borderColor: 'var(--alo-borde)', color: 'var(--alo-blanco)' }}
+        />
+        <button
+          className={`tienda-filter-btn${filtersOpen ? ' is-active' : ''}${selectedCats.length > 0 && !filtersOpen ? ' has-filters' : ''}`}
+          onClick={() => {
+            if (selectedCats.length > 0 && !filtersOpen) {
+              setSelectedCats([]);
+            } else {
+              setFiltersOpen(v => !v);
+            }
+          }}
+          aria-label={selectedCats.length > 0 && !filtersOpen ? 'Quitar filtros' : 'Filtros'}
+        >
+          {filtersOpen ? (
+            <FiX size={18} />
+          ) : selectedCats.length > 0 ? (
+            <>
+              <FiX size={15} />
+              <span className="tienda-filter-clear-label">Quitar filtro</span>
+            </>
+          ) : (
+            <FiFilter size={18} />
+          )}
+        </button>
+      </div>
+
+      <div className="tienda-layout">
+
         {/* Left Sidebar: Filters */}
-        <aside className="tienda-filters-sidebar" style={{ 
-          width: '260px', 
-          flexShrink: 0, 
-          background: 'var(--alo-oscuro2)', 
-          borderRadius: '8px', 
-          border: '1px solid var(--alo-borde)', 
-          padding: '24px' 
-        }}>
+        <aside className={`tienda-filters-sidebar${filtersOpen ? ' is-open' : ''}`}>
           
           <div style={{ marginBottom: '32px' }}>
             <h3 style={{ fontSize: '14px', color: 'var(--alo-blanco)', marginBottom: '16px', fontWeight: 600 }}>Rango de Precio</h3>
             <Slider 
               range 
               min={0} 
-              max={100000} 
+              max={30000} 
               step={1000}
               value={priceRange} 
               onChange={setPriceRange}
@@ -160,33 +202,29 @@ const TiendaPage = () => {
           <div>
             <h3 style={{ fontSize: '14px', color: 'var(--alo-blanco)', marginBottom: '16px', fontWeight: 600 }}>Categorías</h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              {tiendaCategorias.map(cat => (
-                <Checkbox 
-                  key={cat.id} 
-                  checked={selectedCats.includes(String(cat.id))}
-                  onChange={e => onCategoryCheck(String(cat.id), e.target.checked)}
-                  style={{ color: 'var(--alo-gris)' }}
-                >
-                  {cat.nombre}
-                </Checkbox>
-              ))}
+              {tiendaCategorias.map(cat => {
+                const count = productos.filter(p => String(p.id_categoria) === String(cat.id)).length;
+                return (
+                  <Checkbox 
+                    key={cat.id} 
+                    checked={selectedCats.includes(String(cat.id))}
+                    onChange={e => onCategoryCheck(String(cat.id), e.target.checked)}
+                    style={{ color: 'var(--alo-gris)' }}
+                  >
+                    {cat.nombre} <span style={{ opacity: 0.7, fontSize: '13px', marginLeft: '4px' }}>({count})</span>
+                  </Checkbox>
+                );
+              })}
             </div>
           </div>
 
         </aside>
 
         {/* Main Content */}
-        <main style={{ 
-          flex: 1, 
-          background: 'var(--alo-oscuro2)', 
-          borderRadius: '8px', 
-          border: '1px solid var(--alo-borde)', 
-          padding: '24px',
-          minHeight: '600px'
-        }}>
+        <main className="tienda-main-content">
           
-          <div style={{ marginBottom: '24px' }}>
-            <Input 
+          <div className="tienda-desktop-search" style={{ marginBottom: '24px' }}>
+            <Input
               prefix={<SearchOutlined style={{ color: 'var(--alo-gris)', marginRight: '8px' }} />}
               placeholder="Buscar producto por nombre..."
               value={searchTerm}
@@ -247,7 +285,7 @@ const TiendaPage = () => {
         <div className="confirmar-anadido">
           <FaCheckCircle style={{ color: 'var(--alo-verde-claro)', fontSize: '32px', marginBottom: '16px' }} />
           <p>¡Has añadido "{addedProductName}" al carrito!</p>
-          <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', marginTop: '24px' }}>
+          <div className="tienda-modal-actions">
             <Button onClick={() => setIsConfirmModalVisible(false)}>Seguir comprando</Button>
             <Button
               type="primary"
@@ -277,6 +315,7 @@ const TiendaPage = () => {
         </div>
       </Modal>
     </div>
+    </>
   );
 };
 

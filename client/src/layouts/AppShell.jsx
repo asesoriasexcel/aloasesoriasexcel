@@ -6,7 +6,8 @@ import {
   HomeOutlined, ShoppingOutlined,
   AppstoreOutlined, PlusOutlined,
   ShoppingCartOutlined, UnlockOutlined, FolderOutlined,
-  WalletOutlined, QuestionCircleOutlined, ProfileOutlined
+  WalletOutlined, QuestionCircleOutlined, ProfileOutlined,
+  FileTextOutlined, MailOutlined, BarChartOutlined
 } from '@ant-design/icons';
 import { useAuth } from '../context/AuthContext';
 import tiendaCategorias from '../data/tiendaCategorias';
@@ -30,8 +31,11 @@ const SidebarTienda = ({ productos, isAdminUser, onNavigate }) => {
     <>
       {/* Brand */}
       <Link to="/" className="shell-sidebar__brand" onClick={onNavigate}>
-        <div className="shell-sidebar__brand-dot">A</div>
-        <span className="shell-sidebar__brand-name">Aló Excel</span>
+        <span className="shell-sidebar__brand-name">
+          <span className="shell-brand-alo">Aló&nbsp;</span>
+          <span className="shell-brand-asesoria">Asesorías&nbsp;</span>
+          <span className="shell-brand-excel">Excel</span>
+        </span>
       </Link>
 
       <nav className="shell-sidebar__nav">
@@ -74,32 +78,52 @@ const SidebarTienda = ({ productos, isAdminUser, onNavigate }) => {
           </NavLink>
         </div>
 
-        {/* Categorías */}
+        {/* Otros servicios */}
         <div className="shell-sidebar__section">
-          <p className="shell-sidebar__section-label">Categorías</p>
+          <p className="shell-sidebar__section-label">Otros servicios</p>
+          <NavLink
+            to="/diseno"
+            className={({ isActive }) =>
+              `shell-sidebar__item${isActive ? ' is-active' : ''}`
+            }
+            onClick={onNavigate}
+          >
+            <span className="shell-sidebar__item-icon"><PlusOutlined /></span>
+            <span className="shell-sidebar__item-label">Diseño Personalizado</span>
+          </NavLink>
+        </div>
 
-          {tiendaCategorias.map((cat) => {
-            const count = productos.filter(
-              (p) => String(p.id_categoria) === String(cat.id)
-            ).length;
-
-            return (
-              <NavLink
-                key={cat.id}
-                to={`/tienda/categoria/${cat.id}`}
-                className={({ isActive }) =>
-                  `shell-sidebar__item${isActive ? ' is-active' : ''}`
-                }
-                onClick={onNavigate}
-              >
-                <span className="shell-sidebar__item-icon"><FolderOutlined /></span>
-                <span className="shell-sidebar__item-label">{cat.nombre}</span>
-                {count > 0 && (
-                  <span className="shell-sidebar__item-count">{count}</span>
-                )}
-              </NavLink>
-            );
-          })}
+        {/* Explorar */}
+        <div className="shell-sidebar__section">
+          <p className="shell-sidebar__section-label">Explorar</p>
+          <a
+            href="/#faq"
+            className="shell-sidebar__item"
+            onClick={onNavigate}
+          >
+            <span className="shell-sidebar__item-icon"><QuestionCircleOutlined /></span>
+            <span className="shell-sidebar__item-label">Preguntas Frecuentes</span>
+          </a>
+          <NavLink
+            to="/terminoscondiciones"
+            className={({ isActive }) =>
+              `shell-sidebar__item${isActive ? ' is-active' : ''}`
+            }
+            onClick={onNavigate}
+          >
+            <span className="shell-sidebar__item-icon"><FileTextOutlined /></span>
+            <span className="shell-sidebar__item-label">Términos y Condiciones</span>
+          </NavLink>
+          <NavLink
+            to="/contacto"
+            className={({ isActive }) =>
+              `shell-sidebar__item${isActive ? ' is-active' : ''}`
+            }
+            onClick={onNavigate}
+          >
+            <span className="shell-sidebar__item-icon"><MailOutlined /></span>
+            <span className="shell-sidebar__item-label">Contacto</span>
+          </NavLink>
         </div>
 
         {/* Administración (solo visible para admin) */}
@@ -142,6 +166,17 @@ const SidebarTienda = ({ productos, isAdminUser, onNavigate }) => {
             </NavLink>
 
             <NavLink
+              to="/admin/ventas"
+              className={({ isActive }) =>
+                `shell-sidebar__item${isActive ? ' is-active' : ''}`
+              }
+              onClick={onNavigate}
+            >
+              <span className="shell-sidebar__item-icon"><BarChartOutlined /></span>
+              <span className="shell-sidebar__item-label">Ventas</span>
+            </NavLink>
+
+            <NavLink
               to="/admin/faq"
               className={({ isActive }) =>
                 `shell-sidebar__item${isActive ? ' is-active' : ''}`
@@ -180,6 +215,7 @@ const useTopbarTitle = (pathname) => {
   if (pathname === '/admin/producto/nuevo') return 'Nuevo producto';
   if (pathname.startsWith('/admin/producto/editar/')) return 'Editar producto';
   if (pathname === '/admin/wallet') return 'Billetera';
+  if (pathname === '/admin/ventas') return 'Ventas';
   if (pathname === '/admin/faq') return 'Preguntas Frecuentes';
   if (pathname === '/admin/miscompras') return 'Mis Compras';
   return '';
@@ -219,7 +255,8 @@ const AppShell = () => {
 
   const closeSidebar = () => setSidebarOpen(false);
 
-  const contentClass = isAdmin ? 'shell-content shell-content--admin admin-shell' : 'shell-content shell-content--tienda';
+  const isMisCompras = location.pathname.includes('miscompras');
+  const contentClass = (isAdmin && !isMisCompras) ? 'shell-content shell-content--admin admin-shell' : 'shell-content shell-content--tienda';
 
   return (
     <div className="app-shell">
@@ -245,10 +282,14 @@ const AppShell = () => {
             >
               {sidebarOpen ? <CloseOutlined /> : <MenuOutlined />}
             </button>
-            {title && <span className="shell-topbar__title">{title}</span>}
+            <Link to="/" className="shell-topbar__brand">
+              <span className="shell-brand-alo">Aló&nbsp;</span>
+              <span className="shell-brand-asesoria">Asesorías&nbsp;</span>
+              <span className="shell-brand-excel">Excel</span>
+            </Link>
           </div>
           <div className="shell-topbar__right" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-            <Link to="/carrito" style={{ display: 'flex', alignItems: 'center', color: 'var(--shell-text-primary)', textDecoration: 'none' }}>
+            <Link to="/carrito" style={{ display: 'flex', alignItems: 'center', color: 'var(--shell-text-primary)', textDecoration: 'none', marginRight: '8px' }}>
               <Badge count={cartCount} size="small" offset={[4, -2]}>
                 <ShoppingCartOutlined style={{ fontSize: '20px', color: 'var(--shell-text-primary)' }} />
               </Badge>

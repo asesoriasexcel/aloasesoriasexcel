@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Button, Table, Tag, Space, Typography, message, Spin, Popconfirm } from 'antd';
+import { useNavigate, Link } from 'react-router-dom';
+import { Button, Table, Tag, Space, Typography, message, Spin, Popconfirm, Breadcrumb } from 'antd';
 import { PlusOutlined, EditOutlined, DeleteOutlined, AppstoreOutlined } from '@ant-design/icons';
 import { motion } from 'framer-motion';
 import { getProducts } from '../lib/api';
@@ -131,17 +131,17 @@ const AdminDashboard = () => {
       
       {/* Top Title like "Shop List" */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
-        <h1 style={{ margin: 0, fontSize: '24px', fontWeight: 600, color: 'var(--admin-text-primary)' }}>
+        <h1 style={{ margin: 0, fontSize: '20px', fontWeight: 600, color: 'var(--admin-text-primary)' }}>
           Catálogo de productos
         </h1>
         {/* Breadcrumb equivalent */}
-        <div style={{ fontSize: '13px', color: 'var(--admin-text-subtle)', display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <a href="/" style={{ color: 'var(--admin-text-subtle)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseOver={e => e.target.style.color = 'var(--admin-text-primary)'} onMouseOut={e => e.target.style.color = 'var(--admin-text-subtle)'}>Inicio</a>
-          <span>{'>'}</span>
-          <a href="/admin" style={{ color: 'var(--admin-text-subtle)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseOver={e => e.target.style.color = 'var(--admin-text-primary)'} onMouseOut={e => e.target.style.color = 'var(--admin-text-subtle)'}>Admin</a>
-          <span>{'>'}</span>
-          <span style={{ color: 'var(--admin-text-primary)', fontWeight: 500 }}>Catálogo</span>
-        </div>
+        <Breadcrumb
+          separator={<span style={{ color: 'var(--admin-text-subtle)', opacity: 0.5 }}>/</span>}
+          items={[
+            { title: <Link to="/tienda" style={{ color: 'var(--admin-text-subtle)', textDecoration: 'none' }}>Catálogo</Link> },
+            { title: <span style={{ color: 'var(--admin-text-primary)' }}>Administración</span> }
+          ]}
+        />
       </div>
 
       <div className="admin-content-panel admin-content-panel--padded" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>

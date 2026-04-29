@@ -1,58 +1,130 @@
 # Frontend React Pro - Design & Architecture Guidelines
 
-This document serves as a "skill" or rule-set for developing the frontend of the Aló Excel React application. It guarantees consistency, performance, and professional standards across all components and pages.
+This document is the **mandatory rule-set** for all frontend work on the Aló Excel React application. Apply every section before writing or modifying any component or page. Non-compliance produces visual inconsistencies and technical debt.
+
+---
 
 ## 1. Design System & Theming Consistency
-- **Single Source of Truth:** All colors, spacing, and borders must reference global CSS variables defined in the palette (e.g., `var(--alo-oscuro)`, `var(--alo-borde)`). Do not hardcode HEX or RGBA values unless creating a highly specific, localized effect (like a faint neon shadow).
-- **Dark Theme Consistency:** Maintain the established dark theme visual hierarchy:
-  - **Base background:** `var(--alo-oscuro)`
-  - **Elevated surfaces** (Cards, Panels, Modals): `var(--alo-oscuro2)`
-  - **Primary borders:** `var(--alo-borde)`
-  - **Accent colors:** `var(--alo-verde)` and `var(--alo-verde-claro)`
-- **Border Radius Standarization:**
-  - `8px` for large layout containers, sidebars, and main panels.
-  - `12px` for interactive product/dashboard cards.
-  - `4px` or `6px` for small elements like buttons, badges, tags, and inputs.
 
-## 2. Component Architecture
-- **Separation of Concerns:** Keep business logic, data fetching, and state management at the top of the component (or ideally in custom hooks). Keep the JSX clean and focused strictly on rendering.
-- **Dumb & Smart Components:** Separate complex state-aware containers (Pages/Dashboards) from pure presentation components (like `ProductosGrid`). Pass data via props and trigger actions via callbacks (`onAddToCart`, `onDelete`).
-- **Ant Design (antd) Overrides:** When using external UI libraries like `antd`, **always** override their default themes (e.g., the default blue) using scoped CSS classes or `ConfigProvider` to enforce brand consistency. Never leave default framework styles visible in production.
-  - *Affix-Wrapper Edge Case:* When overriding background and borders for inputs with prefixes/icons (like `.ant-input-affix-wrapper`), you **must** explicitly remove the border of the inner `input` element (`border: none !important; box-shadow: none !important;`) to prevent an ugly double-border visual glitch.
-  - *Pagination Overrides:* The default antd pagination is bright white with blue borders. In dark theme, this breaks immersion. Always override `.ant-pagination-item`, `.ant-pagination-prev`, and `.ant-pagination-next` to use dark backgrounds (e.g., `var(--admin-surface-2)`). The active item (`.ant-pagination-item-active`) should use a transparent primary color background with a vibrant accent border (`var(--alo-verde-claro)`).
+- **Single Source of Truth:** All colors, spacing, and borders MUST reference global CSS variables. Do not hardcode HEX or RGBA values unless creating a highly specific glow/shadow effect.
+  - Base background: `var(--alo-oscuro)`
+  - Elevated surfaces (Cards, Panels, Modals): `var(--alo-oscuro2)`
+  - Primary borders: `var(--alo-borde)`
+  - Accent colors: `var(--alo-verde)` and `var(--alo-verde-claro)`
+  - Text primary: `var(--alo-blanco)`
+  - Text muted: `var(--alo-gris)`
 
-## 3. Responsive Layouts & CSS
-- **Flexbox & CSS Grid:** Use Flexbox for 1-dimensional layouts (toolbars, headers, simple rows) and CSS Grid for 2-dimensional layouts (product galleries, complex dashboards).
-- **Fluid & Constrained Widths:** Always provide a `maxWidth` to layouts (e.g., `maxWidth: 1100px`). 
-  - For **functional panels and forms** (Admin, Cart), **align them to the left** to provide a professional, native-app feel that respects reading flow.
-  - For **general reading pages** (Terms and Conditions, FAQs, Contact form layouts), **center** the main container (`alignItems: center` or `margin: 0 auto`) to provide a better visual balance on ultra-wide screens.
-- **Scroll & Overflow:** Ensure sidebars and independent panels have their own scroll context (`overflow-y: auto`) and custom scrollbars instead of scrolling the entire `<body>`. This maintains an app-like behavior.
-- **🖥️ Ultra-Wide Screen Pattern — "Full-Bleed Background with Constrained Content":** This is the correct way to make the site look great on large monitors (>1400px) without stretching content awkwardly to the edges.
-  - **❌ WRONG approach:** Setting `max-width` on `#root`. This cuts off full-bleed backgrounds (videos, sticky headers, section colors).
-  - **✅ CORRECT approach:** Keep the outer shell full-width. Apply `max-width + margin: 0 auto` to the **inner content wrapper only**. The background of navbars, sections, and footers remains 100% wide, while the readable content is centered.
-  - **Implementation pattern for landing pages:**
-    ```css
-    /* The outer element (navbar, footer, section) stays full-width */
-    .desktop-menu-container { width: 100%; }
-    /* An inner wrapper centers the content */
-    .menu-inner { max-width: 1400px; margin: 0 auto; display: flex; }
-    ```
-  - **Implementation pattern for AppShell (admin/tienda):** Apply `display: flex; flex-direction: column; align-items: center;` on `.shell-content--admin`, then constrain children with `.shell-content--admin > * { max-width: 1200px; width: 100%; }`.
+- **Border Radius Standardization:**
+  - `8px` — large layout containers, sidebars, main panels
+  - `12px` — interactive product/dashboard cards
+  - `4–6px` — small elements: buttons, badges, tags, inputs
 
-## 4. State Management & Real-time Sync
-- **Event-Driven Synchronization:** For data shared across disjointed parts of the DOM tree (like Cart counts or Sidebar category counts), use Custom Events (e.g., `window.dispatchEvent(new Event('adminProductsChanged'))`) to notify independent components and keep data perfectly synchronized without heavy Context setups.
-- **Optimistic UI:** When a user performs an action, provide immediate visual feedback (disabling a button, updating a count locally) while waiting for the server response.
+- **Ant Design (antd) Overrides:** ALWAYS override antd default themes via `ConfigProvider` or scoped CSS to enforce brand consistency. Never leave default blue antd styles visible in production.
+  - Input with prefix icons: also remove inner `input` border (`border: none !important; box-shadow: none !important;`) to avoid double-border glitch.
+  - Pagination: override `.ant-pagination-item`, `.ant-pagination-prev`, `.ant-pagination-next` with dark backgrounds. Active item gets `var(--alo-verde-claro)` accent border.
+  - **Modals and Dialogs:** NEVER use static `Modal.confirm()`. Always use `const { modal } = App.useApp()` so the modal inherits the dark theme from `ConfigProvider`. Static `Modal.*` calls bypass the theme context and render with default light styling.
 
-## 5. Performance & UX Best Practices
-- **Feedback:** Always provide feedback for actions:
-  - Transition and hover states on interactive elements (buttons, cards, links).
-  - Loading states (`<Spin />` or skeletons) while fetching data.
-  - Toast messages (`message.success()`, `message.error()`) upon action completion.
-- **Clean Navigation:** Use Breadcrumbs and well-structured sidebars to ensure the user never feels "lost" or trapped in a view. Provide clear "Go Back" or "Cancel" actions in forms.
-- **Disabled UI States:** In a dark theme, native framework disabled buttons usually default to light gray (`#f5f5f5`) which causes severe visual inconsistency. Always override disabled buttons (`.ant-btn[disabled]`) to use a dark, low-opacity background (e.g., `rgba(255, 255, 255, 0.08)`) and readable low-contrast text (e.g., `rgba(255, 255, 255, 0.4)`).
+---
 
-## 6. Typography Standard (The FAQ Standard)
-- **Main Titles (`h1`):** Must use `32px` font size, `700` font weight, and `-0.02em` letter spacing to convey an executive dashboard feel.
-- **Subtitles (`p` below headers):** Use `15px` font size with a line height of `1.6`.
-- **Body Text & Tables:** Must use `14px` font size (matching the FAQ accordion content) for optimal data density and readability. In tables, all standard data columns must rely ONLY on color (`var(--alo-blanco)` vs `var(--alo-gris)`) to create hierarchy. **Do NOT use `fontWeight` or `fontSize` overrides on individual columns** (except for specialized pills like Status/Action), as this creates disjointed, disparate row visuals.
-- **Enforcement:** These typography rules are globally enforced via the `.admin-shell h1` and `.admin-shell p` classes using `!important` to prevent inline style overrides. Never use inline `fontSize` or `lineHeight` on standard text tags.
+## 2. Interior Page Layout Standard
+
+**Every interior page (Carrito, Confirmar Compra, Mis Compras, Contacto, Diseño, Términos) MUST follow this exact structure:**
+
+```jsx
+<div className="page-wrapper">
+
+  {/* HEADER — Always outside any card */}
+  <div className="page-header">
+    <h1>Título de la Página</h1>
+    <Breadcrumb ... />  {/* optional */}
+  </div>
+
+  {/* CONTENT — Card(s) below header */}
+  <div className="page-card">
+    ...content...
+  </div>
+
+</div>
+```
+
+**Rules:**
+1. The `<h1>` MUST be outside of every card/panel. It floats above as a page title.
+2. Cards/panels sit below the title as content containers.
+3. The wrapper uses `padding: 40px 24px 60px` on desktop, `padding: 24px 16px 40px` on mobile (≤768px).
+4. **Never** place the page title inside a bordered card. This is the #1 recurring violation.
+
+---
+
+## 3. Component Architecture
+
+- **Separation of Concerns:** Keep business logic, data fetching, and state at the top of the component (or in custom hooks). Keep JSX focused on rendering.
+- **Dumb & Smart Components:** Separate state-aware containers (Pages) from pure presentation components. Pass data via props and actions via callbacks.
+- **Context Usage:** Use `App.useApp()` to access `message`, `modal`, and `notification` inside components. This guarantees theme inheritance and avoids "static function" React warnings.
+
+---
+
+## 4. Responsive Layouts & CSS
+
+- **Flexbox & CSS Grid:** Use Flexbox for 1D layouts; CSS Grid for 2D layouts (galleries, dashboards).
+- **Fluid & Constrained Widths:** Always provide `maxWidth` to layouts (`maxWidth: 1100px`).
+  - Functional panels (Admin, Cart, Checkout): Left-aligned, max-width constrained.
+  - Reading pages (Terms, FAQ, Contact): Centered (`margin: 0 auto`).
+- **Scroll & Overflow:** Independent panels have their own scroll context (`overflow-y: auto`) with custom scrollbars. Never scroll the entire `<body>`.
+- **Full-Bleed Pattern (Ultra-Wide):**
+  - ❌ WRONG: `max-width` on `#root`.
+  - ✅ CORRECT: Outer shell is full-width. Inner wrapper uses `max-width + margin: 0 auto`.
+
+---
+
+## 5. Mobile Padding — The "Clear The Header" Rule
+
+> **This rule is mandatory for all pages rendered inside `MainLayout` (TopMenu + Footer).**
+
+The `TopMenu` on mobile is **`position: fixed`** with a height of approximately **74px**. Any page rendered under it must have enough `padding-top` to avoid being hidden behind the menu.
+
+**Standard mobile padding for `MainLayout` pages:**
+```css
+@media (max-width: 768px) {
+  .page-wrapper {
+    padding-top: 110px; /* 74px header + 36px breathing room */
+  }
+}
+```
+
+> **Note:** Pages inside `AppShell` (Tienda, Carrito, Confirmar, Admin) do NOT need this rule — the shell's topbar is part of the layout flow, not fixed over the content.
+
+---
+
+## 6. State Management & Real-time Sync
+
+- **Event-Driven Sync:** For shared data across disconnected DOM subtrees (Cart count, category counts), use Custom Events (`window.dispatchEvent(new Event('adminProductsChanged'))`).
+- **Optimistic UI:** Give immediate visual feedback (disable button, update count locally) while awaiting server response.
+- **Auth Guards:** All pages requiring authentication MUST check `user` from `AuthContext` before fetching or displaying protected content. Unauthenticated state should render a clear, friendly CTA — not a blank page or raw error.
+
+---
+
+## 7. Performance & UX Best Practices
+
+- **Feedback:** Always provide:
+  - Hover/transition states on interactive elements.
+  - Loading states (`<Spin />` or skeletons) while fetching.
+  - Toast messages (`message.success()`, `message.error()`) after actions.
+- **Navigation Clarity:** Use Breadcrumbs and clear "Go Back" or "Cancel" actions.
+- **Disabled UI States:** Override antd's light disabled states to dark equivalents (`.ant-btn[disabled]` → dark bg, low-opacity text).
+
+---
+
+## 8. Typography Standard
+
+- **`h1` (Page Titles):** `24px`, `600` weight. Always outside cards.
+- **`h2` (Card/Section Titles):** `16–18px`, `600` weight. Inside cards.
+- **Body / Table text:** `14px`, relying on color (`var(--alo-blanco)` vs `var(--alo-gris)`) for hierarchy — never `fontWeight` or `fontSize` overrides on individual table columns (except Status/Action pills).
+- **These rules are enforced via `.admin-shell h1` and `.admin-shell p` CSS classes.** Never use inline `fontSize` or `lineHeight` on standard text tags inside those wrappers.
+
+---
+
+## 9. Ant Design v5 Specific Rules
+
+- **Cards:** Use `variant="outlined"`, never the deprecated `bordered` prop.
+- **Collapse:** Never use `<Panel>` children. Always use the `items` prop as an array of `{ key, label, children }`.
+- **Global Feedback:** Wrap root in `<App>` from antd and use `const { message, modal, notification } = App.useApp()` inside all components.

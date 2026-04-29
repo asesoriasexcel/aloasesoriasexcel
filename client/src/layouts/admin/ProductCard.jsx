@@ -5,11 +5,11 @@ import { EditOutlined, DeleteOutlined, FileExcelOutlined, TagOutlined, FolderOut
 import tiendaCategorias from '../../data/tiendaCategorias';
 
 const GRADE_CLASS = {
-  'Básico': 'basico',
+  'Simple': 'simple',
   'Pro': 'pro',
   'Full': 'full',
   'Master': 'master',
-  'Legendario': 'legendario',
+  'Leyenda': 'leyenda',
 };
 
 const ProductCard = ({ product, onDelete }) => {
@@ -17,7 +17,7 @@ const ProductCard = ({ product, onDelete }) => {
   const cat = tiendaCategorias.find(
     (c) => String(c.id) === String(product.id_categoria)
   );
-  const gradeClass = GRADE_CLASS[product.grado] ?? 'basico';
+  const gradeClass = GRADE_CLASS[product.grado] ?? 'simple';
 
   return (
     <article 
@@ -86,6 +86,22 @@ const ProductCard = ({ product, onDelete }) => {
             )}
            </div>
         </div>
+        {product.tags && product.tags.length > 0 && (
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px', marginTop: '4px' }}>
+            {product.tags.map(tag => (
+              <span key={tag} style={{ 
+                fontSize: '10px', 
+                background: 'rgba(255,255,255,0.05)', 
+                color: 'var(--admin-text-subtle)', 
+                padding: '1px 6px', 
+                borderRadius: '4px',
+                border: '1px solid var(--admin-border)'
+              }}>
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Footer button matching image: Left aligned single action (or group) */}

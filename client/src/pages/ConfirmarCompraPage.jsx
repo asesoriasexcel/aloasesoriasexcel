@@ -1,30 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Button, Typography, Card, message } from 'antd';
-import { CopyOutlined } from '@ant-design/icons';
+import { Button, Breadcrumb, App, Modal } from 'antd';
 import { Link } from 'react-router-dom';
-import tiendaProductos from '../data/tiendaProductos';
-import { Steps } from 'primereact/steps';
+import { CreditCardOutlined, SafetyCertificateOutlined, ShoppingCartOutlined, GoogleOutlined } from '@ant-design/icons';
+import { useAuth } from '../context/AuthContext';
+import { loginWithGoogle } from '../lib/firebase';
 import './ConfirmarCompraPage.css';
-
-const { Text, Paragraph } = Typography;
 
 const ConfirmarCompraPage = () => {
   const [productosCarrito, setProductosCarrito] = useState([]);
   const [total, setTotal] = useState(0);
-  const [activeIndex, setActiveIndex] = useState(0); // Para el control del paso activo
+  const [loadingMp, setLoadingMp] = useState(false);
+  const { message, modal } = App.useApp();
+  const { user } = useAuth();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const carrito = JSON.parse(localStorage.getItem('ae-carrito')) || [];
 
-    const productos = carrito
-      .map((item) => {
-        const producto = tiendaProductos.find(p => p.id_articulo === item.id_articulo);
-        if (producto) {
-          return { ...producto, cantidad: item.cantidad };
-        }
-        return null;
-      })
-      .filter(item => item !== null);
+    const productos = carrito.map((item, idx) => ({
+      id_articulo: item.id_articulo || item.id || `item-${idx}`,
+      id: item.id || item.id_articulo,
+      nombre: item.nombre || 'Producto sin nombre',
+      precio: item.precio || 0,
+      imagen: item.imagen || '',
+      cantidad: item.cantidad || 1,
+    }));
 
     setProductosCarrito(productos);
 
@@ -39,133 +39,133 @@ const ConfirmarCompraPage = () => {
     }).format(monto);
   };
 
-  const datosTransferencia = [
-    { label: 'Banco', value: 'Banco Ficticio' },
-    { label: 'Tipo de cuenta', value: 'Cuenta corriente' },
-    { label: 'Número de cuenta', value: '123456789' },
-    { label: 'RUT', value: '12.345.678-9' },
-    { label: 'A nombre de', value: 'Tienda Ficticia' },
-    { label: 'Email', value: 'contacto@tiendaficticia.com' },
-    { label: 'Monto', value: formatearMonto(total) },
-  ];
-
-  // Función para copiar al portapapeles
-  const copiarAlPortapapeles = (texto) => {
-    navigator.clipboard.writeText(texto)
-      .then(() => {
-        message.success('Copiado al portapapeles');
-      })
-      .catch(() => {
-        message.error('Error al copiar al portapapeles');
+  const procesarPago = async () => {
+    if (!user) {
+      modal.confirm({
+        title: 'Iniciar Sesión',
+        content: 'Para proceder al pago y asociar la compra a tu cuenta, debes iniciar sesión con Google.',
+        okText: 'Iniciar Sesión',
+        cancelText: 'Cancelar',
+        centered: true,
+        onOk: async () => {
+          await loginWithGoogle();
+        },
       });
+      return;
+    }
+
+    try {
+      setLoadingMp(true);
+      
+      const emailUsuario = user.email;
+
+      const response = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: productosCarrito, email: emailUsuario }),
+      });
+
+      if (!response.ok) throw new Error('Error al crear la preferencia');
+
+      const data = await response.json();
+      
+      if (data.init_point) {
+        window.location.href = data.init_point;
+      } else {
+        throw new Error('No se recibió la URL de pago');
+      }
+    } catch (error) {
+      console.error(error);
+      message.error('Hubo un problema al conectar con Mercado Pago');
+      setLoadingMp(false);
+    }
   };
 
-  const columns = [
-    {
-      title: 'Detalle',
-      dataIndex: 'label',
-      key: 'label',
-      render: (text) => <Text strong>{text}</Text>,
-    },
-    {
-      title: 'Información',
-      dataIndex: 'value',
-      key: 'value',
-      render: (text, record) => (
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Text>{text}</Text>
-          {['Número de cuenta', 'RUT', 'A nombre de', 'Email', 'Monto'].includes(record.label) && (
-            <Button
-              type="text"
-              icon={<CopyOutlined />}
-              onClick={() => copiarAlPortapapeles(text)}
-            />
-          )}
-        </div>
-      ),
-    },
-  ];
-
-  const formularioGoogleUrl = "https://docs.google.com/forms/d/e/1FAIpQLSckunkQIiO2q392JRO2qmTtpASay1cj_xmCldFMAlFaOOMGiw/viewform?usp=dialog";
-
-  // Items para los pasos con iconos
-  const items = [
-    {
-      label: 'Realiza el pago',
-      icon: 'pi pi-wallet', // Icono de billetera
-    },
-    {
-      label: 'Sube el comprobante',
-      icon: 'pi pi-upload', // Icono de subida de archivo
-    },
-    {
-      label: 'Recibe tu producto',
-      icon: 'pi pi-check', // Icono de confirmación
-    },
-  ];
-
   return (
-    <div className="confirmar-compra-container">
-      {/* Enlace para volver al carrito */}
-      <div className="volver-tienda">
-        <Link to="/carrito" className="volver-tienda-link">
-          &larr; Volver al carrito
-        </Link>
+    <div className="confirmar-compra-wrapper">
+      {/* Cabecera unificada */}
+      <div className="confirmar-compra-header">
+        <h1 className="confirmar-compra-title">Confirmar Compra</h1>
+        <Breadcrumb
+          className="confirmar-compra-breadcrumb"
+          separator={<span style={{ color: 'var(--alo-gris)', opacity: 0.5 }}>/</span>}
+          items={[
+            { title: <Link to="/tienda" style={{ color: 'var(--alo-gris-claro)', textDecoration: 'none' }}>Catálogo</Link> },
+            { title: <Link to="/carrito" style={{ color: 'var(--alo-gris-claro)', textDecoration: 'none' }}>Carrito</Link> },
+            { title: <span style={{ color: 'var(--alo-verde-claro)' }}>Confirmar</span> }
+          ]}
+        />
       </div>
 
-      {/* Título */}
-      <h2 className="carrito-title">Confirmar Compra</h2>
+      {/* Layout de dos columnas */}
+      <div className="confirmar-compra-layout">
+        
+        {/* Panel Izquierdo: Lista de Productos */}
+        <div className="confirmar-panel-izquierdo">
+          <div className="checkout-card">
+            <div className="checkout-card-header">
+              <ShoppingCartOutlined style={{ fontSize: '22px', color: 'var(--alo-verde-claro)' }} />
+              <h2>Detalle de los productos</h2>
+            </div>
 
-      {/* Pasos */}
-      <Steps 
-        model={items} 
-        activeIndex={activeIndex} 
-        onSelect={(e) => setActiveIndex(e.index)} 
-        className="m-2 pt-4 stepmodificado"
-        readOnly={false}  // Asegúrate de que no esté en `true`
-      />
+            <div className="checkout-items-list">
+              {productosCarrito.map((item) => (
+                <div key={item.id_articulo} className="checkout-item">
+                  <div className="checkout-item-info">
+                    <Link to={`/producto/${item.id}`} className="checkout-item-name-link">
+                      <span className="checkout-item-name">{item.nombre}</span>
+                    </Link>
+                    <span className="checkout-item-qty">Cantidad: {item.cantidad}</span>
+                  </div>
+                  <span className="checkout-item-price">{formatearMonto(item.precio * item.cantidad)}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
 
-      {/* Contenido principal */}
-      <div className="confirmacompra-contenido">
-        {/* Paso 1: Transferencia */}
-        {activeIndex === 0 && (
-          <Card className="confirmacompra-card" title="Paso 1: Realiza el pago" bordered>
-            <Table
-              dataSource={datosTransferencia}
-              columns={columns}
-              pagination={false}
-              showHeader={false}
-              rowKey="label"
-            />
-          </Card>
-        )}
+        {/* Panel Derecho: Pago Seguro */}
+        <div className="confirmar-panel-derecho">
+          <div className="checkout-card">
+            <div className="checkout-card-header">
+              <SafetyCertificateOutlined style={{ fontSize: '22px', color: 'var(--alo-verde-claro)' }} />
+              <h2>Resumen Seguro</h2>
+            </div>
 
-        {/* Paso 2: Subir comprobante */}
-        {activeIndex === 1 && (
-          <Card className="confirmacompra-card" title="Paso 2: Sube tu comprobante al formulario para recibir tu producto" bordered>
-            <Paragraph>
-              Por favor, sube tu comprobante de transferencia al formulario de Google para completar tu compra.
-            </Paragraph>
-            <Button
-              type="primary"
-              href={formularioGoogleUrl}
-              target="_blank"
-              className='confirmacompraform btn-azul'
-              block
-            >
-              Ir al formulario
-            </Button>
-          </Card>
-        )}
+            {user && (
+              <div style={{ padding: '0 0 16px', color: 'var(--alo-gris)', fontSize: '13px' }}>
+                Conectado como: <span style={{ color: 'var(--alo-blanco)' }}>{user.email}</span>
+              </div>
+            )}
 
-        {/* Paso 3: Confirmación */}
-        {activeIndex === 2 && (
-          <Card className="confirmacompra-card" title="Paso 3: Recibirás tu producto" bordered>
-            <Paragraph>
-              En aproximadamente <Text strong>1 hora</Text>, recibirás tu producto junto con las instrucciones de uso y un video demostrativo.
-            </Paragraph>
-          </Card>
-        )}
+            <div className="checkout-total-section">
+              <div className="checkout-total-row">
+                <span className="checkout-total-label">Subtotal</span>
+                <span className="checkout-total-value">{formatearMonto(total)}</span>
+              </div>
+              <div className="checkout-total-row total-final">
+                <span className="checkout-total-label">Total a pagar</span>
+                <span className="checkout-total-value accent">{formatearMonto(total)}</span>
+              </div>
+            </div>
+            
+            <div className="checkout-action-section">
+              <Button
+                type="primary"
+                size="large"
+                className="btn-checkout"
+                icon={user ? <CreditCardOutlined /> : <GoogleOutlined />}
+                block
+                loading={loadingMp || user === undefined}
+                onClick={procesarPago}
+              >
+                {user === undefined ? "Verificando sesión..." : user ? "Pagar con Mercado Pago" : "Iniciar sesión para Pagar"}
+              </Button>
+              <p className="checkout-secure-text">Serás redirigido a la plataforma oficial y 100% segura de Mercado Pago.</p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   );

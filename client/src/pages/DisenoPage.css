@@ -1,0 +1,14 @@
+.diseno-page-wrapper {
+  padding: 40px 24px 60px;
+  background: var(--alo-oscuro);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .diseno-page-wrapper {
+    padding: 130px 16px 40px !important;
+  }
+}

@@ -3,9 +3,20 @@
   color: red;
   transform: translateY(-70px);
 }
+
 .categoria-grid-section {
   background: var(--seccion_categorias_fondo);
-  padding: 0;
+  padding: 120px 0;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .categoria-grid-section {
+    padding: 60px 0 40px;
+  }
 }
 
 .seccion-encabezado-izq {
@@ -13,7 +24,7 @@
 }
 
 .categoria-grid-section .header-izq svg {
-  fill: var(--seccion_categorias_titulo);  
+  fill: var(--seccion_categorias_titulo);
 }
 
 .categoria-grid-section .header-izq h2 {
@@ -67,19 +78,20 @@
   justify-content: space-between;
   height: 100%;
   min-height: 100px;
+  padding: 24px 16px;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   overflow: hidden;
 }
 
 .categoria-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   border-color: var(--alo-verde);
 }
 
 .categoria-grid {
   padding: 0px;
 }
+
 .categoria-grid .categoria-card {
   height: 100%;
   margin: 0px;
@@ -105,7 +117,7 @@
 }
 
 .categoria-card h3 {
-  font-size: 1.4rem;
+  font-size: 1.15rem;
   font-weight: 600;
   color: var(--seccion_categorias_titulo);
 }
@@ -117,12 +129,14 @@
 
 @media (min-width: 769px) {
   .categoria-card h3 {
-    font-size: 1.6rem;
+    font-size: 1.2rem;
   }
+
   .categoria-card p {
-    font-size: 1rem;
-  } 
+    font-size: .9rem;
+  }
 }
+
 @media (max-width: 768px) {
   .categoria-grid-section .centered-content {
     overflow: visible;
@@ -138,44 +152,66 @@
 
   .categoria-card {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     padding: 16px;
     background-color: var(--alo-oscuro2);
     border-radius: 12px;
+    text-align: left;
+    gap: 16px;
   }
 
   .categoria-card .icon {
-    width: 6.8rem;
-    height: 6.8rem;
-    margin-inline: auto;
-    margin-bottom: 0;
+    width: 4rem;
+    height: 4rem;
+    margin: 0;
+    flex-shrink: 0;
   }
 
   .categoria-card .icon svg {
-    font-size: 4.5rem;
+    font-size: 2rem;
+  }
+
+  .categoria-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
   }
 
   .categoria-card h3 {
-    font-size: 1rem;
-    text-align: center;
+    font-size: 1.15rem;
+    text-align: left;
+    margin-bottom: 4px;
+    margin-top: 0;
   }
 
   .categoria-card p {
-    font-size: .8rem;
+    font-size: 0.85rem;
     height: auto;
-    text-align: center;
-    margin: 0;
+    text-align: left;
+    margin: 0 0 12px 0;
+    line-height: 1.3;
   }
 
   .categoria-card .ver-mas-btn {
-    margin-top: 20px;
+    margin-top: auto;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    width: auto;
+  }
+
+  .categoria-card .ver-mas-btn button {
+    width: auto;
+    white-space: nowrap;
+    padding: 6px 16px;
+    height: auto;
+    font-size: 0.85rem;
   }
 
   .categoria-grid .btn-naranjo {
-    padding: 4px 12px;
+    padding: 6px 16px;
+    width: 100%;
+    white-space: nowrap;
   }
 }

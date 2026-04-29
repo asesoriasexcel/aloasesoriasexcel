@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import {
   Form, Input, InputNumber, Select, Switch, Button,
-  Row, Col, message, Spin,
+  Row, Col, message, Spin, Breadcrumb
 } from 'antd';
 import {
   ArrowLeftOutlined, SaveOutlined,
@@ -33,9 +33,12 @@ const AdminProductForm = () => {
       form.setFieldsValue({
         disponible: true,
         liberado: false,
-        grado: 'Básico',
+        grado: 'Simple',
         precio: 0,
         tipo: 'Excel',
+        license_type: 'Uso',
+        has_license: false,
+        license_quantity: 1,
       });
     }
   }, [id]);
@@ -111,7 +114,7 @@ const AdminProductForm = () => {
         {/* Cabecera de página */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
           <div>
-            <h1 style={{ margin: 0, fontSize: '24px', fontWeight: 600, color: 'var(--admin-text-primary)' }}>
+            <h1 style={{ margin: 0, fontSize: '20px', fontWeight: 600, color: 'var(--admin-text-primary)' }}>
               {id ? 'Editar producto' : 'Nuevo producto'}
             </h1>
             <p style={{ margin: '4px 0 0', fontSize: '13px', color: 'var(--admin-text-subtle)' }}>
@@ -119,11 +122,14 @@ const AdminProductForm = () => {
             </p>
           </div>
           {/* Breadcrumbs or actions */}
-          <div style={{ fontSize: '13px', color: 'var(--admin-text-subtle)', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <a href="/admin" style={{ color: 'var(--admin-text-subtle)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseOver={e => e.target.style.color = 'var(--admin-text-primary)'} onMouseOut={e => e.target.style.color = 'var(--admin-text-subtle)'}>Catálogo</a>
-            <span>{'>'}</span>
-            <span style={{ color: 'var(--admin-text-primary)', fontWeight: 500 }}>{id ? 'Editar' : 'Nuevo'}</span>
-          </div>
+          <Breadcrumb
+            separator={<span style={{ color: 'var(--admin-text-subtle)', opacity: 0.5 }}>/</span>}
+            items={[
+              { title: <Link to="/tienda" style={{ color: 'var(--admin-text-subtle)', textDecoration: 'none' }}>Catálogo</Link> },
+              { title: <Link to="/admin" style={{ color: 'var(--admin-text-subtle)', textDecoration: 'none' }}>Administración</Link> },
+              { title: <span style={{ color: 'var(--admin-text-primary)' }}>{id ? 'Editar' : 'Nuevo'}</span> }
+            ]}
+          />
         </div>
 
         {/* Formulario */}
@@ -160,11 +166,11 @@ const AdminProductForm = () => {
               <Col xs={24} sm={8}>
                 <Form.Item name="grado" label="Nivel / Grado">
                   <Select>
-                    <Option value="Básico">Básico</Option>
+                    <Option value="Simple">Simple</Option>
                     <Option value="Full">Full</Option>
                     <Option value="Pro">Pro</Option>
                     <Option value="Master">Master</Option>
-                    <Option value="Legendario">Legendario</Option>
+                    <Option value="Leyenda">Leyenda</Option>
                   </Select>
                 </Form.Item>
               </Col>
@@ -198,6 +204,10 @@ const AdminProductForm = () => {
                 </Form.Item>
               </Col>
             </Row>
+
+            <Form.Item name="tags" label="Etiquetas (Tags)">
+              <Select mode="tags" style={{ width: '100%' }} placeholder="Escribe un tag y presiona Enter (ej: UTP, Administrativo, 2025)" />
+            </Form.Item>
 
             <Form.Item name="descripcion" label="Resumen corto (tarjeta de tienda)">
               <TextArea rows={2} placeholder="Descripción breve que aparece en el listado" />
@@ -246,9 +256,41 @@ const AdminProductForm = () => {
               </Col>
             </Row>
 
-            <Form.Item name="imagen" label="URL imagen de portada">
-              <Input placeholder="https://... (imagen pública accesible por URL)" />
-            </Form.Item>
+            <Row gutter={[24, 0]}>
+              <Col xs={24} sm={12}>
+                <Form.Item name="imagen" label="URL imagen de portada">
+                  <Input placeholder="https://... (imagen pública accesible por URL)" />
+                </Form.Item>
+              </Col>
+              <Col xs={24} sm={12}>
+                <Form.Item name="demo_link" label="Link versión DEMO (Opcional)">
+                  <Input placeholder="https://... (Link de descarga o visualización demo)" />
+                </Form.Item>
+              </Col>
+            </Row>
+
+            {/* ── Licenciamiento ───────────────────────────────── */}
+            <p className="admin-form-section-title">Licenciamiento</p>
+            <Row gutter={[24, 0]} align="middle">
+              <Col xs={24} sm={6}>
+                <Form.Item name="has_license" label="¿Requiere licencia?" valuePropName="checked">
+                  <Switch />
+                </Form.Item>
+              </Col>
+              <Col xs={24} sm={9}>
+                <Form.Item name="license_type" label="Tipo de licencia">
+                  <Select placeholder="Seleccionar tipo">
+                    <Option value="Uso">Licencia de Uso (Equipos)</Option>
+                    <Option value="Usuario">Licencia de Usuario</Option>
+                  </Select>
+                </Form.Item>
+              </Col>
+              <Col xs={24} sm={9}>
+                <Form.Item name="license_quantity" label="Cantidad">
+                  <InputNumber min={1} style={{ width: '100%' }} placeholder="Ej: 1" />
+                </Form.Item>
+              </Col>
+            </Row>
 
             {/* ── Visibilidad ──────────────────────────────────── */}
             <p className="admin-form-section-title">Visibilidad</p>
